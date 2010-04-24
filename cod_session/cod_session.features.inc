@@ -35,3 +35,12 @@ function cod_session_user_default_permissions() {
   $args = func_get_args();
   return call_user_func_array('_cod_session_user_default_permissions', $args);
 }
+
+/**
+ * Implementation of hook_views_default_views().
+ */
+function cod_session_views_default_views() {
+  module_load_include('inc', 'cod_session', 'cod_session.features.views');
+  $args = func_get_args();
+  return call_user_func_array('_cod_session_views_default_views', $args);
+}

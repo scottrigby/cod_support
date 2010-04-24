@@ -117,6 +117,47 @@ function _cod_session_content_default_fields() {
  */
 function _cod_session_flag_default_flags() {
 $flags = array();
+// Exported flag: "Session Attending".
+$flags[] = array (
+  'content_type' => 'node',
+  'name' => 'session_schedule',
+  'title' => 'Session Attending',
+  'global' => '0',
+  'types' => 
+  array (
+    0 => 'session',
+  ),
+  'flag_short' => 'I\'m Attending',
+  'flag_long' => 'Attend this session',
+  'flag_message' => 'This session will be added to your schedule!',
+  'unflag_short' => 'Remove from my schedule',
+  'unflag_long' => '',
+  'unflag_message' => '',
+  'unflag_denied_text' => '',
+  'link_type' => 'toggle',
+  'roles' => 
+  array (
+    'flag' => 
+    array (
+    ),
+    'unflag' => 
+    array (
+    ),
+  ),
+  'show_on_page' => 1,
+  'show_on_teaser' => 1,
+  'show_on_form' => 0,
+  'access_author' => '',
+  'i18n' => 0,
+  'flag_confirmation' => '',
+  'unflag_confirmation' => 'This session has been removed from your schedule',
+  'api_version' => 2,
+  'module' => 'cod_session',
+  'locked' => 
+  array (
+    0 => 'name',
+  ),
+);
 // Exported flag: "Session Vote".
 $flags[] = array (
   'content_type' => 'node',
@@ -153,12 +194,12 @@ $flags[] = array (
   'i18n' => 0,
   'flag_confirmation' => '',
   'unflag_confirmation' => '',
-  'api_version' => 2,
   'module' => 'cod_session',
   'locked' => 
   array (
     0 => 'name',
   ),
+  'api_version' => 2,
 );
 return $flags;
 }
