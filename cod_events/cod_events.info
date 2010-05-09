@@ -1,0 +1,8 @@
+core = "6.x"
+dependencies[] = "uc_product"
+dependencies[] = "uc_signup"
+description = "Provides free & paid event registration and administrative signup lists"
+name = "COD Events"
+package = "Features"
+project = "cod_events"
+version = "6.x-1.0-beta"
