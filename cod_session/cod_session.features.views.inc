@@ -484,14 +484,14 @@ function _cod_session_views_default_views() {
     ),
     'default' => '-1',
   ));
-  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler = $view->new_display('page', 'Primary Sessions Listing', 'page_1');
   $handler->override_option('path', 'schedule');
   $handler->override_option('menu', array(
-    'type' => 'none',
-    'title' => '',
+    'type' => 'normal',
+    'title' => 'Sessions',
     'description' => '',
-    'weight' => 0,
-    'name' => 'navigation',
+    'weight' => '0',
+    'name' => 'primary-links',
   ));
   $handler->override_option('tab_options', array(
     'type' => 'none',
@@ -500,7 +500,7 @@ function _cod_session_views_default_views() {
     'weight' => 0,
     'name' => 'navigation',
   ));
-  $handler = $view->new_display('page', 'Page', 'page_2');
+  $handler = $view->new_display('page', 'My Session Schedule', 'page_2');
   $handler->override_option('relationships', array(
     'flag_content_rel' => array(
       'label' => 'flag',
@@ -519,10 +519,10 @@ function _cod_session_views_default_views() {
   $handler->override_option('title', 'My Session Schedule');
   $handler->override_option('path', 'my-schedule');
   $handler->override_option('menu', array(
-    'type' => 'none',
-    'title' => '',
+    'type' => 'normal',
+    'title' => 'My Sessions',
     'description' => '',
-    'weight' => 0,
+    'weight' => '0',
     'name' => 'navigation',
   ));
   $handler->override_option('tab_options', array(

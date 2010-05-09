@@ -125,7 +125,6 @@ $flags[] = array (
   'global' => '0',
   'types' => 
   array (
-    0 => 'session',
   ),
   'flag_short' => 'I\'m Attending',
   'flag_long' => 'Attend this session',
@@ -139,9 +138,11 @@ $flags[] = array (
   array (
     'flag' => 
     array (
+      0 => 2,
     ),
     'unflag' => 
     array (
+      0 => 2,
     ),
   ),
   'show_on_page' => 1,
@@ -166,7 +167,6 @@ $flags[] = array (
   'global' => '0',
   'types' => 
   array (
-    0 => 'session',
   ),
   'flag_short' => 'Vote for this session',
   'flag_long' => 'Vote for this session',
@@ -180,11 +180,11 @@ $flags[] = array (
   array (
     'flag' => 
     array (
-      0 => '2',
+      0 => 2,
     ),
     'unflag' => 
     array (
-      0 => '2',
+      0 => 2,
     ),
   ),
   'show_on_page' => 1,
@@ -194,12 +194,12 @@ $flags[] = array (
   'i18n' => 0,
   'flag_confirmation' => '',
   'unflag_confirmation' => '',
+  'api_version' => 2,
   'module' => 'cod_session',
   'locked' => 
   array (
     0 => 'name',
   ),
-  'api_version' => 2,
 );
 return $flags;
 }
