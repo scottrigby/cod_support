@@ -10,7 +10,7 @@ function _cod_news_views_default_views() {
   $view = new view;
   $view->name = 'news';
   $view->description = '';
-  $view->tag = '';
+  $view->tag = 'cod news';
   $view->view_php = '';
   $view->base_table = 'node';
   $view->is_cacheable = FALSE;
