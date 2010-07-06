@@ -627,7 +627,7 @@ return theme(\'item_list\', $footer);');
   $handler->override_option('path', 'user/%/agenda');
   $handler->override_option('menu', array(
     'type' => 'tab',
-    'title' => 'My Schedule',
+    'title' => 'My Session Agenda',
     'description' => 'Sessions I\'m attending',
     'weight' => '2',
     'name' => 'navigation',
