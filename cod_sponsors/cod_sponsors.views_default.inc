@@ -128,7 +128,7 @@ function cod_sponsors_views_default_views() {
   $handler->override_option('style_options', array(
     'type' => 'ul',
   ));
-  $handler = $view->new_display('page', 'Platninum Sponsor Page', 'page_1');
+  $handler = $view->new_display('page', 'Platinum Sponsor Page', 'page_1');
   $handler->override_option('fields', array(
     'field_logo_fid' => array(
       'label' => '',
