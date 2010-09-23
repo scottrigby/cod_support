@@ -96,6 +96,10 @@ function cod_sponsors_content_default_fields() {
     'multiple' => '1',
     'module' => 'userreference',
     'active' => '1',
+    'referenceable_roles' => '',
+    'referenceable_status' => '',
+    'advanced_view' => '',
+    'advanced_view_args' => '',
     'widget' => array(
       'autocomplete_match' => 'contains',
       'size' => '60',

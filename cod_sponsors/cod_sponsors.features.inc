@@ -1,50 +1,13 @@
 <?php
 
 /**
- * Implementation of hook_context_default_contexts().
+ * Implementation of hook_ctools_plugin_api().
  */
-function cod_sponsors_context_default_contexts() {
-  $items = array();
-
-  $items['context_ui-section-sponsors'] = array(
-    'namespace' => 'context_ui',
-    'attribute' => 'section',
-    'value' => 'sponsors',
-    'description' => 'Sponsors page',
-    'views' => array(
-      '0' => 'Sponsors',
-    ),
-    'block' => array(
-      'views_Sponsors-block_1' => array(
-        'module' => 'views',
-        'delta' => 'Sponsors-block_1',
-        'weight' => 10,
-        'region' => 'content',
-        'status' => '0',
-        'label' => 'Sponsors: Gold Sponsor Block',
-        'type' => 'context_ui',
-      ),
-      'views_Sponsors-block_2' => array(
-        'module' => 'views',
-        'delta' => 'Sponsors-block_2',
-        'weight' => 11,
-        'region' => 'content',
-        'status' => '0',
-        'label' => 'Sponsors: Silver Sponsor Block',
-        'type' => 'context_ui',
-      ),
-      'views_Sponsors-block_3' => array(
-        'module' => 'views',
-        'delta' => 'Sponsors-block_3',
-        'weight' => 12,
-        'region' => 'content',
-        'status' => '0',
-        'label' => 'Sponsors: Bronze Sponsor Block',
-        'type' => 'context_ui',
-      ),
-    ),
-  );
-  return $items;
+function cod_sponsors_ctools_plugin_api() {
+  list($module, $api) = func_get_args();
+  if ($module == "context" && $api == "context") {
+    return array("version" => 3);
+  }
 }
 
 /**
