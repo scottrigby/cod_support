@@ -6,6 +6,54 @@
 function cod_session_fieldgroup_default_groups() {
   $groups = array();
 
+  // Exported group: group_schedule
+  $groups['schedule_item-group_schedule'] = array(
+    'group_type' => 'standard',
+    'type_name' => 'schedule_item',
+    'group_name' => 'group_schedule',
+    'label' => 'Schedule info',
+    'settings' => array(
+      'form' => array(
+        'style' => 'fieldset',
+        'description' => '',
+      ),
+      'display' => array(
+        'description' => '',
+        'label' => 'above',
+        'teaser' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'full' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '4' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '2' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '3' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'token' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+      ),
+    ),
+    'weight' => '-2',
+    'fields' => array(
+      '0' => 'field_accepted',
+      '1' => 'field_session_slot',
+      '2' => 'field_session_room',
+    ),
+  );
+
   // Exported group: group_audience
   $groups['session-group_audience'] = array(
     'group_type' => 'standard',
@@ -18,14 +66,14 @@ function cod_session_fieldgroup_default_groups() {
         'description' => '',
       ),
       'display' => array(
-        'weight' => '38',
-        'label' => 'above',
+        'weight' => '2',
+        'label' => 'hidden',
         'teaser' => array(
-          'format' => 'fieldset',
+          'format' => 'hidden',
           'exclude' => 0,
         ),
         'full' => array(
-          'format' => 'fieldset',
+          'format' => 'hidden',
           'exclude' => 0,
         ),
         'description' => '',
@@ -39,11 +87,9 @@ function cod_session_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '38',
+    'weight' => '3',
     'fields' => array(
       '0' => 'field_track',
-      '1' => 'field_skill_level',
-      '2' => 'field_accepted',
     ),
   );
 
@@ -52,25 +98,31 @@ function cod_session_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'session',
     'group_name' => 'group_schedule',
-    'label' => 'Schedule Info',
+    'label' => 'Schedule info',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
         'description' => '',
       ),
       'display' => array(
-        'weight' => '35',
-        'label' => 'above',
+        'description' => '',
         'teaser' => array(
-          'format' => 'fieldset',
+          'format' => 'hidden',
           'exclude' => 0,
         ),
         'full' => array(
+          'format' => 'hidden',
+          'exclude' => 0,
+        ),
+        '4' => array(
           'format' => 'fieldset',
           'exclude' => 0,
         ),
-        'description' => '',
-        '4' => array(
+        '2' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '3' => array(
           'format' => 'fieldset',
           'exclude' => 0,
         ),
@@ -78,20 +130,21 @@ function cod_session_fieldgroup_default_groups() {
           'format' => 'fieldset',
           'exclude' => 0,
         ),
+        'label' => 'hidden',
       ),
     ),
-    'weight' => '35',
+    'weight' => '1',
     'fields' => array(
-      '0' => 'field_day',
-      '1' => 'field_slot',
-      '2' => 'field_room',
+      '0' => 'field_accepted',
+      '1' => 'field_session_slot',
+      '2' => 'field_session_room',
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Audience');
-  t('Schedule Info');
+  t('Schedule info');
 
   return $groups;
 }
