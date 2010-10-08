@@ -9,7 +9,7 @@ function cod_session_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ant_pattern_time_slot';
-  $strongarm->value = '';
+  $strongarm->value = '[field_slot_datetime-d] [field_slot_datetime-month] [field_slot_datetime-time] - [field_slot_datetime-to-time]';
 
   $export['ant_pattern_time_slot'] = $strongarm;
   $strongarm = new stdClass;
