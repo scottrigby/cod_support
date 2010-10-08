@@ -122,14 +122,6 @@ function cod_session_user_default_permissions() {
     ),
   );
 
-  // Exported permission: edit field_dates
-  $permissions['edit field_dates'] = array(
-    'name' => 'edit field_dates',
-    'roles' => array(
-      '0' => 'session organizer',
-    ),
-  );
-
   // Exported permission: edit field_session_room
   $permissions['edit field_session_room'] = array(
     'name' => 'edit field_session_room',
@@ -154,16 +146,12 @@ function cod_session_user_default_permissions() {
     ),
   );
 
-  // Exported permission: edit field_sponsorship_level
-  $permissions['edit field_sponsorship_level'] = array(
-    'name' => 'edit field_sponsorship_level',
-    'roles' => array(),
-  );
-
   // Exported permission: edit field_track
   $permissions['edit field_track'] = array(
     'name' => 'edit field_track',
-    'roles' => array(),
+    'roles' => array(
+      '0' => 'session organizer',
+    ),
   );
 
   // Exported permission: edit own room content
@@ -204,9 +192,18 @@ function cod_session_user_default_permissions() {
     ),
   );
 
-  // Exported permission: view field_dates
-  $permissions['view field_dates'] = array(
-    'name' => 'view field_dates',
+  // Exported permission: view field_presenters
+  $permissions['view field_presenters'] = array(
+    'name' => 'view field_presenters',
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+    ),
+  );
+
+  // Exported permission: view field_session_room
+  $permissions['view field_session_room'] = array(
+    'name' => 'view field_session_room',
     'roles' => array(
       '0' => 'anonymous user',
       '1' => 'authenticated user',
@@ -214,32 +211,24 @@ function cod_session_user_default_permissions() {
     ),
   );
 
-  // Exported permission: view field_presenters
-  $permissions['view field_presenters'] = array(
-    'name' => 'view field_presenters',
-    'roles' => array(),
-  );
-
-  // Exported permission: view field_session_room
-  $permissions['view field_session_room'] = array(
-    'name' => 'view field_session_room',
-    'roles' => array(
-      '0' => 'session organizer',
-    ),
-  );
-
   // Exported permission: view field_session_slot
   $permissions['view field_session_slot'] = array(
     'name' => 'view field_session_slot',
     'roles' => array(
-      '0' => 'session organizer',
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'session organizer',
     ),
   );
 
   // Exported permission: view field_slot_datetime
   $permissions['view field_slot_datetime'] = array(
     'name' => 'view field_slot_datetime',
-    'roles' => array(),
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'session organizer',
+    ),
   );
 
   // Exported permission: view field_track

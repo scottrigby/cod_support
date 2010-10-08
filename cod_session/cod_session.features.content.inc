@@ -268,11 +268,11 @@ function cod_session_content_default_fields() {
         'format' => 'above',
       ),
       'teaser' => array(
-        'format' => 'hidden',
+        'format' => 'default',
         'exclude' => 0,
       ),
       'full' => array(
-        'format' => 'hidden',
+        'format' => 'default',
         'exclude' => 0,
       ),
       '4' => array(
@@ -320,9 +320,10 @@ function cod_session_content_default_fields() {
     'field_name' => 'field_session_room',
     'type_name' => 'session',
     'display_settings' => array(
+      'weight' => '1',
+      'parent' => 'group_schedule',
       'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
+        'format' => 'inline',
       ),
       'teaser' => array(
         'format' => 'default',
@@ -389,7 +390,7 @@ function cod_session_content_default_fields() {
     'field_name' => 'field_session_slot',
     'type_name' => 'session',
     'display_settings' => array(
-      'weight' => '1',
+      'weight' => '-1',
       'parent' => 'group_schedule',
       'label' => array(
         'format' => 'inline',
@@ -489,7 +490,9 @@ function cod_session_content_default_fields() {
     'active' => '1',
     'text_processing' => '0',
     'max_length' => '',
-    'allowed_values' => 'BoF',
+    'allowed_values' => 'Track 1
+Track 2
+Track 3',
     'allowed_values_php' => '',
     'widget' => array(
       'default_value' => array(
