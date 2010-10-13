@@ -308,7 +308,7 @@ function cod_session_content_default_fields() {
       ),
       'default_value_php' => NULL,
       'label' => 'Presenter(s)',
-      'weight' => '-2',
+      'weight' => '-3',
       'description' => 'Add your username and optionally 1-5 additional presenter usernames.',
       'type' => 'userreference_autocomplete',
       'module' => 'userreference',
@@ -455,6 +455,63 @@ function cod_session_content_default_fields() {
     ),
   );
 
+  // Exported field: field_slides
+  $fields['session-field_slides'] = array(
+    'field_name' => 'field_slides',
+    'type_name' => 'session',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'filefield',
+    'required' => '0',
+    'multiple' => '1',
+    'module' => 'filefield',
+    'active' => '1',
+    'list_field' => '1',
+    'list_default' => 1,
+    'description_field' => '0',
+    'widget' => array(
+      'file_extensions' => 'ppt pdf odt odp',
+      'file_path' => 'slides',
+      'progress_indicator' => 'bar',
+      'max_filesize_per_file' => '',
+      'max_filesize_per_node' => '',
+      'label' => 'Slides',
+      'weight' => '-1',
+      'description' => '',
+      'type' => 'filefield_widget',
+      'module' => 'filefield',
+    ),
+  );
+
   // Exported field: field_track
   $fields['session-field_track'] = array(
     'field_name' => 'field_track',
@@ -586,6 +643,7 @@ Track 3',
   t('Date and time');
   t('Presenter(s)');
   t('Room');
+  t('Slides');
   t('Status');
   t('Time slot');
   t('Track');

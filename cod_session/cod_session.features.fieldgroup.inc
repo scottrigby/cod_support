@@ -87,7 +87,7 @@ function cod_session_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '3',
+    'weight' => '1',
     'fields' => array(
       '0' => 'field_track',
     ),
@@ -134,7 +134,7 @@ function cod_session_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '1',
+    'weight' => '0',
     'fields' => array(
       '0' => 'field_accepted',
       '1' => 'field_session_slot',

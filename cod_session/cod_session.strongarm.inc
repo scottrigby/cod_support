@@ -148,6 +148,23 @@ function cod_session_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'content_extra_weights_session';
+  $strongarm->value = array(
+    'title' => '-5',
+    'body_field' => '-2',
+    'revision_information' => '3',
+    'author' => '2',
+    'options' => '4',
+    'comment_settings' => '6',
+    'menu' => '-4',
+    'path' => '7',
+    'path_redirect' => '5',
+  );
+
+  $export['content_extra_weights_session'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_session';
   $strongarm->value = array(
     0 => 'status',

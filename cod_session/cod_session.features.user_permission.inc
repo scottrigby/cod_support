@@ -138,6 +138,14 @@ function cod_session_user_default_permissions() {
     ),
   );
 
+  // Exported permission: edit field_slides
+  $permissions['edit field_slides'] = array(
+    'name' => 'edit field_slides',
+    'roles' => array(
+      '0' => 'authenticated user',
+    ),
+  );
+
   // Exported permission: edit field_slot_datetime
   $permissions['edit field_slot_datetime'] = array(
     'name' => 'edit field_slot_datetime',
@@ -218,6 +226,15 @@ function cod_session_user_default_permissions() {
       '0' => 'anonymous user',
       '1' => 'authenticated user',
       '2' => 'session organizer',
+    ),
+  );
+
+  // Exported permission: view field_slides
+  $permissions['view field_slides'] = array(
+    'name' => 'view field_slides',
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
     ),
   );
 
