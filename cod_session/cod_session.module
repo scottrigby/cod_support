@@ -19,7 +19,6 @@ function cod_session_theme() {
  */
 function cod_session_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
   if ($op == 'validate') {
-    
     // If the node has a room and slot field, make sure there are no existing nodes that have the same room/slot combination.
     if (!empty($node->field_session_slot[0]['nid']) && !empty($node->field_session_room[0]['nid'])) {
       $slots = array();
@@ -129,8 +128,10 @@ function template_preprocess_cod_session_calendar(&$vars) {
   $days = array();
   $day_count = 1;
   foreach ($slots as $slot) {
-    $date_start = date_make_date($slot->field_slot_datetime[0]['value'], 'UTC');
-    $date_end = date_make_date($slot->field_slot_datetime[0]['value2'], 'UTC');
+    $date_start = date_make_date($slot->field_slot_datetime[0]['value'], $slot->field_slot_datetime[0]['timezone_db']);
+    $date_end = date_make_date($slot->field_slot_datetime[0]['value2'], $slot->field_slot_datetime[0]['timezone_db']);
+    date_timezone_set($date_start, timezone_open($slot->field_slot_datetime[0]['timezone']));
+    date_timezone_set($date_end, timezone_open($slot->field_slot_datetime[0]['timezone']));
     $day_key = date_format_date($date_start, 'custom', 'Y-m-d');
     $arranged_slots[$day_key][date_format_date($date_start, 'custom', DATE_FORMAT_UNIX)] = array(
       'nid' => $slot->nid,
