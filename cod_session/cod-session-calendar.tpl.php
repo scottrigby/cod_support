@@ -14,7 +14,7 @@
         </td>
         <?php foreach (array_keys($rooms) as $room_key): ?>
           <?php if (!empty($session_grid[$slot['nid']][$room_key]['session'])): ?>
-          <td class="session occupied" <?php if (!empty($session_grid[$slot['nid']][$room_key]['colspan'])): ?>colspan="<?php print $session_grid[$slot['nid']][$room_key]['colspan']; ?>"<?php endif ?>>
+          <td class="session occupied<?php print $session_grid[$slot['nid']][$room_key]['class']; ?>" <?php if (!empty($session_grid[$slot['nid']][$room_key]['colspan'])): ?>colspan="<?php print $session_grid[$slot['nid']][$room_key]['colspan']; ?>"<?php endif ?>>
             <div class="views-item type-<?php print check_plain($session_grid[$slot['nid']][$room_key]['session']->type); ?>">
             <?php print $results[$session_grid[$slot['nid']][$room_key]['session']->nid]; ?>
             </div>

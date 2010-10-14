@@ -85,6 +85,64 @@ function template_preprocess_cod_session_calendar(&$vars) {
     }
   }
 
+  // Currently, the Track is given by a text optionwidget.
+  // Consider revising this to be taxonomy or node reference to simplify the following.
+  $types = array('session', 'schedule_item');
+  $session_attrs = array();
+  foreach ($types as $type) {
+    $type_array = content_types($type);
+    foreach ($type_array['fields'] as $field) {
+      if ($field['type'] == 'text' && in_array($field['widget']['type'], array('optionwidgets_buttons', 'optionwidgets_select', 'optionwidgets_onoff'))) {
+        if (!isset($session_attrs[$field['field_name']])) {
+          // Allowed values of a field may or may not have machine-readable keys.
+          $allowed_values = content_allowed_values($field);
+          $session_attrs[$field['field_name']] = array(
+            'name' => $field['field_name'],
+            'values' => array_values($allowed_values),
+            'keys' => array_keys($allowed_values),
+            'machine_keys' => _cod_session_machine_keys($field['field_name'], array_keys($allowed_values)),
+            );
+        }
+      }
+    }
+  }
+
+  // Create text CCK optionwidgets as attributes of sessions for CSS usage.
+  if (!empty($session_attrs)) {
+    foreach ($sessions as $session_nid => $session) {
+      foreach ($session_attrs as $field) {
+        // See if field exists for particular session node.
+        if (is_array($session->$field['name'])) {
+          // Field could have multiple instances.
+          foreach ($session->$field['name'] as $instance) {
+            // Emtpy values are NULL.
+            if (isset($instance['value'])) {
+              // Create container if doesn't exist.
+              if (!isset($sessions[$session_nid]->cod_session_classes)) {
+                $sessions[$session_nid]->cod_session_classes = array();
+              }
+              $key = array_search($instance['value'], $field['values']);
+              if ($key === FALSE) {
+                // It's possible we've rewritten the keys.
+                $key = array_search($instance['value'], $field['keys']);
+                if ($key !== FALSE) {
+                  $value = $field['values'][$key];
+                }
+              }
+              else {
+                $value = $instance['value'];
+              }
+              if ($key !== FALSE) {
+                // Create class based on field key.
+                $sessions[$session_nid]->cod_session_classes[$field['machine_keys'][$key]] = $value;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   // Get a list of rooms.
   $result = db_query("SELECT node.nid, node.title FROM {node} node WHERE node.type = 'room' AND node.status = 1 ORDER BY node.title ASC");
   while ($node = db_fetch_object($result)) {
@@ -96,8 +154,15 @@ function template_preprocess_cod_session_calendar(&$vars) {
   $session_grid = array();
   foreach ($sessions as $session) {
     if (!empty($session->field_session_slot[0]['nid']) && !empty($session->field_session_room[0]['nid'])) {
+      if (!empty($session->cod_session_classes)) {
+        $class = ' ' . implode(' ', array_keys($session->cod_session_classes));
+      }
+      else {
+        $class = '';
+      }
       foreach ($session->field_session_room as $room_instance) {
         $session_grid[$session->field_session_slot[0]['nid']][$room_instance['nid']]['session'] = $session;
+        $session_grid[$session->field_session_slot[0]['nid']][$room_instance['nid']]['class'] = $class;
       }
       // Create array of populated slots.
       if (!$show_all_slots && !in_array($session->field_session_slot[0]['nid'], $slot_nids)) {
@@ -212,4 +277,23 @@ function cod_session_ksort_recurse(&$array) {
       return;
     }
   }
+}
+
+/**
+ * Create array of machine-readable keys.
+ */
+function _cod_session_machine_keys($prefix, $keys) {
+  $machine_keys = array();
+  foreach ($keys as $index => $key) {
+    $machine_key_raw = trim(preg_replace('/_+/', '_', preg_replace('/[^a-z0-9]+/', '_', strtolower($key))), '_');
+    if ($machine_key_raw == '') {
+      $machine_key_raw = $index;
+    }
+    $machine_key = $prefix . '-' . $machine_key_raw;
+    if (in_array($machine_key, $machine_keys)) {
+      $machine_key .= '-' . $index;
+    }
+    $machine_keys[$index] = $machine_key;
+  }
+  return $machine_keys;
 }
