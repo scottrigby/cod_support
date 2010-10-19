@@ -1,4 +1,11 @@
 <?php
 
-// This file is deprecated and can be removed.
-// Please remove include_once('cod_events.features.inc') in cod_events.module as well.
+/**
+ * Implementation of hook_ctools_plugin_api().
+ */
+function cod_events_ctools_plugin_api() {
+  list($module, $api) = func_get_args();
+  if ($module == "strongarm" && $api == "strongarm") {
+    return array("version" => 1);
+  }
+}
