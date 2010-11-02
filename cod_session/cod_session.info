@@ -1,5 +1,6 @@
 core = "6.x"
 dependencies[] = "auto_nodetitle"
+dependencies[] = "cod_base"
 dependencies[] = "content"
 dependencies[] = "content_permissions"
 dependencies[] = "context"
