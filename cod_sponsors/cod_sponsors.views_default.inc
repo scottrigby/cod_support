@@ -239,6 +239,23 @@ function cod_sponsors_views_default_views() {
       'relationship' => 'none',
       'reduce_duplicates' => 0,
     ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('title', 'Sponsors');
   $handler->override_option('header', '<h3>Platinum</h3>');
@@ -370,6 +387,23 @@ function cod_sponsors_views_default_views() {
       'relationship' => 'none',
       'reduce_duplicates' => 0,
     ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('header', '<h3>Gold</h3>');
   $handler->override_option('header_format', '2');
@@ -486,6 +520,23 @@ function cod_sponsors_views_default_views() {
       ),
       'relationship' => 'none',
       'reduce_duplicates' => 0,
+    ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
     ),
   ));
   $handler->override_option('header', '<h3>Silver</h3>');
@@ -604,6 +655,23 @@ function cod_sponsors_views_default_views() {
       'relationship' => 'none',
       'reduce_duplicates' => 0,
     ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('header', '<h3>Bronze</h3>');
   $handler->override_option('header_format', '2');
@@ -721,6 +789,23 @@ function cod_sponsors_views_default_views() {
       'relationship' => 'none',
       'reduce_duplicates' => 0,
     ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('items_per_page', 1);
   $handler->override_option('block_description', '');
@@ -762,6 +847,23 @@ function cod_sponsors_views_default_views() {
       ),
       'relationship' => 'none',
       'reduce_duplicates' => 0,
+    ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
     ),
   ));
   $handler->override_option('items_per_page', 1);
@@ -805,6 +907,23 @@ function cod_sponsors_views_default_views() {
       'relationship' => 'none',
       'reduce_duplicates' => 0,
     ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('items_per_page', 1);
   $handler->override_option('block_description', '');
@@ -846,6 +965,23 @@ function cod_sponsors_views_default_views() {
       ),
       'relationship' => 'none',
       'reduce_duplicates' => 0,
+    ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
     ),
   ));
   $handler->override_option('items_per_page', 1);
