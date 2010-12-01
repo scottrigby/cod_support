@@ -16,6 +16,7 @@ description = "Provides free & paid event registration and administrative signup
 features[content][] = "event-field_dates"
 features[content][] = "event-field_image_cache"
 features[ctools][] = "strongarm:strongarm:1"
+features[variable][] = "comment_event"
 features[variable][] = "signup_admin_list_view"
 features[variable][] = "signup_date_field_event"
 features[variable][] = "signup_node_default_state_event"

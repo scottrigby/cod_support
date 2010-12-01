@@ -122,7 +122,7 @@ function cod_session_node_info() {
     'schedule_item' => array(
       'name' => t('Schedule Item'),
       'module' => 'features',
-      'description' => '',
+      'description' => t('Use schedule items for content you wish to have in the schedule but not be part of any session submission workflows. Examples include scheduling lunch or breaks.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'has_body' => '1',
