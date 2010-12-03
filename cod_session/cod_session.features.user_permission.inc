@@ -122,6 +122,14 @@ function cod_session_user_default_permissions() {
     ),
   );
 
+  // Exported permission: edit field_experience
+  $permissions['edit field_experience'] = array(
+    'name' => 'edit field_experience',
+    'roles' => array(
+      '0' => 'authenticated user',
+    ),
+  );
+
   // Exported permission: edit field_session_room
   $permissions['edit field_session_room'] = array(
     'name' => 'edit field_session_room',
@@ -197,6 +205,15 @@ function cod_session_user_default_permissions() {
     'name' => 'view field_accepted',
     'roles' => array(
       '0' => 'session organizer',
+    ),
+  );
+
+  // Exported permission: view field_experience
+  $permissions['view field_experience'] = array(
+    'name' => 'view field_experience',
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
     ),
   );
 

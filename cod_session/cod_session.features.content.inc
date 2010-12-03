@@ -43,8 +43,7 @@ function cod_session_content_default_fields() {
     'suffix' => '',
     'min' => '0',
     'max' => '2',
-    'allowed_values' => '0| Proposed
-1| Accepted
+    'allowed_values' => '1| Accepted
 2| Deferred',
     'allowed_values_php' => '',
     'widget' => array(
@@ -238,8 +237,7 @@ function cod_session_content_default_fields() {
     'suffix' => '',
     'min' => '0',
     'max' => '2',
-    'allowed_values' => '0| Proposed
-1| Accepted
+    'allowed_values' => '1| Accepted
 2| Deferred',
     'allowed_values_php' => '',
     'widget' => array(
@@ -250,6 +248,67 @@ function cod_session_content_default_fields() {
       ),
       'default_value_php' => NULL,
       'label' => 'Status',
+      'weight' => '-2',
+      'description' => '',
+      'type' => 'optionwidgets_buttons',
+      'module' => 'optionwidgets',
+    ),
+  );
+
+  // Exported field: field_experience
+  $fields['session-field_experience'] = array(
+    'field_name' => 'field_experience',
+    'type_name' => 'session',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '1',
+    'multiple' => '1',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => 'beginner|Beginner
+intermediate|Intermediate
+advanced|Advanced',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'default_value' => array(
+        '0' => array(
+          'value' => NULL,
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Experience level',
       'weight' => '-2',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -641,6 +700,7 @@ Track 3',
   // Translatables
   // Included for use with string extractors like potx.
   t('Date and time');
+  t('Experience level');
   t('Presenter(s)');
   t('Room');
   t('Slides');
