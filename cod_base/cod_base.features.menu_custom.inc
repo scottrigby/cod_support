@@ -12,9 +12,17 @@ function cod_base_menu_default_menu_custom() {
     'title' => 'Conference Management',
     'description' => '',
   );
+  // Exported menu: menu-quick-links
+  $menus['menu-quick-links'] = array(
+    'menu_name' => 'menu-quick-links',
+    'title' => 'Quick links - Authenticated',
+    'description' => 'Utility links that display on every page of the site, such as "Your account" and "Your schedule"',
+  );
   // Translatables
   // Included for use with string extractors like potx.
   t('Conference Management');
+  t('Quick links - Authenticated');
+  t('Utility links that display on every page of the site, such as "Your account" and "Your schedule"');
 
 
   return $menus;

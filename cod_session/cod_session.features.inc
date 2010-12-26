@@ -108,6 +108,17 @@ return $flags;
  */
 function cod_session_node_info() {
   $items = array(
+    'page' => array(
+      'name' => t('Page'),
+      'module' => 'features',
+      'description' => t('Use the <em>Page</em> content type for mostly static content like the "About us" section of a website. By default, a <em>page</em> entry does not allow comments and is not featured on the site\'s home page.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'has_body' => '1',
+      'body_label' => t('Body'),
+      'min_word_count' => '0',
+      'help' => '',
+    ),
     'room' => array(
       'name' => t('Room'),
       'module' => 'features',
