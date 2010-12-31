@@ -137,9 +137,9 @@ function cod_session_fieldgroup_default_groups() {
     ),
     'weight' => '0',
     'fields' => array(
-      '0' => 'field_accepted',
-      '1' => 'field_session_slot',
-      '2' => 'field_session_room',
+      '0' => 'field_session_slot',
+      '1' => 'field_session_room',
+      '2' => 'field_accepted',
     ),
   );
 
