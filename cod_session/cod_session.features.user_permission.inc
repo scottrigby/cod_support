@@ -158,6 +158,16 @@ function cod_session_user_default_permissions() {
     ),
   );
 
+  // Exported permission: edit field_presenters
+  $permissions['edit field_presenters'] = array(
+    'name' => 'edit field_presenters',
+    'roles' => array(
+      '0' => 'authenticated user',
+      '1' => 'session organizer',
+      '2' => 'site administrator',
+    ),
+  );
+
   // Exported permission: edit field_session_room
   $permissions['edit field_session_room'] = array(
     'name' => 'edit field_session_room',
