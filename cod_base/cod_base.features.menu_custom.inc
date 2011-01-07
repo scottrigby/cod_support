@@ -9,7 +9,7 @@ function cod_base_menu_default_menu_custom() {
   // Exported menu: menu-conference-admin
   $menus['menu-conference-admin'] = array(
     'menu_name' => 'menu-conference-admin',
-    'title' => 'Conference Management',
+    'title' => 'Conference management',
     'description' => '',
   );
   // Exported menu: menu-quick-links
@@ -20,7 +20,7 @@ function cod_base_menu_default_menu_custom() {
   );
   // Translatables
   // Included for use with string extractors like potx.
-  t('Conference Management');
+  t('Conference management');
   t('Quick links - Authenticated');
   t('Utility links that display on every page of the site, such as "Your account" and "Your schedule"');
 
