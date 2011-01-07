@@ -66,7 +66,7 @@ function cod_session_fieldgroup_default_groups() {
         'description' => '',
       ),
       'display' => array(
-        'weight' => '3',
+        'weight' => '1',
         'label' => 'hidden',
         'teaser' => array(
           'format' => 'hidden',
@@ -106,7 +106,7 @@ function cod_session_fieldgroup_default_groups() {
         'description' => '',
       ),
       'display' => array(
-        'weight' => '1',
+        'weight' => '0',
         'label' => 'above',
         'teaser' => array(
           'format' => 'simple',

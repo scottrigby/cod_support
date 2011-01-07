@@ -330,7 +330,7 @@ function cod_session_content_default_fields() {
     'field_name' => 'field_accepted',
     'type_name' => 'session',
     'display_settings' => array(
-      'weight' => '-2',
+      'weight' => '1',
       'parent' => 'group_schedule',
       'label' => array(
         'format' => 'inline',
@@ -385,9 +385,10 @@ function cod_session_content_default_fields() {
     'field_name' => 'field_experience',
     'type_name' => 'session',
     'display_settings' => array(
+      'weight' => '-2',
+      'parent' => 'group_audience',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
@@ -446,17 +447,17 @@ advanced|Advanced',
     'field_name' => 'field_presenters',
     'type_name' => 'session',
     'display_settings' => array(
-      'weight' => '-2',
+      'weight' => '-3',
       'parent' => '',
       'label' => array(
         'format' => 'above',
       ),
       'teaser' => array(
-        'format' => 'default',
+        'format' => 'user_full_name',
         'exclude' => 0,
       ),
       'full' => array(
-        'format' => 'default',
+        'format' => 'user_full_name',
         'exclude' => 0,
       ),
       '4' => array(
@@ -476,6 +477,9 @@ advanced|Advanced',
     'active' => '1',
     'referenceable_roles' => array(
       '2' => 0,
+      '4' => 0,
+      '3' => 0,
+      '5' => 0,
     ),
     'referenceable_status' => '1',
     'advanced_view' => '',
@@ -504,7 +508,7 @@ advanced|Advanced',
     'field_name' => 'field_session_room',
     'type_name' => 'session',
     'display_settings' => array(
-      'weight' => '1',
+      'weight' => 0,
       'parent' => 'group_schedule',
       'label' => array(
         'format' => 'inline',
@@ -574,9 +578,10 @@ advanced|Advanced',
     'field_name' => 'field_session_slides',
     'type_name' => 'session',
     'display_settings' => array(
+      'weight' => '2',
+      'parent' => '',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
@@ -701,9 +706,10 @@ advanced|Advanced',
     'field_name' => 'field_slides',
     'type_name' => 'session',
     'display_settings' => array(
+      'weight' => '-1',
+      'parent' => '',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',

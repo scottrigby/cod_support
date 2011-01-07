@@ -149,7 +149,7 @@ function cod_session_node_info() {
       'title_label' => t('Session Title'),
       'has_body' => '1',
       'body_label' => t('Description'),
-      'min_word_count' => '0',
+      'min_word_count' => '1',
       'help' => '',
     ),
     'time_slot' => array(

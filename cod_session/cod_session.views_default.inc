@@ -588,20 +588,9 @@ function cod_session_views_default_views() {
   $view->api_version = 2;
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
-  $handler->override_option('relationships', array(
-    'field_presenters_uid' => array(
-      'label' => 'Presenter(s)',
-      'required' => 1,
-      'delta' => '0',
-      'id' => 'field_presenters_uid',
-      'table' => 'node_data_field_presenters',
-      'field' => 'field_presenters_uid',
-      'relationship' => 'none',
-    ),
-  ));
   $handler->override_option('fields', array(
     'title' => array(
-      'label' => 'Title',
+      'label' => 'Session',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -629,6 +618,9 @@ function cod_session_views_default_views() {
       'table' => 'node',
       'field' => 'title',
       'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
     ),
     'teaser' => array(
       'label' => '',
@@ -701,7 +693,7 @@ function cod_session_views_default_views() {
       'relationship' => 'none',
     ),
     'field_experience_value' => array(
-      'label' => 'Type',
+      'label' => 'Experience level',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -724,7 +716,7 @@ function cod_session_views_default_views() {
       'hide_empty' => 0,
       'empty_zero' => 0,
       'link_to_node' => 0,
-      'label_type' => 'custom',
+      'label_type' => 'widget',
       'format' => 'default',
       'multiple' => array(
         'group' => TRUE,
@@ -737,6 +729,9 @@ function cod_session_views_default_views() {
       'table' => 'node_data_field_experience',
       'field' => 'field_experience_value',
       'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
     ),
     'field_track_value' => array(
       'label' => 'Track',
@@ -776,8 +771,8 @@ function cod_session_views_default_views() {
       'field' => 'field_track_value',
       'relationship' => 'none',
     ),
-    'value' => array(
-      'label' => '',
+    'field_presenters_uid' => array(
+      'label' => 'Presenter(s)',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -799,42 +794,23 @@ function cod_session_views_default_views() {
       'empty' => '',
       'hide_empty' => 0,
       'empty_zero' => 0,
-      'link_to_user' => 0,
-      'exclude' => 1,
-      'id' => 'value',
-      'table' => 'profile_values_profile_first',
-      'field' => 'value',
-      'relationship' => 'field_presenters_uid',
-    ),
-    'value_1' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 1,
-        'text' => '[value] [value_1]',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 0,
-        'ellipsis' => 0,
-        'html' => 0,
-        'strip_tags' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'user_full_name',
+      'multiple' => array(
+        'group' => 1,
+        'multiple_number' => '10',
+        'multiple_from' => '0',
+        'multiple_reversed' => 0,
       ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_user' => 1,
       'exclude' => 0,
-      'id' => 'value_1',
-      'table' => 'profile_values_profile_last',
-      'field' => 'value',
-      'relationship' => 'field_presenters_uid',
+      'id' => 'field_presenters_uid',
+      'table' => 'node_data_field_presenters',
+      'field' => 'field_presenters_uid',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
     ),
   ));
   $handler->override_option('filters', array(

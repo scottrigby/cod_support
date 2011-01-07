@@ -1,4 +1,6 @@
 core = "6.x"
+dependencies[] = "cod_base"
+dependencies[] = "profile"
 dependencies[] = "signup"
 dependencies[] = "views"
 description = "Provides a publicly viewable list of registered event attendees."
