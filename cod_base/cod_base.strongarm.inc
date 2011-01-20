@@ -40,6 +40,13 @@ function cod_base_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'site_footer';
+  $strongarm->value = 'Built on COD, the <a href="http://usecod.com">open source conference and event management system</a>.';
+  $export['site_footer'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'theme_settings';
   $strongarm->value = array(
     'toggle_logo' => 1,
