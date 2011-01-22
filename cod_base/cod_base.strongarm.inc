@@ -41,7 +41,7 @@ function cod_base_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_footer';
-  $strongarm->value = 'Built on COD, the <a href="http://usecod.com">open source conference and event management system</a>.';
+  $strongarm->value = 'Built on COD, the open source <a href="http://usecod.com">conference and event management solution.</a>';
   $export['site_footer'] = $strongarm;
 
   $strongarm = new stdClass;
