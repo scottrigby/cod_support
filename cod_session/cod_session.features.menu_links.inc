@@ -55,7 +55,7 @@ function cod_session_menu_default_menu_links() {
     'has_children' => '0',
     'expanded' => '0',
     'weight' => '-50',
-    'parent_path' => 'node/1',
+    'parent_path' => 'node/2',
     'parent_uuid' => '82568654-06d2-11e0-a3ab-29212d7dea21',
   );
   // Exported menu link: primary-links:program/sessions
@@ -71,7 +71,7 @@ function cod_session_menu_default_menu_links() {
     'has_children' => '0',
     'expanded' => '0',
     'weight' => '-49',
-    'parent_path' => 'node/1',
+    'parent_path' => 'node/2',
     'parent_uuid' => '82568654-06d2-11e0-a3ab-29212d7dea21',
   );
   // Translatables

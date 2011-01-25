@@ -6,9 +6,9 @@
 function cod_session_views_default_views() {
   $views = array();
 
-  // Exported view: schedule
+  // Exported view: cod_schedule
   $view = new view;
-  $view->name = 'schedule';
+  $view->name = 'cod_schedule';
   $view->description = 'Session Schedule';
   $view->tag = 'cod session';
   $view->view_php = '';
@@ -132,7 +132,7 @@ function cod_session_views_default_views() {
       'empty_zero' => 0,
       'link_to_node' => 0,
       'label_type' => 'none',
-      'format' => 'default',
+      'format' => 'user_full_name',
       'multiple' => array(
         'group' => 1,
         'multiple_number' => '',
@@ -622,8 +622,8 @@ function cod_session_views_default_views() {
         'button' => 'Override',
       ),
     ),
-    'teaser' => array(
-      'label' => '',
+    'field_presenters_uid' => array(
+      'label' => 'Presenter(s)',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -637,6 +637,47 @@ function cod_session_views_default_views() {
         'help' => '',
         'trim' => 0,
         'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'user_full_name',
+      'multiple' => array(
+        'group' => 1,
+        'multiple_number' => '10',
+        'multiple_from' => '0',
+        'multiple_reversed' => 0,
+      ),
+      'exclude' => 0,
+      'id' => 'field_presenters_uid',
+      'table' => 'node_data_field_presenters',
+      'field' => 'field_presenters_uid',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'teaser' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 1,
+        'max_length' => '200',
         'word_boundary' => 1,
         'ellipsis' => 1,
         'html' => 0,
@@ -769,47 +810,6 @@ function cod_session_views_default_views() {
       'id' => 'field_track_value',
       'table' => 'node_data_field_track',
       'field' => 'field_track_value',
-      'relationship' => 'none',
-    ),
-    'field_presenters_uid' => array(
-      'label' => 'Presenter(s)',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'widget',
-      'format' => 'user_full_name',
-      'multiple' => array(
-        'group' => 1,
-        'multiple_number' => '10',
-        'multiple_from' => '0',
-        'multiple_reversed' => 0,
-      ),
-      'exclude' => 0,
-      'id' => 'field_presenters_uid',
-      'table' => 'node_data_field_presenters',
-      'field' => 'field_presenters_uid',
-      'override' => array(
-        'button' => 'Override',
-      ),
       'relationship' => 'none',
     ),
   ));
@@ -960,17 +960,18 @@ function cod_session_views_default_views() {
     'order' => 'asc',
     'columns' => array(
       'title' => 'title',
+      'field_presenters_uid' => 'title',
       'teaser' => 'title',
       'field_accepted_value' => 'title',
-      'field_presenters_uid' => 'title',
       'field_experience_value' => 'field_experience_value',
       'field_track_value' => 'field_track_value',
-      'value' => 'title',
-      'value_1' => 'title',
     ),
     'info' => array(
       'title' => array(
-        'sortable' => 0,
+        'sortable' => 1,
+        'separator' => '<br>',
+      ),
+      'field_presenters_uid' => array(
         'separator' => '',
       ),
       'teaser' => array(
@@ -980,23 +981,12 @@ function cod_session_views_default_views() {
         'sortable' => 0,
         'separator' => '',
       ),
-      'field_presenters_uid' => array(
-        'separator' => '',
-      ),
       'field_experience_value' => array(
-        'sortable' => 0,
+        'sortable' => 1,
         'separator' => '',
       ),
       'field_track_value' => array(
-        'sortable' => 0,
-        'separator' => '',
-      ),
-      'value' => array(
-        'sortable' => 0,
-        'separator' => '',
-      ),
-      'value_1' => array(
-        'sortable' => 0,
+        'sortable' => 1,
         'separator' => '',
       ),
     ),
@@ -2385,20 +2375,6 @@ function cod_session_views_default_views() {
       'field' => 'type',
       'relationship' => 'none',
     ),
-    'status' => array(
-      'operator' => '=',
-      'value' => '1',
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'status',
-      'table' => 'node',
-      'field' => 'status',
-      'relationship' => 'none',
-    ),
     'field_track_value_many_to_one' => array(
       'operator' => 'or',
       'value' => array(),
@@ -2532,7 +2508,7 @@ function cod_session_views_default_views() {
     ),
   ));
   $handler->override_option('title', 'Accepted sessions');
-  $handler->override_option('header', 'Note: Only unscheduled sessions are displayed here.');
+  $handler->override_option('header', 'Note: Only unscheduled sessions (that are accepted and published) are displayed here.');
   $handler->override_option('header_empty', 1);
   $handler->override_option('path', 'conference-admin/sessions/accepted');
   $handler->override_option('menu', array(
@@ -2565,20 +2541,6 @@ function cod_session_views_default_views() {
       'id' => 'type',
       'table' => 'node',
       'field' => 'type',
-      'relationship' => 'none',
-    ),
-    'status' => array(
-      'operator' => '=',
-      'value' => '1',
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'status',
-      'table' => 'node',
-      'field' => 'status',
       'relationship' => 'none',
     ),
     'field_track_value_many_to_one' => array(
@@ -2678,6 +2640,7 @@ function cod_session_views_default_views() {
     ),
   ));
   $handler->override_option('title', 'Declined sessions');
+  $handler->override_option('header', 'Note: Only declined sessions (of any published status) are displayed here.');
   $handler->override_option('path', 'conference-admin/sessions/declined');
   $handler->override_option('menu', array(
     'type' => 'tab',
@@ -2709,20 +2672,6 @@ function cod_session_views_default_views() {
       'id' => 'type',
       'table' => 'node',
       'field' => 'type',
-      'relationship' => 'none',
-    ),
-    'status' => array(
-      'operator' => '=',
-      'value' => '1',
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'status',
-      'table' => 'node',
-      'field' => 'status',
       'relationship' => 'none',
     ),
     'field_track_value_many_to_one' => array(
