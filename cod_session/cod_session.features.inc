@@ -27,28 +27,27 @@ $flags[] = array (
   'types' => 
   array (
     0 => 'session',
+    1 => 'schedule_item',
   ),
-  'flag_short' => 'Add to my agenda',
-  'flag_long' => 'Add this session to your agenda to organize your session attendance.',
-  'flag_message' => '',
-  'unflag_short' => 'Remove from my agenda',
-  'unflag_long' => 'Remove this session from your agenda.',
-  'unflag_message' => '',
+  'flag_short' => 'Add to your schedule',
+  'flag_long' => 'Add this session to your personal session attendance.',
+  'flag_message' => 'Session added',
+  'unflag_short' => 'Remove from your schedule',
+  'unflag_long' => 'Remove this session from your schedule',
+  'unflag_message' => 'Session removed',
   'unflag_denied_text' => '',
   'link_type' => 'toggle',
   'roles' => 
   array (
     'flag' => 
     array (
-      0 => 2,
     ),
     'unflag' => 
     array (
-      0 => 2,
     ),
   ),
   'show_on_page' => 0,
-  'show_on_teaser' => 0,
+  'show_on_teaser' => 1,
   'show_on_form' => 0,
   'access_author' => '',
   'i18n' => 0,
