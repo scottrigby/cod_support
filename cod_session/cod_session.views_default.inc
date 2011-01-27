@@ -2782,7 +2782,7 @@ function cod_session_views_default_views() {
   ));
   $handler->override_option('tab_options', array(
     'type' => 'normal',
-    'title' => 'Sessions',
+    'title' => 'Session moderation',
     'description' => '',
     'weight' => '0',
     'name' => 'menu-conference-admin',
