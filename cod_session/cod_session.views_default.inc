@@ -948,6 +948,7 @@ function cod_session_views_default_views() {
   $handler->override_option('css_class', 'view-grouped-list sessions-list');
   $handler->override_option('header_format', '1');
   $handler->override_option('header_empty', 0);
+  $handler->override_option('empty', 'No sessions have been submitted.');
   $handler->override_option('empty_format', '1');
   $handler->override_option('items_per_page', 20);
   $handler->override_option('use_pager', '1');
@@ -1013,6 +1014,7 @@ function cod_session_views_default_views() {
     ),
   ));
   $handler->override_option('title', 'Accepted sessions');
+  $handler->override_option('empty', 'Sessions have not yet been accepted.');
   $handler->override_option('path', 'program/sessions/accepted');
   $handler->override_option('menu', array(
     'type' => 'default tab',
@@ -2293,6 +2295,7 @@ function cod_session_views_default_views() {
   $handler->override_option('css_class', 'view-grouped-list sessions-list');
   $handler->override_option('header_format', '1');
   $handler->override_option('header_empty', 0);
+  $handler->override_option('empty', 'There are no sessions with this status.');
   $handler->override_option('empty_format', '1');
   $handler->override_option('items_per_page', 20);
   $handler->override_option('use_pager', '1');

@@ -123,6 +123,8 @@ function cod_sponsors_views_default_views() {
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
+  $handler->override_option('empty', 'No sponsors have been announced.');
+  $handler->override_option('empty_format', '1');
   $handler->override_option('items_per_page', 0);
   $handler->override_option('style_plugin', 'list');
   $handler->override_option('style_options', array(
@@ -1016,6 +1018,8 @@ function cod_sponsors_views_default_views() {
     'type' => 'none',
   ));
   $handler->override_option('title', 'Unpublished sponsors');
+  $handler->override_option('empty', 'There are no published sponsors.');
+  $handler->override_option('empty_format', '1');
   $handler->override_option('row_plugin', 'node');
   $handler->override_option('row_options', array(
     'relationship' => 'none',
@@ -1062,6 +1066,7 @@ function cod_sponsors_views_default_views() {
       'relationship' => 'none',
     ),
   ));
+  $handler->override_option('empty', 'There are no unpublished sponsors.');
   $handler->override_option('path', 'conference-admin/sponsors/unpublished');
   $handler->override_option('menu', array(
     'type' => 'tab',
