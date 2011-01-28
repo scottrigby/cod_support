@@ -25,7 +25,7 @@ function cod_base_uuid_features_default_content() {
         
         COD is the Conference Organizing Distribution, used for building conference and event sites in Drupal.  You may first be interested in an <a href="http://usecod.com/cod-features">overview of its capabilities</a>.
         
-        This documentation is based on the packaged COD Alpha 2 downloaded from <a href="http://usecod.com/download">usecod.com/download</a>.
+        This documentation is based on the packaged COD Alpha 3 downloaded from <a href="http://usecod.com/download">usecod.com/download</a>.
   <!--break-->
   <strong>Getting started</strong>
         <ol>
