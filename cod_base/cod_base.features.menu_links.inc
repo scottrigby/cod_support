@@ -34,6 +34,7 @@ function cod_base_menu_default_menu_links() {
       'attributes' => array(
         'title' => '',
       ),
+      'fragment' => 'cod',
     ),
     'module' => 'menu',
     'hidden' => '0',
