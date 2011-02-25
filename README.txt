@@ -1,4 +1,3 @@
-$Id$
 COD Alpha3
 COD is the Conference Organizing Distribution of Drupal.
 For more information, see http://usecod.com and @usecod on Twitter (http://twitter.com/usecod).
