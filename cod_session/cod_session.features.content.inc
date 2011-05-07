@@ -442,9 +442,9 @@ advanced|Advanced',
     ),
   );
 
-  // Exported field: field_presenters
-  $fields['session-field_presenters'] = array(
-    'field_name' => 'field_presenters',
+  // Exported field: field_speakers
+  $fields['session-field_speakers'] = array(
+    'field_name' => 'field_speakers',
     'type_name' => 'session',
     'display_settings' => array(
       'weight' => '-3',
@@ -491,13 +491,13 @@ advanced|Advanced',
       'default_value' => array(
         '0' => array(
           'uid' => NULL,
-          '_error_element' => 'default_value_widget][field_presenters][0][uid][uid',
+          '_error_element' => 'default_value_widget][field_speakers][0][uid][uid',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Presenter(s)',
+      'label' => 'Speaker(s)',
       'weight' => '-3',
-      'description' => 'Add your username and optionally 1-5 additional presenter usernames.',
+      'description' => 'Add your username and optionally 1-5 additional speaker usernames.',
       'type' => 'userreference_autocomplete',
       'module' => 'userreference',
     ),
@@ -891,7 +891,7 @@ Track 3',
   t('Date and time');
   t('Experience level');
   t('Photo');
-  t('Presenter(s)');
+  t('Speaker(s)');
   t('Room');
   t('Slides');
   t('Status');

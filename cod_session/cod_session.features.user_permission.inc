@@ -158,9 +158,9 @@ function cod_session_user_default_permissions() {
     ),
   );
 
-  // Exported permission: edit field_presenters
-  $permissions['edit field_presenters'] = array(
-    'name' => 'edit field_presenters',
+  // Exported permission: edit field_speakers
+  $permissions['edit field_speakers'] = array(
+    'name' => 'edit field_speakers',
     'roles' => array(
       '0' => 'authenticated user',
       '1' => 'session organizer',
@@ -267,9 +267,9 @@ function cod_session_user_default_permissions() {
     ),
   );
 
-  // Exported permission: view field_presenters
-  $permissions['view field_presenters'] = array(
-    'name' => 'view field_presenters',
+  // Exported permission: view field_speakers
+  $permissions['view field_speakers'] = array(
+    'name' => 'view field_speakers',
     'roles' => array(
       '0' => 'anonymous user',
       '1' => 'authenticated user',

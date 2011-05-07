@@ -107,7 +107,7 @@ function cod_session_views_default_views() {
         'button' => 'Override',
       ),
     ),
-    'field_presenters_uid' => array(
+    'field_speakers_uid' => array(
       'label' => '',
       'alter' => array(
         'alter_text' => 0,
@@ -140,9 +140,9 @@ function cod_session_views_default_views() {
         'multiple_reversed' => 0,
       ),
       'exclude' => 0,
-      'id' => 'field_presenters_uid',
-      'table' => 'node_data_field_presenters',
-      'field' => 'field_presenters_uid',
+      'id' => 'field_speakers_uid',
+      'table' => 'node_data_field_speakers',
+      'field' => 'field_speakers_uid',
       'override' => array(
         'button' => 'Override',
       ),
@@ -622,8 +622,8 @@ function cod_session_views_default_views() {
         'button' => 'Override',
       ),
     ),
-    'field_presenters_uid' => array(
-      'label' => 'Presenter(s)',
+    'field_speakers_uid' => array(
+      'label' => 'Speaker(s)',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -655,9 +655,9 @@ function cod_session_views_default_views() {
         'multiple_reversed' => 0,
       ),
       'exclude' => 0,
-      'id' => 'field_presenters_uid',
-      'table' => 'node_data_field_presenters',
-      'field' => 'field_presenters_uid',
+      'id' => 'field_speakers_uid',
+      'table' => 'node_data_field_speakers',
+      'field' => 'field_speakers_uid',
       'override' => array(
         'button' => 'Override',
       ),
@@ -961,7 +961,7 @@ function cod_session_views_default_views() {
     'order' => 'asc',
     'columns' => array(
       'title' => 'title',
-      'field_presenters_uid' => 'title',
+      'field_speakers_uid' => 'title',
       'teaser' => 'title',
       'field_accepted_value' => 'title',
       'field_experience_value' => 'field_experience_value',
@@ -972,7 +972,7 @@ function cod_session_views_default_views() {
         'sortable' => 1,
         'separator' => '<br>',
       ),
-      'field_presenters_uid' => array(
+      'field_speakers_uid' => array(
         'separator' => '',
       ),
       'teaser' => array(
@@ -995,7 +995,7 @@ function cod_session_views_default_views() {
   ));
   $handler->override_option('row_options', array(
     'inline' => array(
-      'field_presenters_uid' => 'field_presenters_uid',
+      'field_speakers_uid' => 'field_speakers_uid',
     ),
     'separator' => '',
     'hide_empty' => 0,
@@ -1372,15 +1372,15 @@ function cod_session_views_default_views() {
   $handler->override_option('items_per_page', 1);
   $handler->override_option('block_description', 'Sessions: Session Details');
   $handler->override_option('block_caching', '4');
-  $handler = $view->new_display('block', 'Block: Session Presenters', 'block_2');
+  $handler = $view->new_display('block', 'Block: Speakers', 'block_2');
   $handler->override_option('relationships', array(
-    'field_presenters_uid' => array(
-      'label' => 'Presenter(s)',
+    'field_speakers_uid' => array(
+      'label' => 'Speaker(s)',
       'required' => 0,
       'delta' => '-1',
-      'id' => 'field_presenters_uid',
-      'table' => 'node_data_field_presenters',
-      'field' => 'field_presenters_uid',
+      'id' => 'field_speakers_uid',
+      'table' => 'node_data_field_speakers',
+      'field' => 'field_speakers_uid',
       'override' => array(
         'button' => 'Use default',
       ),
@@ -1418,7 +1418,7 @@ function cod_session_views_default_views() {
       'override' => array(
         'button' => 'Use default',
       ),
-      'relationship' => 'field_presenters_uid',
+      'relationship' => 'field_speakers_uid',
     ),
     'name' => array(
       'label' => '',
@@ -1453,7 +1453,7 @@ function cod_session_views_default_views() {
       'override' => array(
         'button' => 'Use default',
       ),
-      'relationship' => 'field_presenters_uid',
+      'relationship' => 'field_speakers_uid',
     ),
     'name_1' => array(
       'label' => '',
@@ -1521,7 +1521,7 @@ function cod_session_views_default_views() {
       'override' => array(
         'button' => 'Use default',
       ),
-      'relationship' => 'field_presenters_uid',
+      'relationship' => 'field_speakers_uid',
     ),
   ));
   $handler->override_option('sorts', array(
@@ -1533,7 +1533,7 @@ function cod_session_views_default_views() {
       'override' => array(
         'button' => 'Use default',
       ),
-      'relationship' => 'field_presenters_uid',
+      'relationship' => 'field_speakers_uid',
     ),
   ));
   $handler->override_option('arguments', array(
@@ -1663,8 +1663,8 @@ function cod_session_views_default_views() {
       'reduce_duplicates' => 0,
     ),
   ));
-  $handler->override_option('title', 'Session Presenters');
-  $handler->override_option('css_class', 'session-presenters');
+  $handler->override_option('title', 'Speakers');
+  $handler->override_option('css_class', 'session-speakers');
   $handler->override_option('items_per_page', 0);
   $handler->override_option('use_pager', '0');
   $handler->override_option('style_plugin', 'grid');
@@ -1682,7 +1682,7 @@ function cod_session_views_default_views() {
     'separator' => '',
     'hide_empty' => 0,
   ));
-  $handler->override_option('block_description', 'Sessions: Session Presenters');
+  $handler->override_option('block_description', 'Sessions: Speakers');
   $handler->override_option('block_caching', -1);
   $handler = $view->new_display('page', 'Page: Proposed', 'page_2');
   $handler->override_option('filters', array(
@@ -1995,8 +1995,8 @@ function cod_session_views_default_views() {
       ),
       'relationship' => 'none',
     ),
-    'field_presenters_uid' => array(
-      'label' => 'Presenters',
+    'field_speakers_uid' => array(
+      'label' => 'Speakers',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -2028,9 +2028,9 @@ function cod_session_views_default_views() {
         'multiple_reversed' => 0,
       ),
       'exclude' => 0,
-      'id' => 'field_presenters_uid',
-      'table' => 'node_data_field_presenters',
-      'field' => 'field_presenters_uid',
+      'id' => 'field_speakers_uid',
+      'table' => 'node_data_field_speakers',
+      'field' => 'field_speakers_uid',
       'override' => array(
         'button' => 'Override',
       ),
@@ -2310,7 +2310,7 @@ function cod_session_views_default_views() {
     'columns' => array(
       'title' => 'title',
       'field_accepted_value' => 'field_accepted_value',
-      'field_presenters_uid' => 'field_presenters_uid',
+      'field_speakers_uid' => 'field_speakers_uid',
       'field_experience_value' => 'field_experience_value',
       'field_track_value' => 'field_track_value',
       'edit_node' => 'edit_node',
@@ -2324,7 +2324,7 @@ function cod_session_views_default_views() {
         'sortable' => 1,
         'separator' => '',
       ),
-      'field_presenters_uid' => array(
+      'field_speakers_uid' => array(
         'separator' => '',
       ),
       'field_experience_value' => array(
@@ -2343,7 +2343,7 @@ function cod_session_views_default_views() {
   ));
   $handler->override_option('row_options', array(
     'inline' => array(
-      'field_presenters_uid' => 'field_presenters_uid',
+      'field_speakers_uid' => 'field_speakers_uid',
     ),
     'separator' => ', ',
     'hide_empty' => 0,
