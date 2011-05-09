@@ -573,64 +573,6 @@ advanced|Advanced',
     ),
   );
 
-  // Exported field: field_session_slides
-  $fields['session-field_session_slides'] = array(
-    'field_name' => 'field_session_slides',
-    'type_name' => 'session',
-    'display_settings' => array(
-      'weight' => '2',
-      'parent' => '',
-      'label' => array(
-        'format' => 'above',
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'filefield',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'filefield',
-    'active' => '1',
-    'list_field' => '0',
-    'list_default' => 1,
-    'description_field' => '0',
-    'widget' => array(
-      'file_extensions' => 'pdf',
-      'file_path' => '',
-      'progress_indicator' => 'bar',
-      'max_filesize_per_file' => '',
-      'max_filesize_per_node' => '',
-      'label' => 'Slides',
-      'weight' => '2',
-      'description' => 'Upload your slides here as a PDF, or link to them from the description. (This is typically done after your session.)',
-      'type' => 'filefield_widget',
-      'module' => 'filefield',
-    ),
-  );
-
   // Exported field: field_session_slot
   $fields['session-field_session_slot'] = array(
     'field_name' => 'field_session_slot',
