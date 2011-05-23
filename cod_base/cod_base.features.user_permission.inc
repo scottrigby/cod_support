@@ -17,7 +17,9 @@ function cod_base_user_default_permissions() {
   // Exported permission: access site reports
   $permissions['access site reports'] = array(
     'name' => 'access site reports',
-    'roles' => array(),
+    'roles' => array(
+      '0' => 'site administrator',
+    ),
   );
 
   // Exported permission: administer permissions

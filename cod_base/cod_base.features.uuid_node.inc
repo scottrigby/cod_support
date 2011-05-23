@@ -7,27 +7,27 @@ function cod_base_uuid_features_default_content() {
   $nodes = array();
 
   $nodes[] = array(
-    'type' => 'page',
-    'language' => '',
-    'uid' => '0',
-    'status' => '1',
-    'created' => '1295470463',
-    'changed' => '1295735116',
-    'comment' => '0',
-    'promote' => '1',
-    'moderate' => '0',
-    'sticky' => '0',
-    'tnid' => '0',
-    'translate' => '0',
-    'revision_uid' => '1',
-    'title' => 'COD help',
-    'body' => '<em>For the latest documentation, please visit <a href="http://drupal.org/documentation/build/cod">http://drupal.org/documentation/build/cod</a>.</em>
+  'type' => 'page',
+  'language' => '',
+  'uid' => '0',
+  'status' => '0',
+  'created' => '1295735116',
+  'changed' => '1303318475',
+  'comment' => '0',
+  'promote' => '1',
+  'moderate' => '0',
+  'sticky' => '0',
+  'tnid' => '0',
+  'translate' => '0',
+  'revision_uid' => '1',
+  'title' => 'COD help',
+  'body' => '<em>For the latest documentation, please visit <a href="http://drupal.org/documentation/build/cod">http://drupal.org/documentation/build/cod</a>.</em>
         
         COD is the Conference Organizing Distribution, used for building conference and event sites in Drupal.  You may first be interested in an <a href="http://usecod.com/cod-features">overview of its capabilities</a>.
         
         This documentation is based on the packaged COD Alpha 3 downloaded from <a href="http://usecod.com/download">usecod.com/download</a>.
-  <!--break-->
-  <strong>Getting started</strong>
+<!--break-->
+<strong>Getting started</strong>
         <ol>
         <li>Create and configure an event node; this is the minimum needed to get people to start signing up
         <li>Default home page node is unpublished and inaccessible to non-admins. It will be replaced by new content that is added with \'promote to front page\' enabled, or until you create your own home page with Views, Panels or a single node.
@@ -97,28 +97,28 @@ function cod_base_uuid_features_default_content() {
         <li>The cod_community view displays name, photo and core profile fields of signed up users out of the box, with exposed filters.
         <li>A  forum menu link also appears
         </ol>',
-    'teaser' => '<em>For the latest documentation, please visit <a href="http://drupal.org/documentation/build/cod">http://drupal.org/documentation/build/cod</a>.</em>
+  'teaser' => '<em>For the latest documentation, please visit <a href="http://drupal.org/documentation/build/cod">http://drupal.org/documentation/build/cod</a>.</em>
         
         COD is the Conference Organizing Distribution, used for building conference and event sites in Drupal.  You may first be interested in an <a href="http://usecod.com/cod-features">overview of its capabilities</a>.
         
         This documentation is based on the packaged COD Alpha 3 downloaded from <a href="http://usecod.com/download">usecod.com/download</a>.
-  ',
-    'log' => '',
-    'revision_timestamp' => '1295735116',
-    'format' => '1',
-    'name' => '',
-    'picture' => '',
-    'data' => NULL,
-    'path' => 'cod-help',
-    'signup' => 0,
-    'last_comment_timestamp' => '1295735036',
-    'last_comment_name' => NULL,
-    'comment_count' => '0',
-    'taxonomy' => array(),
-    'uuid' => '79f090a8-755e-102e-a8fe-4040db1cdced',
-    'revision_uuid' => '79f12ce8-755e-102e-a8fe-4040db1cdced',
-    'pathauto_perform_alias' => FALSE,
-    'date' => '2011-01-19 15:54:23 -0500',
-  );
+',
+  'log' => '',
+  'revision_timestamp' => '1303318475',
+  'format' => '1',
+  'name' => '',
+  'picture' => '',
+  'data' => NULL,
+  'path' => 'cod-help',
+  'signup' => 0,
+  'last_comment_timestamp' => '1295735036',
+  'last_comment_name' => NULL,
+  'comment_count' => '0',
+  'taxonomy' => array(),
+  'uuid' => '79f090a8-755e-102e-a8fe-4040db1cdced',
+  'revision_uuid' => '79f12ce8-755e-102e-a8fe-4040db1cdced',
+  'pathauto_perform_alias' => FALSE,
+  'date' => '2011-01-22 15:25:16 -0700',
+);
   return $nodes;
 }
