@@ -14,6 +14,30 @@ function cod_session_theme() {
     );
 }
 
+
+/** 
+ * Implementation of hook_link_alter().
+ */
+function cod_session_link_alter($links, $node, $comment = NULL) {
+  global $user;
+  if (!empty($links['flag-session_confirm'])) {
+    $presenter = FALSE;
+    // Only display the session confirmation flag for sessions that are
+    // accepted and scheduled, and the current user is one of
+    // the session's speakers.
+    if ($node->field_accepted[0]['value'] == 1 && !empty($node->field_session_room[0]['nid']) && !empty($node->field_session_slot[0]['nid'])) {
+      foreach ($node->field_speakers as $key => $value) {
+        if ($value['uid'] == $user->uid) {
+          $presenter = TRUE;
+        }
+      }
+    }
+    if (!$presenter) {
+      unset($links['flag-session_confirm']);
+    }
+  }
+}
+
 /**
  * Implementation of hook_nodeapi().
  */
