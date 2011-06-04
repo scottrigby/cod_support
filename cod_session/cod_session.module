@@ -321,3 +321,18 @@ function _cod_session_machine_keys($prefix, $keys) {
   }
   return $machine_keys;
 }
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function cod_session_form_alter(&$form, &$form_state, $form_id) {
+  // Prepopulate the current user into the Speakers field
+  // on new session creation.
+  if ($form_id == 'session_node_form' && empty($form['#node']->nid) && isset($form['field_speakers'])) {
+    global $user;
+    // Does the user have access to the field?
+    if ($form['field_speakers']['#access']) {
+      $form['field_speakers'][0]['#default_value'] = $user->uid;
+    }
+  }  
+}
