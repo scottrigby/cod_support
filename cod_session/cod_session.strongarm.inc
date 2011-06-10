@@ -421,6 +421,32 @@ function cod_session_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'nodeaccess_userreference';
+  $strongarm->value = array(
+    'session' => array(
+      'field_speakers' => array(
+        'referenced' => array(
+          'view' => 'view',
+          'update' => 'update',
+          'delete' => 0,
+        ),
+        'author' => array(
+          'view' => 'view',
+          'update' => 'update',
+          'delete' => 'delete',
+        ),
+        'all' => array(
+          'view' => 'view',
+        ),
+        'priority' => '0',
+      ),
+    ),
+  );
+  $export['nodeaccess_userreference'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_room_pattern';
   $strongarm->value = 'rooms/[title-raw]';
   $export['pathauto_node_room_pattern'] = $strongarm;
@@ -431,6 +457,251 @@ function cod_session_strongarm() {
   $strongarm->name = 'pathauto_node_session_pattern';
   $strongarm->value = 'sessions/[title-raw]';
   $export['pathauto_node_session_pattern'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_message_sessions_admin_contact:page_1';
+  $strongarm->value = 'Hello [views-send-users_node_data_field_speakers_profile_values_profile_first_value],
+
+Thank you for proposing the session session, "[views-send-node_title]".
+
+We are happy to inform you that your session has been accepted for the conference.
+
+Please confirm that you are able to present this session at the scheduled date and time by visiting [site-url]/user .
+
+Thanks!
+
+Conference organizing team';
+  $export['views_send_message_sessions_admin_contact:page_1'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_message_sessions_admin_contact:page_2';
+  $strongarm->value = 'Thank you for proposing the session session, "[views-send-node_title]".
+
+We are happy to inform you that your session has been accepted for the conference.
+
+Please confirm that you are able to present this session at the scheduled date and time by visiting [site-url]user .
+
+Thanks!
+
+Conference organizing team';
+  $export['views_send_message_sessions_admin_contact:page_2'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_message_sessions_admin_contact:page_3';
+  $strongarm->value = 'Hello [views-send-users_node_data_field_speakers_profile_values_profile_first_value],
+
+Thank you for proposing the session session, "[views-send-node_title]".
+
+Unfortunately, we are unable to offer you a spot to present at the conference. We thank you for your submission and hope that you\'ll submit a proposal in the future.
+
+Thanks,
+
+Conference organizing team';
+  $export['views_send_message_sessions_admin_contact:page_3'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_message_sessions_admin_contact:page_4';
+  $strongarm->value = 'Hello [views-send-users_node_data_field_speakers_profile_values_profile_first_value],
+
+Thank you for submitting the session proposal titled, "[views-send-node_title]".
+
+We are reviewing session proposals and will let you know whether your session has been accepted by (date).
+
+Thanks,
+
+Conference organizing team';
+  $export['views_send_message_sessions_admin_contact:page_4'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_message_sessions_admin_contact:page_5';
+  $strongarm->value = 'Thank you for proposing the session session, "[views-send-node_title]".
+
+We are happy to inform you that your session has been accepted for the conference.
+
+Please confirm that you are able to present this session at the scheduled date and time by visiting [site-url]user . If you do not confirm by [date], your session may be cancelled.
+
+Thanks!
+
+Conference organizing team';
+  $export['views_send_message_sessions_admin_contact:page_5'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_remember_sessions_admin_contact:page_1';
+  $strongarm->value = 1;
+  $export['views_send_remember_sessions_admin_contact:page_1'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_remember_sessions_admin_contact:page_2';
+  $strongarm->value = 1;
+  $export['views_send_remember_sessions_admin_contact:page_2'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_remember_sessions_admin_contact:page_3';
+  $strongarm->value = 1;
+  $export['views_send_remember_sessions_admin_contact:page_3'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_remember_sessions_admin_contact:page_4';
+  $strongarm->value = 1;
+  $export['views_send_remember_sessions_admin_contact:page_4'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_remember_sessions_admin_contact:page_5';
+  $strongarm->value = 1;
+  $export['views_send_remember_sessions_admin_contact:page_5'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_remember_sessions_admin_contact:page_6';
+  $strongarm->value = 1;
+  $export['views_send_remember_sessions_admin_contact:page_6'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_subject_sessions_admin_contact:page_1';
+  $strongarm->value = 'Your Session Submission';
+  $export['views_send_subject_sessions_admin_contact:page_1'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_subject_sessions_admin_contact:page_2';
+  $strongarm->value = 'Presenter confirmation';
+  $export['views_send_subject_sessions_admin_contact:page_2'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_subject_sessions_admin_contact:page_3';
+  $strongarm->value = 'Your session submission';
+  $export['views_send_subject_sessions_admin_contact:page_3'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_subject_sessions_admin_contact:page_4';
+  $strongarm->value = 'Your session submission';
+  $export['views_send_subject_sessions_admin_contact:page_4'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_subject_sessions_admin_contact:page_5';
+  $strongarm->value = 'Please confirm your session';
+  $export['views_send_subject_sessions_admin_contact:page_5'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_subject_sessions_admin_contact:page_6';
+  $strongarm->value = 'Thanks for confirming your session!';
+  $export['views_send_subject_sessions_admin_contact:page_6'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_mail_sessions_admin_contact:page_1';
+  $strongarm->value = 'users_node_data_field_speakers_mail';
+  $export['views_send_to_mail_sessions_admin_contact:page_1'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_mail_sessions_admin_contact:page_2';
+  $strongarm->value = 'users_node_data_field_speakers_mail';
+  $export['views_send_to_mail_sessions_admin_contact:page_2'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_mail_sessions_admin_contact:page_3';
+  $strongarm->value = 'users_node_data_field_speakers_mail';
+  $export['views_send_to_mail_sessions_admin_contact:page_3'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_mail_sessions_admin_contact:page_4';
+  $strongarm->value = 'users_node_data_field_speakers_mail';
+  $export['views_send_to_mail_sessions_admin_contact:page_4'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_mail_sessions_admin_contact:page_5';
+  $strongarm->value = 'users_node_data_field_speakers_mail';
+  $export['views_send_to_mail_sessions_admin_contact:page_5'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_mail_sessions_admin_contact:page_6';
+  $strongarm->value = 'users_node_data_field_speakers_name';
+  $export['views_send_to_mail_sessions_admin_contact:page_6'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_name_sessions_admin_contact:page_1';
+  $strongarm->value = 'users_node_data_field_speakers_name';
+  $export['views_send_to_name_sessions_admin_contact:page_1'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_name_sessions_admin_contact:page_2';
+  $strongarm->value = 'users_node_data_field_speakers_name';
+  $export['views_send_to_name_sessions_admin_contact:page_2'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_name_sessions_admin_contact:page_3';
+  $strongarm->value = 'users_node_data_field_speakers_name';
+  $export['views_send_to_name_sessions_admin_contact:page_3'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_name_sessions_admin_contact:page_4';
+  $strongarm->value = 'users_node_data_field_speakers_name';
+  $export['views_send_to_name_sessions_admin_contact:page_4'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_name_sessions_admin_contact:page_5';
+  $strongarm->value = 'users_node_data_field_speakers_name';
+  $export['views_send_to_name_sessions_admin_contact:page_5'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_send_to_name_sessions_admin_contact:page_6';
+  $strongarm->value = 'users_node_data_field_speakers_name';
+  $export['views_send_to_name_sessions_admin_contact:page_6'] = $strongarm;
 
   return $export;
 }

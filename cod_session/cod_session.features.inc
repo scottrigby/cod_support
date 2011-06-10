@@ -8,6 +8,9 @@ function cod_session_ctools_plugin_api() {
   if ($module == "context" && $api == "context") {
     return array("version" => 3);
   }
+  elseif ($module == "page_manager" && $api == "pages_default") {
+    return array("version" => 1);
+  }
   elseif ($module == "strongarm" && $api == "strongarm") {
     return array("version" => 1);
   }
@@ -17,89 +20,108 @@ function cod_session_ctools_plugin_api() {
  * Implementation of hook_flag_default_flags().
  */
 function cod_session_flag_default_flags() {
-$flags = array();
-// Exported flag: "Session Attending".
-$flags[] = array (
-  'content_type' => 'node',
-  'name' => 'session_schedule',
-  'title' => 'Session Attending',
-  'global' => '0',
-  'types' => 
-  array (
-    0 => 'session',
-    1 => 'schedule_item',
-  ),
-  'flag_short' => 'Add to your schedule',
-  'flag_long' => 'Add this session to your personal session attendance.',
-  'flag_message' => 'Session added',
-  'unflag_short' => 'Remove from your schedule',
-  'unflag_long' => 'Remove this session from your schedule',
-  'unflag_message' => 'Session removed',
-  'unflag_denied_text' => '',
-  'link_type' => 'toggle',
-  'roles' => 
-  array (
-    'flag' => 
-    array (
+  $flags = array();
+  // Exported flag: "Speaker confirmation flag".
+  $flags['session_confirm'] = array(
+    'content_type' => 'node',
+    'title' => 'Speaker confirmation flag',
+    'global' => '0',
+    'types' => array(
+      '0' => 'session',
     ),
-    'unflag' => 
-    array (
+    'flag_short' => 'I confirm that I can present this sesssion at the listed date and time.',
+    'flag_long' => 'Once confirmed, you cannot unconfirm without contacting the session organizers.',
+    'flag_message' => 'Thanks for confirming that you can present [title] at this date and time!',
+    'unflag_short' => 'Cancel confirmation',
+    'unflag_long' => '',
+    'unflag_message' => '',
+    'unflag_denied_text' => 'You have confirmed that you will be presenting for this session.',
+    'link_type' => 'toggle',
+    'roles' => array(
+      'flag' => array(
+        '0' => 2,
+      ),
+      'unflag' => array(),
     ),
-  ),
-  'show_on_page' => 0,
-  'show_on_teaser' => 1,
-  'show_on_form' => 0,
-  'access_author' => '',
-  'i18n' => 0,
-  'module' => 'cod_session',
-  'locked' => 
-  array (
-    0 => 'name',
-  ),
-  'api_version' => 2,
-);
-// Exported flag: "Session Vote".
-$flags[] = array (
-  'content_type' => 'node',
-  'name' => 'session_vote',
-  'title' => 'Session Vote',
-  'global' => '0',
-  'types' => 
-  array (
-    0 => 'session',
-  ),
-  'flag_short' => 'Vote for this session',
-  'flag_long' => 'Vote for this session',
-  'flag_message' => 'Your vote has been recorded!',
-  'unflag_short' => 'Retract vote',
-  'unflag_long' => 'Retract your vote for this session.',
-  'unflag_message' => 'Your vote has been retracted.',
-  'unflag_denied_text' => '',
-  'link_type' => 'toggle',
-  'roles' => 
-  array (
-    'flag' => 
-    array (
-      0 => 3,
+    'show_on_page' => 1,
+    'show_on_teaser' => 1,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'i18n' => 0,
+    'module' => 'cod_session',
+    'locked' => array(
+      '0' => 'name',
     ),
-    'unflag' => 
-    array (
-      0 => 3,
+    'api_version' => 2,
+  );
+  // Exported flag: "Session Attending".
+  $flags['session_schedule'] = array(
+    'content_type' => 'node',
+    'title' => 'Session Attending',
+    'global' => '0',
+    'types' => array(
+      '0' => 'schedule_item',
+      '1' => 'session',
     ),
-  ),
-  'show_on_page' => 1,
-  'show_on_teaser' => 0,
-  'show_on_form' => 0,
-  'access_author' => '',
-  'i18n' => 0,
-  'module' => 'cod_session',
-  'locked' => 
-  array (
-    0 => 'name',
-  ),
-  'api_version' => 2,
-);
-return $flags;
+    'flag_short' => 'Add to your schedule',
+    'flag_long' => 'Add this session to your personal session attendance.',
+    'flag_message' => 'Session added',
+    'unflag_short' => 'Remove from your schedule',
+    'unflag_long' => 'Remove this session from your schedule',
+    'unflag_message' => 'Session removed',
+    'unflag_denied_text' => '',
+    'link_type' => 'toggle',
+    'roles' => array(
+      'flag' => array(),
+      'unflag' => array(),
+    ),
+    'show_on_page' => 0,
+    'show_on_teaser' => 1,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'i18n' => 0,
+    'module' => 'cod_session',
+    'locked' => array(
+      '0' => 'name',
+    ),
+    'api_version' => 2,
+  );
+  // Exported flag: "Session Vote".
+  $flags['session_vote'] = array(
+    'content_type' => 'node',
+    'title' => 'Session Vote',
+    'global' => '0',
+    'types' => array(
+      '0' => 'session',
+    ),
+    'flag_short' => 'Vote for this session',
+    'flag_long' => 'Vote for this session',
+    'flag_message' => 'Your vote has been recorded!',
+    'unflag_short' => 'Retract vote',
+    'unflag_long' => 'Retract your vote for this session.',
+    'unflag_message' => 'Your vote has been retracted.',
+    'unflag_denied_text' => '',
+    'link_type' => 'toggle',
+    'roles' => array(
+      'flag' => array(
+        '0' => 3,
+      ),
+      'unflag' => array(
+        '0' => 3,
+      ),
+    ),
+    'show_on_page' => 1,
+    'show_on_teaser' => 0,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'i18n' => 0,
+    'module' => 'cod_session',
+    'locked' => array(
+      '0' => 'name',
+    ),
+    'api_version' => 2,
+  );
+  return $flags;
 }
 
 /**

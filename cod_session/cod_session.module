@@ -14,6 +14,30 @@ function cod_session_theme() {
     );
 }
 
+
+/** 
+ * Implementation of hook_link_alter().
+ */
+function cod_session_link_alter($links, $node, $comment = NULL) {
+  global $user;
+  if (!empty($links['flag-session_confirm'])) {
+    $presenter = FALSE;
+    // Only display the session confirmation flag for sessions that are
+    // accepted and scheduled, and the current user is one of
+    // the session's speakers.
+    if ($node->field_accepted[0]['value'] == 1 && !empty($node->field_session_room[0]['nid']) && !empty($node->field_session_slot[0]['nid'])) {
+      foreach ($node->field_speakers as $key => $value) {
+        if ($value['uid'] == $user->uid) {
+          $presenter = TRUE;
+        }
+      }
+    }
+    if (!$presenter) {
+      unset($links['flag-session_confirm']);
+    }
+  }
+}
+
 /**
  * Implementation of hook_nodeapi().
  */
@@ -296,4 +320,22 @@ function _cod_session_machine_keys($prefix, $keys) {
     $machine_keys[$index] = $machine_key;
   }
   return $machine_keys;
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function cod_session_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'session_node_form') {
+    // Form tweaks for the Speakers field:
+    if (isset($form['field_speakers']) && $form['field_speakers']['#access']) {
+      $form['field_speakers']['field_speakers_add_more']['#value'] = t('Add another speaker');
+      // Prepopulate the current user into the Speakers field
+      // on new session creation.
+      if (empty($form['#node']->nid)) {
+        global $user;
+        $form['field_speakers'][0]['#default_value'] = $user->uid;
+      }  
+    }
+  }  
 }
