@@ -52,5 +52,15 @@ function cod_base_user_default_permissions() {
     ),
   );
 
+  // Exported permission: use admin toolbar
+  $permissions['use admin toolbar'] = array(
+    'name' => 'use admin toolbar',
+    'roles' => array(
+      '0' => 'session organizer',
+      '1' => 'site administrator',
+      '2' => 'sponsor organizer',
+    ),
+  );
+
   return $permissions;
 }
