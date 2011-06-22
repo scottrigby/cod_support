@@ -36,36 +36,6 @@ function cod_events_views_default_views() {
     ),
   ));
   $handler->override_option('fields', array(
-    'value_1' => array(
-      'label' => 'Last name',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_user' => 1,
-      'exclude' => 0,
-      'id' => 'value_1',
-      'table' => 'profile_values_profile_last',
-      'field' => 'value',
-      'relationship' => 'uid',
-    ),
     'value' => array(
       'label' => 'First name',
       'alter' => array(
@@ -93,6 +63,36 @@ function cod_events_views_default_views() {
       'exclude' => 0,
       'id' => 'value',
       'table' => 'profile_values_profile_first',
+      'field' => 'value',
+      'relationship' => 'uid',
+    ),
+    'value_1' => array(
+      'label' => 'Last name',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_user' => 1,
+      'exclude' => 0,
+      'id' => 'value_1',
+      'table' => 'profile_values_profile_last',
       'field' => 'value',
       'relationship' => 'uid',
     ),
@@ -174,14 +174,14 @@ function cod_events_views_default_views() {
       'field' => 'attended',
       'relationship' => 'none',
     ),
-    'edit_link' => array(
-      'label' => 'Operations',
-      'text' => '',
-      'exclude' => 0,
-      'id' => 'edit_link',
-      'table' => 'signup_log',
-      'field' => 'edit_link',
-      'relationship' => 'none',
+  ));
+  $handler->override_option('sorts', array(
+    'value' => array(
+      'order' => 'ASC',
+      'id' => 'value',
+      'table' => 'profile_values_profile_first',
+      'field' => 'value',
+      'relationship' => 'uid',
     ),
   ));
   $handler->override_option('arguments', array(
@@ -215,12 +215,31 @@ function cod_events_views_default_views() {
       'validate_argument_php' => '',
     ),
   ));
+  $handler->override_option('filters', array(
+    'uid' => array(
+      'operator' => 'not in',
+      'value' => array(
+        '0' => 0,
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'uid',
+      'table' => 'users',
+      'field' => 'uid',
+      'relationship' => 'uid',
+    ),
+  ));
   $handler->override_option('access', array(
     'type' => 'none',
   ));
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
+  $handler->override_option('title', 'Reg Desk ');
   $handler->override_option('items_per_page', 100);
   $handler->override_option('use_pager', 1);
   $handler->override_option('style_plugin', 'bulk');
@@ -230,20 +249,19 @@ function cod_events_views_default_views() {
     'sticky' => 0,
     'order' => 'asc',
     'columns' => array(
-      'value_1' => 'value_1',
       'value' => 'value',
+      'value_1' => 'value_1',
       'name' => 'name',
       'value_2' => 'value_2',
       'signup_time' => 'signup_time',
       'attended' => 'attended',
-      'edit_link' => 'edit_link',
     ),
     'info' => array(
-      'value_1' => array(
+      'value' => array(
         'sortable' => 1,
         'separator' => '',
       ),
-      'value' => array(
+      'value_1' => array(
         'sortable' => 1,
         'separator' => '',
       ),
@@ -263,28 +281,42 @@ function cod_events_views_default_views() {
         'sortable' => 1,
         'separator' => '',
       ),
-      'edit_link' => array(
-        'separator' => '',
-      ),
     ),
     'default' => '-1',
     'execution_type' => '1',
-    'display_type' => '0',
+    'display_type' => '1',
     'hide_select_all' => 0,
     'skip_confirmation' => 0,
     'display_result' => 1,
-    'merge_single_action' => 1,
+    'merge_single_action' => 0,
     'selected_operations' => array(
-      'signup_cancel_action' => 'signup_cancel_action',
       'signup_mark_attended_action' => 'signup_mark_attended_action',
       'signup_mark_not_attended_action' => 'signup_mark_not_attended_action',
+      'signup_cancel_action' => 0,
       'system_message_action' => 0,
       'views_bulk_operations_action' => 0,
       'views_bulk_operations_script_action' => 0,
       'views_bulk_operations_argument_selector_action' => 0,
       'system_goto_action' => 0,
       'system_send_email_action' => 0,
+      'views_send_mail_action' => 0,
     ),
+  ));
+  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->override_option('path', 'admin/regdesk');
+  $handler->override_option('menu', array(
+    'type' => 'normal',
+    'title' => 'Check-in desk view',
+    'description' => '',
+    'weight' => '0',
+    'name' => 'menu-conference-admin',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
   ));
 
   $views[$view->name] = $view;
