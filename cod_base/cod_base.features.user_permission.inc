@@ -20,6 +20,15 @@ function cod_base_user_default_permissions() {
     'roles' => array(),
   );
 
+  // Exported permission: access user profiles
+  $permissions['access user profiles'] = array(
+    'name' => 'access user profiles',
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+    ),
+  );
+
   // Exported permission: administer permissions
   $permissions['administer permissions'] = array(
     'name' => 'administer permissions',
