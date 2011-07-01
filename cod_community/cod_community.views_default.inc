@@ -340,6 +340,22 @@ function cod_community_views_default_views() {
       'field' => 'value',
       'relationship' => 'none',
     ),
+    'uid' => array(
+      'operator' => 'not in',
+      'value' => array(
+        '0' => 0,
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'uid',
+      'table' => 'users',
+      'field' => 'uid',
+      'relationship' => 'uid',
+    ),
   ));
   $handler->override_option('access', array(
     'type' => 'none',
