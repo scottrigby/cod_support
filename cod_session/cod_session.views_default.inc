@@ -2928,7 +2928,7 @@ function cod_session_views_default_views() {
       'reduce_duplicates' => 0,
     ),
   ));
-  $handler->override_option('header', '<a href="/program/schedule">View schedule grid</a>');
+  $handler->override_option('header', '<a href="/program/session-schedule">View schedule grid</a>');
   $handler->override_option('header_empty', 1);
   $handler->override_option('path', 'conference-admin/sessions/scheduled');
   $handler->override_option('menu', array(
