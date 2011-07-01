@@ -2020,7 +2020,7 @@ function cod_session_views_default_views() {
       'empty_zero' => 0,
       'link_to_node' => 0,
       'label_type' => 'custom',
-      'format' => 'default',
+      'format' => 'user_full_name',
       'multiple' => array(
         'group' => 1,
         'multiple_number' => '',
