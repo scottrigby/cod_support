@@ -131,6 +131,68 @@ function cod_session_content_default_fields() {
     ),
   );
 
+  // Exported field: field_room_session_capacity
+  $fields['room-field_room_session_capacity'] = array(
+    'field_name' => 'field_room_session_capacity',
+    'type_name' => 'room',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'number_integer',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'number',
+    'active' => '1',
+    'prefix' => '',
+    'suffix' => '',
+    'min' => '',
+    'max' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_room_session_capacity][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Session capacity',
+      'weight' => '-3',
+      'description' => 'Number of sessions or BoFs that this room can hold in a time slot. Used to allow multiple BoFs in the same room at the same time slot.',
+      'type' => 'number',
+      'module' => 'number',
+    ),
+  );
+
   // Exported field: field_accepted
   $fields['schedule_item-field_accepted'] = array(
     'field_name' => 'field_accepted',
@@ -228,8 +290,10 @@ function cod_session_content_default_fields() {
     'active' => '1',
     'referenceable_types' => array(
       'room' => 'room',
+      'bof_session' => 0,
       'event' => 0,
       'news' => 0,
+      'page' => 0,
       'product' => 0,
       'schedule_item' => 0,
       'session' => 0,
@@ -298,8 +362,10 @@ function cod_session_content_default_fields() {
     'active' => '1',
     'referenceable_types' => array(
       'time_slot' => 'time_slot',
+      'bof_session' => 0,
       'event' => 0,
       'news' => 0,
+      'page' => 0,
       'product' => 0,
       'room' => 0,
       'schedule_item' => 0,
@@ -546,8 +612,10 @@ advanced|Advanced',
     'active' => '1',
     'referenceable_types' => array(
       'room' => 'room',
+      'bof_session' => 0,
       'event' => 0,
       'news' => 0,
+      'page' => 0,
       'product' => 0,
       'schedule_item' => 0,
       'session' => 0,
@@ -616,8 +684,10 @@ advanced|Advanced',
     'active' => '1',
     'referenceable_types' => array(
       'time_slot' => 'time_slot',
+      'bof_session' => 0,
       'event' => 0,
       'news' => 0,
+      'page' => 0,
       'product' => 0,
       'room' => 0,
       'schedule_item' => 0,
@@ -835,6 +905,7 @@ Track 3',
   t('Photo');
   t('Speaker(s)');
   t('Room');
+  t('Session capacity');
   t('Slides');
   t('Status');
   t('Time slot');

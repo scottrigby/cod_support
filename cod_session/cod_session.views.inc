@@ -10,11 +10,11 @@
 function cod_session_views_plugins() {
   return array(
     'style' => array(
-      'cod_session_calendar' => array(
-        'title' => t('Session calendar'),
+      'cod_session_schedule' => array(
+        'title' => t('Session schedule'),
         'help' => t('Display view as a table with room columns and time slot rows'),
-        'handler' => 'cod_session_views_style_plugin_calendar',
-        'theme' => 'cod_session_calendar',
+        'handler' => 'cod_session_views_style_plugin_schedule',
+        'theme' => 'cod_session_schedule',
         'uses row plugin' => TRUE,
         'uses fields' => TRUE,
         'uses grouping' => TRUE,
@@ -24,7 +24,8 @@ function cod_session_views_plugins() {
         'use ajax' => FALSE, 
         'use more' => FALSE, 
         'type' => 'normal',
-        'help topic' => 'style-unformatted',        
+        'help topic' => 'style-unformatted',
+        'even empty' => TRUE, // Make the View render when there are no results.
         ),
       ),
     );

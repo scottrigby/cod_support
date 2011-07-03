@@ -23,6 +23,20 @@ function cod_session_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'cod_unique_schedule_item';
+  $strongarm->value = 'multiple';
+  $export['cod_unique_schedule_item'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'cod_unique_session';
+  $strongarm->value = 'single';
+  $export['cod_unique_session'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_page';
   $strongarm->value = 0;
   $export['comment_anonymous_page'] = $strongarm;
@@ -341,7 +355,7 @@ function cod_session_strongarm() {
   $strongarm->name = 'content_extra_weights_room';
   $strongarm->value = array(
     'title' => '-5',
-    'body_field' => '-3',
+    'body_field' => '-2',
     'revision_information' => '1',
     'author' => '0',
     'options' => '2',
@@ -417,32 +431,6 @@ function cod_session_strongarm() {
     1 => 'promote',
   );
   $export['node_options_time_slot'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'nodeaccess_userreference';
-  $strongarm->value = array(
-    'session' => array(
-      'field_speakers' => array(
-        'referenced' => array(
-          'view' => 'view',
-          'update' => 'update',
-          'delete' => 0,
-        ),
-        'author' => array(
-          'view' => 'view',
-          'update' => 'update',
-          'delete' => 'delete',
-        ),
-        'all' => array(
-          'view' => 'view',
-        ),
-        'priority' => '0',
-      ),
-    ),
-  );
-  $export['nodeaccess_userreference'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

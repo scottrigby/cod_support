@@ -328,12 +328,15 @@ function cod_session_views_default_views() {
   $handler->override_option('title', 'Schedule (Access Restricted)');
   $handler->override_option('header_format', '1');
   $handler->override_option('header_empty', 0);
-  $handler->override_option('empty', 'The schedule is empty. Please create one or more rooms and timeslots, and assign a session or schedule item to them. For help with scheduling, please see the <a href="http://groups.drupal.org/node/79003">COD Documentation</a>.');
+  $handler->override_option('empty', 'The schedule is empty. Please create one or more rooms and timeslots, and assign a session or schedule item to them. For help with scheduling, please see the <a href="http://drupal.org/documentation/build/cod/">COD Documentation</a>.');
   $handler->override_option('empty_format', '1');
   $handler->override_option('items_per_page', 0);
   $handler->override_option('link_display', 'page_1');
-  $handler->override_option('style_plugin', 'cod_session_calendar');
-  $handler->override_option('style_options', NULL);
+  $handler->override_option('style_plugin', 'cod_session_schedule');
+  $handler->override_option('style_options', array(
+    'schedule_interactive' => '0',
+    'interactive_type' => '0',
+  ));
   $handler = $view->new_display('page', 'Schedule', 'page_1');
   $handler->override_option('filters', array(
     'type' => array(
@@ -558,7 +561,7 @@ function cod_session_views_default_views() {
     ),
   ));
   $handler->override_option('title', 'Your schedule');
-  $handler->override_option('empty', 'Your schedule is empty. You can add sessions to your personal schedule from the <a href="./program/session-schedule">main schedule.</a>');
+  $handler->override_option('empty', 'Your schedule is empty. You can add sessions to your personal schedule from the <a href="/program/session-schedule">main schedule.</a>');
   $handler->override_option('path', 'program/session-schedule/your-schedule');
   $handler->override_option('menu', array(
     'type' => 'tab',
@@ -2020,7 +2023,7 @@ function cod_session_views_default_views() {
       'empty_zero' => 0,
       'link_to_node' => 0,
       'label_type' => 'custom',
-      'format' => 'user_full_name',
+      'format' => 'default',
       'multiple' => array(
         'group' => 1,
         'multiple_number' => '',
@@ -2928,7 +2931,7 @@ function cod_session_views_default_views() {
       'reduce_duplicates' => 0,
     ),
   ));
-  $handler->override_option('header', '<a href="/program/session-schedule">View schedule grid</a>');
+  $handler->override_option('header', '<a href="/program/schedule">View schedule grid</a>');
   $handler->override_option('header_empty', 1);
   $handler->override_option('path', 'conference-admin/sessions/scheduled');
   $handler->override_option('menu', array(
