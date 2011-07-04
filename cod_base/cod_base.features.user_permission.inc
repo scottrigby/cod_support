@@ -71,5 +71,13 @@ function cod_base_user_default_permissions() {
     ),
   );
 
+  // Exported permission: view own orders
+  $permissions['view own orders'] = array(
+    'name' => 'view own orders',
+    'roles' => array(
+      '0' => 'authenticated user',
+    ),
+  );
+
   return $permissions;
 }
