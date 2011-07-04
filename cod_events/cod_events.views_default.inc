@@ -234,14 +234,15 @@ function cod_events_views_default_views() {
     ),
   ));
   $handler->override_option('access', array(
-    'type' => 'none',
+    'type' => 'perm',
+    'perm' => 'administer all signups',
   ));
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
-  $handler->override_option('title', 'Reg Desk ');
-  $handler->override_option('items_per_page', 100);
-  $handler->override_option('use_pager', 1);
+  $handler->override_option('title', 'Check-in attendees');
+  $handler->override_option('items_per_page', 0);
+  $handler->override_option('use_pager', 0);
   $handler->override_option('style_plugin', 'bulk');
   $handler->override_option('style_options', array(
     'grouping' => '',
@@ -303,10 +304,10 @@ function cod_events_views_default_views() {
     ),
   ));
   $handler = $view->new_display('page', 'Page', 'page_1');
-  $handler->override_option('path', 'admin/regdesk');
+  $handler->override_option('path', 'conference-admin/checkin');
   $handler->override_option('menu', array(
     'type' => 'normal',
-    'title' => 'Check-in desk view',
+    'title' => 'Check-in attendees',
     'description' => '',
     'weight' => '0',
     'name' => 'menu-conference-admin',
