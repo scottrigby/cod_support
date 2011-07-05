@@ -6,6 +6,14 @@
 function cod_events_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: administer UC_Signup
+  $permissions['administer UC_Signup'] = array(
+    'name' => 'administer UC_Signup',
+    'roles' => array(
+      '0' => 'attendee manager',
+    ),
+  );
+
   // Exported permission: administer all signups
   $permissions['administer all signups'] = array(
     'name' => 'administer all signups',
@@ -61,6 +69,15 @@ function cod_events_user_default_permissions() {
     'name' => 'email users signed up for own content',
     'roles' => array(
       '0' => 'attendee manager',
+    ),
+  );
+
+  // Exported permission: purchase signups for other users
+  $permissions['purchase signups for other users'] = array(
+    'name' => 'purchase signups for other users',
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
     ),
   );
 
