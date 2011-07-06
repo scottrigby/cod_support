@@ -113,18 +113,19 @@ function cod_session_form_node_type_form_alter(&$form, $form_state) {
     $form['cod_session'] = array(
       '#type' => 'fieldset',
       '#title' => t('Scheduling settings'),
+      '#description' => t('Scheduling is only available to content types that have room and time slot nodereference fields'),
       '#collapsible' => TRUE,
       '#collapsed' => FALSE,
     );
     $form['cod_session']['cod_unique'] = array(
-      '#title' => t('Content type restrictions'),
+      '#title' => t('Can content of this type share time slots with other scheduled content?'),
       '#type' => 'radios',
       '#options' => array(
-        'single' => t('Limit the use of a room and time slot combination to a single item of this content type'),
-        'multiple' => t('Do not restrict the use of a room and time slot combination to single items of this content type'),
+        'single' => t('No, content of this type overrides room availability and occupies entire time slot'),
+        'multiple' => t('Yes, content of this type can share a time slot if there is room availability'),
       ),
       '#default_value' => variable_get('cod_unique_' . $form['#node_type']->type, COD_SCHEDULE_SINGLE),
-      '#description' => t('Schedulable content can share a room and time slot with other content or use the full room at that time. Scheduling is only available to types that have room and time slot nodereference fields.'),
+      '#description' => t('Scheduled items (such as sessions, schedule items and BoFs) can share a room and time slot with other scheduled items or be configured here to occupy the entire room for that time slot.'),
       // @todo, also make reference to room spanning?
     );
   }
@@ -234,7 +235,7 @@ function _cod_session_unschedule($form, &$form_state) {
     // Unset scheduled room and time slot.
     $form_state['values']['field_session_room'][0]['nid'] = NULL;
     $form_state['values']['field_session_slot'][0]['nid'] = NULL;
-    drupal_set_message(t('%name has been unscheduled. To reshedule, click "Schedule a session" on any available timeslot.', array('%name' => $form_state['values']['title'])));
+    drupal_set_message(t('%name has been unscheduled. To reshedule, click "Schedule a session" on any available time slot.', array('%name' => $form_state['values']['title'])));
     // @todo set redirect?
   }
 }
@@ -347,7 +348,7 @@ function cod_session_schedule_form(&$form_state, $type) {
 
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Confirm this timeslot'),
+    '#value' => t('Confirm this time slot'),
   );
   $form['#redirect'] = $_REQUEST['destination'];
   $form['cancel'] = array(
