@@ -77,9 +77,7 @@ function cod_session_uuid_features_default_content() {
     'taxonomy' => array(),
     'uuid' => '82568654-06d2-11e0-a3ab-29212d7dea21',
     'revision_uuid' => '8b783c86-0e1c-11e0-98a9-d1fb755a60d4',
-    'loaded_revision_uuid' => '8b783c86-0e1c-11e0-98a9-d1fb755a60d4',
     'pathauto_perform_alias' => FALSE,
-    'date' => '2011-01-24 16:45:43 -0500',
   );
   return $nodes;
 }

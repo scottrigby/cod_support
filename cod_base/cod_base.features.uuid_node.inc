@@ -118,7 +118,6 @@ function cod_base_uuid_features_default_content() {
     'uuid' => '79f090a8-755e-102e-a8fe-4040db1cdced',
     'revision_uuid' => '79f12ce8-755e-102e-a8fe-4040db1cdced',
     'pathauto_perform_alias' => FALSE,
-    'date' => '2011-01-19 15:54:23 -0500',
   );
   return $nodes;
 }
