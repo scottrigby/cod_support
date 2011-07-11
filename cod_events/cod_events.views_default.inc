@@ -285,22 +285,63 @@ function cod_events_views_default_views() {
     ),
     'default' => '-1',
     'execution_type' => '1',
+    'max_performance' => 0,
     'display_type' => '1',
-    'hide_select_all' => 0,
-    'skip_confirmation' => 0,
+    'hide_selector' => 0,
+    'preserve_selection' => 1,
     'display_result' => 1,
     'merge_single_action' => 0,
-    'selected_operations' => array(
-      'signup_mark_attended_action' => 'signup_mark_attended_action',
-      'signup_mark_not_attended_action' => 'signup_mark_not_attended_action',
-      'signup_cancel_action' => 0,
-      'system_message_action' => 0,
-      'views_bulk_operations_action' => 0,
-      'views_bulk_operations_script_action' => 0,
-      'views_bulk_operations_argument_selector_action' => 0,
-      'system_goto_action' => 0,
-      'system_send_email_action' => 0,
-      'views_send_mail_action' => 0,
+    'operations' => array(
+      'signup_cancel_action' => array(
+        'selected' => 0,
+        'skip_confirmation' => 0,
+        'label' => '',
+      ),
+      'system_message_action' => array(
+        'selected' => 0,
+        'skip_confirmation' => 0,
+        'label' => '',
+      ),
+      'views_bulk_operations_action' => array(
+        'selected' => 0,
+        'skip_confirmation' => 0,
+        'label' => '',
+      ),
+      'views_bulk_operations_script_action' => array(
+        'selected' => 0,
+        'skip_confirmation' => 0,
+        'label' => '',
+      ),
+      'signup_mark_attended_action' => array(
+        'selected' => 1,
+        'skip_confirmation' => 1,
+        'label' => 'Attended',
+      ),
+      'signup_mark_not_attended_action' => array(
+        'selected' => 1,
+        'skip_confirmation' => 1,
+        'label' => 'Did not attend',
+      ),
+      'views_bulk_operations_argument_selector_action' => array(
+        'selected' => 0,
+        'skip_confirmation' => 0,
+        'label' => '',
+      ),
+      'system_goto_action' => array(
+        'selected' => 0,
+        'skip_confirmation' => 0,
+        'label' => '',
+      ),
+      'system_send_email_action' => array(
+        'selected' => 0,
+        'skip_confirmation' => 0,
+        'label' => '',
+      ),
+      'views_send_mail_action' => array(
+        'selected' => 0,
+        'skip_confirmation' => 0,
+        'label' => '',
+      ),
     ),
   ));
   $handler = $view->new_display('page', 'Page', 'page_1');
