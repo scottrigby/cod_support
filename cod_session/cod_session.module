@@ -531,9 +531,8 @@ function template_preprocess_cod_session_schedule(&$vars) {
   // The list of sessions is not filtered by this list. A View filter argument should be used for that.
   // @todo this won't allow different Views on the same day to show different time slots (maybe if one was sessions and the other bofs)?
   $time_slots = array();
-  $time_queue = !empty($view->cod_time_queue) ? $view->cod_time_queue : NULL;
   foreach ($schedule_days as $day_key => $day) {
-    $time_slots  = array_merge($time_slots, cod_session_day_slots($day_key, $time_queue));
+    $time_slots  = array_merge($time_slots, cod_session_day_slots($view, $day_key));
   }
   if (empty($time_slots)) {
     // No time slots exist so do not continue.
@@ -925,12 +924,13 @@ function _cod_session_schedule_rooms($schedule_view) {
 /**
  * Get time slots for a day.
  */
-function cod_session_day_slots($day, $time_queue = NULL) {
+function cod_session_day_slots($schedule_view, $day) {
   $time_slots = array();
-  
 
-  if (is_null($time_queue)) {
-    // No view so default to all time slots.
+  // Try and load the cod_time_slots view.
+  $view = views_get_view('cod_time_slots');
+  if (!$view) {
+    // No view so default to all time slots within this day.
     $sql = "SELECT n.nid FROM {node} n
       INNER JOIN {content_type_time_slot} s ON n.nid = s.nid AND n.vid = s.vid
       WHERE n.type = 'time_slot' AND n.status = 1";
@@ -944,10 +944,14 @@ function cod_session_day_slots($day, $time_queue = NULL) {
     }
   }
   else {
-    // Try and load the cod_time_slots view.
-    $view = views_get_view('cod_time_slots');
-    if ($day) {
-      $view->args[0] = $time_queue;
+    // If Nodequeue is enabled and a queue has been set for use use that as the
+    // argument for this View, otherwise pass along the day.
+    $time_queue = !empty($schedule_view->cod_time_queue) ? $schedule_view->cod_time_queue : NULL;
+    if ($time_queue) {
+      $view->set_arguments(array($time_queue));
+    }
+    else {
+      $view->set_arguments(array($day));
     }
     // There must be a way for this view to respect all the settings of it.
     $view->pager['items_per_page'] = 0;
