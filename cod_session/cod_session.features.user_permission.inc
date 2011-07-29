@@ -15,6 +15,7 @@ function cod_session_user_default_permissions() {
     'name' => 'edit field_accepted',
     'roles' => array(
       0 => 'session organizer',
+      1 => 'site administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -48,6 +49,7 @@ function cod_session_user_default_permissions() {
     'name' => 'edit field_slot_datetime',
     'roles' => array(
       0 => 'session organizer',
+      1 => 'site administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -57,6 +59,7 @@ function cod_session_user_default_permissions() {
     'name' => 'edit field_speakers',
     'roles' => array(
       0 => 'session organizer',
+      1 => 'site administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -66,6 +69,7 @@ function cod_session_user_default_permissions() {
     'name' => 'edit field_track',
     'roles' => array(
       0 => 'session organizer',
+      1 => 'site administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -75,6 +79,7 @@ function cod_session_user_default_permissions() {
     'name' => 'view field_accepted',
     'roles' => array(
       0 => 'session organizer',
+      1 => 'site administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -90,6 +95,7 @@ function cod_session_user_default_permissions() {
     'name' => 'view field_session_room',
     'roles' => array(
       0 => 'session organizer',
+      1 => 'site administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -99,6 +105,7 @@ function cod_session_user_default_permissions() {
     'name' => 'view field_session_slot',
     'roles' => array(
       0 => 'session organizer',
+      1 => 'site administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -114,6 +121,7 @@ function cod_session_user_default_permissions() {
     'name' => 'view field_slot_datetime',
     'roles' => array(
       0 => 'session organizer',
+      1 => 'site administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -129,6 +137,7 @@ function cod_session_user_default_permissions() {
     'name' => 'view field_track',
     'roles' => array(
       0 => 'session organizer',
+      1 => 'site administrator',
     ),
     'module' => 'field_permissions',
   );

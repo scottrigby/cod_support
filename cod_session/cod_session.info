@@ -1,5 +1,4 @@
 core = "7.x"
-package = COD
 dependencies[] = "date"
 dependencies[] = "date_popup"
 dependencies[] = "features"
@@ -85,4 +84,5 @@ features[variable][] = "node_options_session"
 features[variable][] = "node_options_time_slot"
 name = "COD Session"
 package = "COD"
+php = "5.2.4"
 project = "cod_session"
