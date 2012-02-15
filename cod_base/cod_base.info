@@ -21,6 +21,7 @@ features[user_permission][] = "administer views"
 features[user_permission][] = "use admin toolbar"
 features[user_role][] = "site administrator"
 features[variable][] = "admin_toolbar"
+files[] = cod_base.module
 name = "COD Base"
 package = "COD"
 php = "5.2.4"
