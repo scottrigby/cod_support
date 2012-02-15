@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_user_default_permissions().
+ * Implements hook_user_default_permissions().
  */
 function cod_base_user_default_permissions() {
   $permissions = array();
@@ -75,8 +75,7 @@ function cod_base_user_default_permissions() {
   $permissions['use admin toolbar'] = array(
     'name' => 'use admin toolbar',
     'roles' => array(
-      0 => 'session organizer',
-      1 => 'site administrator',
+      0 => 'site administrator',
     ),
     'module' => 'admin',
   );
