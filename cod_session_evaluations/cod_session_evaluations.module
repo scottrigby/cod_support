@@ -1,0 +1,66 @@
+<?php
+/**
+ * @file
+ * Code for the COD Session Evaluations feature.
+ */
+
+include_once 'cod_session_evaluations.features.inc';
+
+/**
+* Implements hook_form_alter().
+*/
+function cod_session_evaluations_form_session_evaluation_node_form_alter(&$form, &$form_state, $form_id) {
+  if (!empty($form['field_eval_session'][LANGUAGE_NONE][0]['nid']['#default_value'])) {
+      $session_nid = $form['field_eval_session'][LANGUAGE_NONE][0]['nid']['#default_value'];
+  }
+  // If the user has already reviewed the referenced session, don't let her
+  // submit another session evaluation.
+  if (cod_session_user_reviewed_session($form['uid']['#value'], $session_nid)) {
+    $form['#access'] = FALSE;
+    drupal_set_message(t('You have already evaluated this session. You can only submit one evaluation per session.'));
+    drupal_goto('node/'. $session_nid);
+  }
+}
+
+
+/**
+* Implements hook_node_view_alter().
+*/
+function cod_session_node_view_alter(&$build) {
+  global $user;
+  $account = $user;
+  // Hide the "Provide feedback on this session" links if the user has already
+  // submitted a survey about this session.
+  if (cod_session_user_reviewed_session($account->uid, $build['#node']->nid)) {
+    unset($build['links']['nodereference_url']['#links']['session_evaluation_field_eval_session']);
+  }
+}
+
+/**
+* Implements hook_node_validate().
+*/
+function cod_session_evaluations_node_validate($node, $form, &$form_state) {
+  if ($node->type == 'session_evaluation') {
+    // Check if user has already submitted an evaluation for this session.
+    if (cod_session_user_reviewed_session($form['uid']['#value'], $form['field_eval_session'][LANGUAGE_NONE][0]['nid']['nid']['#value'])) {
+      $nids = array_keys($result['node']);
+      form_set_error('field_eval_session', t('You have already evaluated this session. You can only submit one evaluation per session.'));
+    }   
+  }
+}
+
+/**
+* Helper function to determine whether a user has already reviewed
+* a particular session.
+*/
+function cod_session_user_reviewed_session($uid, $nid) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->propertyCondition('status', 1)
+    ->propertyCondition('type', 'session_evaluation')
+    ->propertyCondition('uid', $uid)
+    ->fieldCondition('field_eval_session', 'nid', $nid);
+  $result = $query->execute(); 
+  return !empty($result['node']);
+}
+
