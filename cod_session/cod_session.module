@@ -141,6 +141,33 @@ function cod_session_form_node_type_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function cod_session_form_field_ui_field_edit_form_alter(&$form, &$form_state) {
+  $field_name = 'field_accepted';
+  $field = $form['#field'];
+
+  if ($field['field_name'] == $field_name) {
+    $form_field = &$form['field'];
+    $form_field['cod_declined_msg'] = array(
+      '#type' => 'textarea',
+      '#title' => t('Declined message'),
+      '#description' => t('Display a message that a session was declined. Leave empty if you prefer to not display any notice. '),
+      '#default_value' => variable_get('cod_declined_msg_' . $form['#instance']['bundle'], t('This session has been declined by the session moderation team.')),
+    );
+
+    $form['#submit'][] = 'cod_session_save_declined_message';
+  }
+}
+
+/**
+ * Function to save 'Declined message'.
+ */
+function cod_session_save_declined_message(&$form, &$form_state) {
+  variable_set('cod_declined_msg_' . $form['#instance']['bundle'], $form_state['values']['field']['cod_declined_msg']);
+}
+
+/**
  * Implements hook_form_alter().
  */
 function cod_session_form_alter(&$form, &$form_state, $form_id) {
@@ -418,6 +445,24 @@ function cod_session_link_alter($links, $node, $comment = NULL) {
 }
 
 /**
+ * Implements hook_node_view_alter().
+ */
+function cod_session_node_view_alter(&$build) {
+  $items = field_get_items('node', $build['#node'], 'field_accepted');
+  if ($build['#view_mode'] == 'full' && $items && $items[0]['value'] == 2) {
+    $msg = check_plain(variable_get('cod_declined_msg_' . $build['#bundle'], t('This session has been declined by the session moderation team.')));
+    if ($output = theme('cod_session_declined_msg', array('msg' => $msg))) {
+      if (isset($build['body'][0]['#markup'])) {
+        $build['body'][0]['#markup'] = $output . $build['body'][0]['#markup'];
+      }
+      else {
+        $build['body'][0]['#markup'] = $output;
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_node_presave().
  */
 function cod_session_node_presave($node) {
@@ -505,7 +550,18 @@ function cod_session_theme($existing, $type, $theme, $path) {
       'variables' => array('view' => NULL, 'options' => NULL, 'rows' => NULL, 'title' => NULL),
       'template' => 'cod-session-schedule',
     ),
+    'cod_session_declined_msg' => array(
+      'render element' => 'msg',
+    ),
   );
+}
+
+/**
+ * Theme function to render the "Declined message".
+ */
+function theme_cod_session_declined_msg($variables) {
+  $message = $variables['msg'];
+  return '<div class="messages session-declined">' . $message . '</div>';
 }
 
 /**
