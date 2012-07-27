@@ -15,7 +15,7 @@ function cod_session_evaluations_form_session_evaluation_node_form_alter(&$form,
   }
   // If the user has already reviewed the referenced session, don't let her
   // submit another session evaluation.
-  if (cod_session_user_reviewed_session($form['uid']['#value'], $session_nid)) {
+  if (cod_session_evaluations_user_reviewed_session($form['uid']['#value'], $session_nid)) {
     $form['#access'] = FALSE;
     drupal_set_message(t('You have already evaluated this session. You can only submit one evaluation per session.'));
     drupal_goto('node/'. $session_nid);
@@ -26,12 +26,12 @@ function cod_session_evaluations_form_session_evaluation_node_form_alter(&$form,
 /**
 * Implements hook_node_view_alter().
 */
-function cod_session_node_view_alter(&$build) {
+function cod_session_evaluations_node_view_alter(&$build) {
   global $user;
   $account = $user;
   // Hide the "Provide feedback on this session" links if the user has already
   // submitted a survey about this session.
-  if (cod_session_user_reviewed_session($account->uid, $build['#node']->nid)) {
+  if (cod_session_evaluations_user_reviewed_session($account->uid, $build['#node']->nid)) {
     unset($build['links']['nodereference_url']['#links']['session_evaluation_field_eval_session']);
   }
 }
@@ -42,7 +42,7 @@ function cod_session_node_view_alter(&$build) {
 function cod_session_evaluations_node_validate($node, $form, &$form_state) {
   if ($node->type == 'session_evaluation') {
     // Check if user has already submitted an evaluation for this session.
-    if (cod_session_user_reviewed_session($form['uid']['#value'], $form['field_eval_session'][LANGUAGE_NONE][0]['nid']['nid']['#value'])) {
+    if (cod_session_evaluations_user_reviewed_session($form['uid']['#value'], $form['field_eval_session'][LANGUAGE_NONE][0]['nid']['nid']['#value'])) {
       $nids = array_keys($result['node']);
       form_set_error('field_eval_session', t('You have already evaluated this session. You can only submit one evaluation per session.'));
     }   
@@ -53,7 +53,7 @@ function cod_session_evaluations_node_validate($node, $form, &$form_state) {
 * Helper function to determine whether a user has already reviewed
 * a particular session.
 */
-function cod_session_user_reviewed_session($uid, $nid) {
+function cod_session_evaluations_user_reviewed_session($uid, $nid) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->propertyCondition('status', 1)
