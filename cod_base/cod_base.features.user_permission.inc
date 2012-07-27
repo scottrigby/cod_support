@@ -10,22 +10,21 @@
 function cod_base_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: access administration pages
+  // Exported permission: access administration pages.
   $permissions['access administration pages'] = array(
     'name' => 'access administration pages',
-    'roles' => array(
-      0 => 'site administrator',
-    ),
+    'roles' => array(),
     'module' => 'system',
   );
 
-  // Exported permission: access site reports
+  // Exported permission: access site reports.
   $permissions['access site reports'] = array(
     'name' => 'access site reports',
     'roles' => array(),
+    'module' => 'system',
   );
 
-  // Exported permission: access user profiles
+  // Exported permission: access user profiles.
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',
     'roles' => array(
@@ -35,47 +34,45 @@ function cod_base_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: administer permissions
+  // Exported permission: administer permissions.
   $permissions['administer permissions'] = array(
     'name' => 'administer permissions',
     'roles' => array(
-      0 => 'site administrator',
+      0 => 'administrator',
     ),
     'module' => 'user',
   );
 
-  // Exported permission: administer site configuration
+  // Exported permission: administer site configuration.
   $permissions['administer site configuration'] = array(
     'name' => 'administer site configuration',
-    'roles' => array(
-      0 => 'site administrator',
-    ),
+    'roles' => array(),
     'module' => 'system',
   );
 
-  // Exported permission: administer users
+  // Exported permission: administer users.
   $permissions['administer users'] = array(
     'name' => 'administer users',
     'roles' => array(
-      0 => 'site administrator',
+      0 => 'administrator',
     ),
     'module' => 'user',
   );
 
-  // Exported permission: administer views
+  // Exported permission: administer views.
   $permissions['administer views'] = array(
     'name' => 'administer views',
     'roles' => array(
-      0 => 'site administrator',
+      0 => 'administrator',
     ),
     'module' => 'views',
   );
 
-  // Exported permission: use admin toolbar
+  // Exported permission: use admin toolbar.
   $permissions['use admin toolbar'] = array(
     'name' => 'use admin toolbar',
     'roles' => array(
-      0 => 'site administrator',
+      0 => 'administrator',
     ),
     'module' => 'admin',
   );

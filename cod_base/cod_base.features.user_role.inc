@@ -10,9 +10,9 @@
 function cod_base_user_default_roles() {
   $roles = array();
 
-  // Exported role: site administrator
-  $roles['site administrator'] = array(
-    'name' => 'site administrator',
+  // Exported role: administrator.
+  $roles['administrator'] = array(
+    'name' => 'administrator',
     'weight' => '2',
   );
 
