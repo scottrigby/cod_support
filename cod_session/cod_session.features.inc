@@ -40,7 +40,7 @@ function cod_session_flag_default_flags() {
     ),
     'flag_short' => 'I confirm that I can present this sesssion at the listed date and time.',
     'flag_long' => 'Once confirmed, you cannot unconfirm without contacting the session organizers.',
-    'flag_message' => 'Thanks for confirming that you can present [title] at this date and time!',
+    'flag_message' => 'Thanks for confirming that you can present [node:title] at this date and time!',
     'unflag_short' => 'Cancel confirmation',
     'unflag_long' => '',
     'unflag_message' => '',

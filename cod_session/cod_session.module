@@ -418,38 +418,15 @@ function cod_session_schedule_form_submit($form, $form_state) {
 }
 
 /**
- * hook_link_alter is not available in D7. Links may now be altered in
- * hook_node_view_alter() and hook_comment_view_alter(). See
- * http://drupal.org/update/modules/6/7#node_links for more info.
- *
- * Implements hook_link_alter().
- * /
-function cod_session_link_alter($links, $node, $comment = NULL) {
-  global $user;
-  if (!empty($links['flag-session_confirm'])) {
-    $presenter = FALSE;
-    // Only display the session confirmation flag for sessions that are
-    // accepted and scheduled, and the current user is one of
-    // the session's speakers.
-    if ($node->field_accepted[LANGUAGE_NONE][0]['value'] == 1 && !empty($node->field_session_room[LANGUAGE_NONE][0]['nid']) && !empty($node->field_session_slot[LANGUAGE_NONE][0]['nid'])) {
-      foreach ($node->field_speakers[LANGUAGE_NONE] as $key => $value) {
-        if ($value['uid'] == $user->uid) {
-          $presenter = TRUE;
-        }
-      }
-    }
-    if (!$presenter) {
-      unset($links['flag-session_confirm']);
-    }
-  }
-}
-
-/**
  * Implements hook_node_view_alter().
  */
 function cod_session_node_view_alter(&$build) {
-  $items = field_get_items('node', $build['#node'], 'field_accepted');
-  if ($build['#view_mode'] == 'full' && $items && $items[0]['value'] == 2) {
+  global $user;
+  $account = $user;
+  $node = $build['#node'];
+
+  // Display a message indicating when a session has been declined.
+  if ($build['#view_mode'] == 'full'  && cod_session_is_declined($node)) {
     $msg = check_plain(variable_get('cod_declined_msg_' . $build['#bundle'], t('This session has been declined by the session moderation team.')));
     if ($output = theme('cod_session_declined_msg', array('msg' => $msg))) {
       if (isset($build['body'][0]['#markup'])) {
@@ -460,8 +437,51 @@ function cod_session_node_view_alter(&$build) {
       }
     }
   }
+
+  // Display the presenter confirmation link when a session is
+  // accepted and scheduled.
+  if (!cod_session_is_scheduled($node) || !cod_session_is_accepted($node) || !cod_session_user_is_speaker($account->uid, $node)) {
+    unset($build['links']['flag']['#links']['flag-session_confirm']);
+  }
+
 }
 
+/**
+* Helper function to determine if a session has been scheduled (assigned a
+* room and time-slot combination)
+*/
+
+function cod_session_is_scheduled($node) {
+  return !empty($node->field_session_room) && !empty($node->field_session_slot);
+}
+
+/**
+* Helper function to determine whether a session is accepted.
+*/
+function cod_session_is_accepted($node) {
+  return $node->field_accepted[LANGUAGE_NONE][0]['value'] == 1;
+}
+
+/**
+* Helper function to determine whether a session is declined.
+*/
+function cod_session_is_declined($node) {
+  return $node->field_accepted[LANGUAGE_NONE][0]['value'] == 2;
+}
+/**
+ * Helper function to determien whether a given user is a speaker on a session.
+ */
+
+function cod_session_user_is_speaker($uid, $node) {
+  if (empty($node->field_speakers)) {
+    return FALSE;
+  }
+  foreach($node->field_speakers[LANGUAGE_NONE] as $speaker) {
+    if ($speaker['uid'] == $uid)  {      
+      return TRUE;
+    }
+  }
+}
 /**
  * Implements hook_node_presave().
  */
