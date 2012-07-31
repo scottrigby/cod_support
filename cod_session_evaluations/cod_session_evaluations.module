@@ -30,7 +30,7 @@ function cod_session_evaluations_node_view($node, $view_mode, $langcode) {
   //sanity check -- we should only be posting on the session nodes. Return if its any other node or listing
   //todo -- probably want to be able add the link for a listing of nodes, but we can't at the moment
   //        since entities aren't loaded on anything but the full view
-  if($node->type != 'session' || $view_mode != 'full') {
+  if($node->type != 'session' || $view_mode != 'full' || !user_access('create session_evaluation content')) {
     return;
   }
   global $user;
