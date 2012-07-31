@@ -27,9 +27,28 @@ function cod_session_evaluations_form_session_evaluation_node_form_alter(&$form,
 * Implements hook_node_view().
 */
 function cod_session_evaluations_node_view($node, $view_mode, $langcode) {
+  //sanity check -- we should only be posting on the session nodes. Return if its any other node or listing
+  //todo -- probably want to be able add the link for a listing of nodes, but we can't at the moment
+  //        since entities aren't loaded on anything but the full view
+  if($node->type != 'session' || $view_mode != 'full') {
+    return;
+  }
   global $user;
   $account = $user;
   $bundle = 'session';
+
+  //lets check first that the session was accepted AND its the event has started
+  $time_slot = $node->field_session_slot['und'][0]['entity'];
+  //how could you evaluate a presentation if it wasn't ever scheduled?
+  if(empty($time_slot)) {
+    return;
+  }
+
+  //how could you evaluate a presenatation if it never was accepted OR it hasn't occured yet?
+  //note -- TZ handling could cause issues here, but as long as you don't have multiple timezones on one conference, it should be good
+  if(!($node->field_accepted['und'][0]['value']) || strtotime($time_slot->field_slot_datetime['und'][0]['value']) > mktime()) {
+    return;
+  }
   // Hide the "Provide feedback on this session" links if the user has already
   // submitted a survey about this session.
   if (!cod_session_evaluations_user_reviewed_session($account->uid, $node->nid) && $node->type == $bundle) {
