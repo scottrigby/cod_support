@@ -10,7 +10,7 @@
 function cod_session_evaluations_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-session_evaluation-body'
+  // Exported field: 'node-session_evaluation-body'.
   $fields['node-session_evaluation-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function cod_session_evaluations_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'field_permissions' => array(
@@ -63,6 +64,12 @@ function cod_session_evaluations_field_default_fields() {
           'weight' => 0,
         ),
         'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'listing' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
@@ -99,7 +106,7 @@ function cod_session_evaluations_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-session_evaluation-field_eval_session'
+  // Exported field: 'node-session_evaluation-field_eval_session'.
   $fields['node-session_evaluation-field_eval_session'] = array(
     'field_config' => array(
       'active' => '1',
@@ -111,39 +118,43 @@ function cod_session_evaluations_field_default_fields() {
         'type' => '0',
       ),
       'foreign keys' => array(
-        'nid' => array(
+        'node' => array(
           'columns' => array(
-            'nid' => 'nid',
+            'target_id' => 'nid',
           ),
           'table' => 'node',
         ),
       ),
       'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
-      'module' => 'node_reference',
+      'locked' => '0',
+      'module' => 'entityreference',
       'settings' => array(
-        'referenceable_types' => array(
-          'article' => 0,
-          'bof_session' => 0,
-          'page' => 0,
-          'room' => 0,
-          'schedule_item' => 0,
-          'session' => 'session',
-          'session_evaluation' => 0,
-          'time_slot' => 0,
-          'webform' => 0,
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'title',
+            'type' => 'property',
+          ),
+          'target_bundles' => array(
+            'session' => 'session',
+          ),
         ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'node',
       ),
       'translatable' => '0',
-      'type' => 'node_reference',
+      'type' => 'entityreference',
     ),
     'field_instance' => array(
       'bundle' => 'session_evaluation',
@@ -153,12 +164,14 @@ function cod_session_evaluations_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'node_reference',
-          'settings' => array(),
-          'type' => 'node_reference_default',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
           'weight' => 1,
         ),
-        'ical' => array(
+        'listing' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
@@ -180,20 +193,9 @@ function cod_session_evaluations_field_default_fields() {
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'nodereference_url',
-        'settings' => array(
-          'autocomplete_match' => 'contains',
-          'edit_fallback' => 0,
-          'fallback' => 'select',
-          'node_link' => array(
-            'destination' => 'source',
-            'full' => 1,
-            'hover_title' => 'Fill out a short survey about this session',
-            'teaser' => 0,
-            'title' => 'Provide feedback on this session',
-          ),
-        ),
-        'type' => 'nodereference_url',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
         'weight' => '-3',
       ),
     ),
