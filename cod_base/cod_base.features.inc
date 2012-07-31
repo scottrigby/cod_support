@@ -13,3 +13,13 @@ function cod_base_ctools_plugin_api() {
     return array("version" => "1");
   }
 }
+
+/**
+ * Implements hook_date_format_types().
+ */
+function cod_base_date_format_types() {
+  $format_types = array();
+  // Exported date format type: date_no_time_
+  $format_types['date_no_time_'] = 'Date (no time)';
+  return $format_types;
+}

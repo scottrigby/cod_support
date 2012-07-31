@@ -75,3 +75,13 @@ function cod_base_field_formatter_view($entity_type, $entity, $field, $instance,
   }
   return $elements;
 }
+
+/**
+* Implements hook_entity_info_alter().
+*/
+function cod_base_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['listing'] = array(
+    'label' => t('Listing'),
+    'custom settings' => TRUE,
+  );
+}

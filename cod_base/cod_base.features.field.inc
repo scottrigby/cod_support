@@ -10,7 +10,7 @@
 function cod_base_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'user-user-field_profile_first'
+  // Exported field: 'user-user-field_profile_first'.
   $fields['user-user-field_profile_first'] = array(
     'field_config' => array(
       'active' => '1',
@@ -31,6 +31,7 @@ function cod_base_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -72,7 +73,7 @@ function cod_base_field_default_fields() {
     ),
   );
 
-  // Exported field: 'user-user-field_profile_interests'
+  // Exported field: 'user-user-field_profile_interests'.
   $fields['user-user-field_profile_interests'] = array(
     'field_config' => array(
       'active' => '1',
@@ -93,6 +94,7 @@ function cod_base_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -132,7 +134,7 @@ function cod_base_field_default_fields() {
     ),
   );
 
-  // Exported field: 'user-user-field_profile_job_title'
+  // Exported field: 'user-user-field_profile_job_title'.
   $fields['user-user-field_profile_job_title'] = array(
     'field_config' => array(
       'active' => '1',
@@ -153,6 +155,7 @@ function cod_base_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -194,7 +197,7 @@ function cod_base_field_default_fields() {
     ),
   );
 
-  // Exported field: 'user-user-field_profile_last'
+  // Exported field: 'user-user-field_profile_last'.
   $fields['user-user-field_profile_last'] = array(
     'field_config' => array(
       'active' => '1',
@@ -215,6 +218,7 @@ function cod_base_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -256,7 +260,7 @@ function cod_base_field_default_fields() {
     ),
   );
 
-  // Exported field: 'user-user-field_profile_org'
+  // Exported field: 'user-user-field_profile_org'.
   $fields['user-user-field_profile_org'] = array(
     'field_config' => array(
       'active' => '1',
@@ -277,6 +281,7 @@ function cod_base_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',

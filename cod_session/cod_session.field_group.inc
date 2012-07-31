@@ -10,7 +10,7 @@
 function cod_session_field_group_info() {
   $export = array();
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_audience|node|session|default';
@@ -37,7 +37,7 @@ function cod_session_field_group_info() {
   );
   $export['group_audience|node|session|default'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_audience|node|session|form';
@@ -50,8 +50,8 @@ function cod_session_field_group_info() {
     'label' => 'Audience',
     'weight' => '5',
     'children' => array(
-      0 => 'field_track',
-      1 => 'field_experience',
+      0 => 'field_experience',
+      1 => 'field_track',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -64,7 +64,7 @@ function cod_session_field_group_info() {
   );
   $export['group_audience|node|session|form'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_schedule_info|node|schedule_item|default';
@@ -92,7 +92,7 @@ function cod_session_field_group_info() {
   );
   $export['group_schedule_info|node|schedule_item|default'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_schedule_info|node|session|default';
@@ -120,7 +120,7 @@ function cod_session_field_group_info() {
   );
   $export['group_schedule_info|node|session|default'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_schedule|node|schedule_item|form';
@@ -150,7 +150,7 @@ function cod_session_field_group_info() {
   );
   $export['group_schedule|node|schedule_item|form'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_schedule|node|session|form';
@@ -163,9 +163,9 @@ function cod_session_field_group_info() {
     'label' => 'Schedule Info',
     'weight' => '4',
     'children' => array(
-      0 => 'field_session_slot',
-      1 => 'field_session_room',
-      2 => 'field_accepted',
+      0 => 'field_accepted',
+      1 => 'field_session_slot',
+      2 => 'field_session_room',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

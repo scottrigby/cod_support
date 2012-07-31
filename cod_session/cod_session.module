@@ -108,8 +108,17 @@ function cod_session_menu() {
     'access arguments' => array(1),
     'type' => MENU_CALLBACK,
   );
-
   return $items;
+}
+
+
+/**
+ * Helper function for matching day to URL arguments
+ */
+function cod_session_day_url($day) {
+  $day = str_replace(' ','-',$day);
+  $day = str_replace(',','',$day);
+  return strtolower($day);
 }
 
 /**
@@ -121,7 +130,7 @@ function cod_session_form_node_type_form_alter(&$form, &$form_state, $form_id) {
     $form['cod_session'] = array(
       '#type' => 'fieldset',
       '#title' => t('Scheduling settings'),
-      '#description' => t('Scheduling is only available to content types that have room and time slot nodereference fields'),
+      '#description' => t('Scheduling is only available to content types that have room and time slot entityreference fields'),
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
       '#group' => 'additional_settings',
@@ -195,9 +204,9 @@ function cod_session_form_alter(&$form, &$form_state, $form_id) {
     if (in_array($form['#node']->type, array_keys($types))) {
       // If this is content-type is not unique make the widget a select list.
       if (variable_get('cod_unique_' . $form['#node']->type, COD_SCHEDULE_SINGLE) == COD_SCHEDULE_MULTIPLE) {
-        $form['field_session_room']['#type'] = 'nodereference_select';
         // Keep the widget from allowing multiple values.
-        $form['#field_info']['field_session_room']['multiple'] = FALSE;
+        $form['field_session_room']['und']['#multiple'] = FALSE;
+        $form['field_session_room']['und']['#type'] = 'select';
       }
 
       // Use $_GET for room and slot.
@@ -208,8 +217,8 @@ function cod_session_form_alter(&$form, &$form_state, $form_id) {
       }
       elseif (!empty($form['#node']->nid) && !empty($form['#node']->field_session_room) && !empty($form['#node']->field_session_slot)) {
         // Get room and slot from node during node edit.
-        $room_nid = $form['#node']->field_session_room[LANGUAGE_NONE][0]['nid'];
-        $slot_nid = $form['#node']->field_session_slot[LANGUAGE_NONE][0]['nid'];
+        $room_nid = $form['#node']->field_session_room['und'][0]['target_id'];
+        $slot_nid = $form['#node']->field_session_slot['und'][0]['target_id'];
       }
       else {
         return;
@@ -220,7 +229,7 @@ function cod_session_form_alter(&$form, &$form_state, $form_id) {
         $slot = node_load($slot_nid);
       }
       // Sanity check that bad data (or none) didn't get through.
-      if (!isset($slot) && !isset($slot) && ($slot->type != 'time_slot' || $slot->status != 1 || $room->type != 'room' || $room->status != 1)) {
+      if (!isset($slot) && !isset($room) && ($slot->type != 'time_slot' || $slot->status != 1 || $room->type != 'room' || $room->status != 1)) {
         return;
       }
       $form['cod_session'] = array(
@@ -249,16 +258,15 @@ function cod_session_form_alter(&$form, &$form_state, $form_id) {
           '#value' => '<div>' . t("Need to change the room or time? Click 'Unschedule from this slot', then reshedule from the main schedule grid.") . '</div>',
         );
       }
-
       // Set Room and Time-slot fields. Prepopulate is not used to accomplish
       // this because as of 2.2 Prepopulate doesn't support hidden or access
       // FALSE fields.
-      $form['field_session_room'][LANGUAGE_NONE]['#default_value'][$room_nid] = $room_nid;
-      $form['field_session_slot'][LANGUAGE_NONE]['#default_value'] = $slot_nid;
+      $form['field_session_room']['und']['#default_value'] = $room_nid;
+      $form['field_session_slot']['und']['#default_value'] = $slot_nid;
       // Disable editing and hide the room and slot fields wuth after_build, FAPI!!!
       if (!user_access('edit any ' . $form['#node']->type . ' content')) {
-        $form['field_session_room'][LANGUAGE_NONE]['#access'] = FALSE;
-        $form['field_session_slot'][LANGUAGE_NONE]['#access'] = FALSE;
+        $form['field_session_room']['und']['#access'] = FALSE;
+        $form['field_session_slot']['und']['#access'] = FALSE;
       }
       // Disable node preview because of Prepopulate bug http://drupal.org/node/661842
       unset($form['actions']['preview']);
@@ -272,8 +280,8 @@ function cod_session_form_alter(&$form, &$form_state, $form_id) {
 function _cod_session_unschedule(&$form, &$form_state) {
   if ($form_state['values']['op'] == $form_state['values']['cod_unschedule']) {
     // Unset scheduled room and time slot.
-    $form_state['values']['field_session_room'][LANGUAGE_NONE][0]['nid'] = NULL;
-    $form_state['values']['field_session_slot'][LANGUAGE_NONE][0]['nid'] = NULL;
+    $form_state['values']['field_session_room']['und'][0]['target_id'] = NULL;
+    $form_state['values']['field_session_slot']['und'][0]['target_id'] = NULL;
     drupal_set_message(t('%name has been unscheduled. To reshedule, click "Schedule a session" on any available time slot.', array('%name' => $form_state['values']['title'])));
     // @todo set redirect?
   }
@@ -411,8 +419,8 @@ function cod_session_schedule_form_submit($form, $form_state) {
   // @todo consider whether there should be a
   // cod_session_schedule_form_validate() with node_validate().
   $item = node_load($form_state['values']['session'], NULL, TRUE);
-  $item->field_session_slot[LANGUAGE_NONE][0]['nid'] = $form_state['values']['schedule']['slot']->nid;
-  $item->field_session_room[LANGUAGE_NONE][0]['nid'] = $form_state['values']['schedule']['room']->nid;
+  $item->field_session_slot['und'][0]['target_id'] = $form_state['values']['schedule']['slot']->nid;
+  $item->field_session_room['und'][0]['target_id'] = $form_state['values']['schedule']['room']->nid;
   $item = node_submit($item);
   node_save($item);
 }
@@ -426,7 +434,7 @@ function cod_session_node_view_alter(&$build) {
   $node = $build['#node'];
 
   // Display a message indicating when a session has been declined.
-  if ($build['#view_mode'] == 'full'  && cod_session_is_declined($node)) {
+  if ($node->type == 'session' && $build['#view_mode'] == 'full'  && cod_session_is_declined($node)) {
     $msg = check_plain(variable_get('cod_declined_msg_' . $build['#bundle'], t('This session has been declined by the session moderation team.')));
     if ($output = theme('cod_session_declined_msg', array('msg' => $msg))) {
       if (isset($build['body'][0]['#markup'])) {
@@ -477,7 +485,7 @@ function cod_session_user_is_speaker($uid, $node) {
     return FALSE;
   }
   foreach($node->field_speakers[LANGUAGE_NONE] as $speaker) {
-    if ($speaker['uid'] == $uid)  {      
+    if ($speaker['target_id'] == $uid)  {
       return TRUE;
     }
   }
@@ -499,18 +507,18 @@ function cod_session_node_presave($node) {
 function cod_session_node_validate($node, $form, &$form_state) {
   // If the node has a room and slot field, make sure there are no existing nodes that have the same room/slot combination.
   // Unless the node is not unique check room capacity.
-  if (!empty($node->field_session_slot[LANGUAGE_NONE][0]['nid']) && !empty($node->field_session_room[LANGUAGE_NONE][0]['nid'])) {
+  if (!empty($node->field_session_slot['und'][0]['target_id']) && !empty($node->field_session_room['und'][0]['target_id'])) {
     $slots = $rooms = array();
     foreach ($node->field_session_slot as $slot) {
-      if (!empty($slot[0]['nid'])) {
-        $slots[] = $slot[0]['nid'];
+      if (!empty($slot[0]['target_id'])) {
+        $slots[] = $slot[0]['target_id'];
       }
     }
 
     // Get rooms.
     foreach ($node->field_session_room as $room) {
-      if (!empty($room[0]['nid'])) {
-        $rooms[$room[0]['nid']] = node_load($room[0]['nid']);
+      if (!empty($room[0]['target_id'])) {
+        $rooms[$room[0]['target_id']] = node_load($room[0]['target_id']);
       }
     }
 
@@ -530,8 +538,8 @@ function cod_session_node_validate($node, $form, &$form_state) {
       $query = new EntityFieldQuery();
       $query->entityCondition('entity_type', 'node')
         ->propertyCondition('status', 1)
-        ->fieldCondition('field_session_room', 'nid', $room_nids, 'IN')
-        ->fieldCondition('field_session_slot', 'nid', $slots, 'IN');
+        ->fieldCondition('field_session_room', 'target_id', $room_nids, 'IN')
+        ->fieldCondition('field_session_slot', 'target_id', $slots, 'IN');
       if (isset($node->nid)) {
         // Don't let this node block unscheduling.
         $query->propertyCondition('nid', $node->nid, '!=');
@@ -546,9 +554,9 @@ function cod_session_node_validate($node, $form, &$form_state) {
       if (!empty($content)) {
         foreach ($content as $scheduled) {
           $capacity--;
-          if ($capacity <= 0 || (variable_get('cod_unique_' . $scheduled->type, COD_SCHEDULE_SINGLE) == COD_SCHEDULE_SINGLE)) {
+          if ($capacity <= 0 || (variable_get('cod_unique_' . $scheduled->type, COD_SCHEDULE_SINGLE) == COD_SCHEDULE_SINGLE) || (variable_get('cod_unique_' . $node->type, COD_SCHEDULE_SINGLE) == COD_SCHEDULE_SINGLE)) {
             // @todo handle this scheduled item being in multiple rooms?
-            $room = $rooms[$scheduled->field_session_room[LANGUAGE_NONE][0]['nid']];
+            $room = $rooms[$scheduled->field_session_room['und'][0]['target_id']];
             $errors[] = t('!session in !room', array('!session' => l($scheduled->title, 'node/' . $scheduled->nid), '!room' => l($room->title, 'node/' . $room->nid)));
           }
         }
@@ -619,6 +627,19 @@ function template_preprocess_cod_session_schedule(&$vars) {
       // Hold onto node types seen in this View.
       if (!in_array($node->type, $displayed_node_types)) {
         $displayed_node_types[$node->type] = $node_types[$node->type];
+      }
+    }
+  }
+
+  // There is no contextual argument filter, but if a valid day
+  // argument is present, we modify the cod_schedule_days
+  // to only display that day overriden by the URL.
+  if(isset($view->args[0])) {
+    foreach ($view->cod_schedule_days as $day_key => $day_value) {
+      if(cod_session_day_url($day_value) == $view->args[0]) {
+        $view->cod_schedule_days[$day_key] = $day_value;
+      } elseif($view->args[0] != 'all') {
+        unset($view->cod_schedule_days[$day_key]);
       }
     }
   }
@@ -755,7 +776,10 @@ function template_preprocess_cod_session_schedule(&$vars) {
 
   if (!empty($scheduled_items)) {
     foreach ($scheduled_items as $item) {
-      if (!empty($item->field_session_slot[LANGUAGE_NONE][0]['nid']) && !empty($item->field_session_room[LANGUAGE_NONE][0]['nid'])) {
+      if (!empty($item->field_session_slot['und'][0]['target_id'])) {
+        $target_slot = $item->field_session_slot['und'][0]['target_id'];
+      }
+      if (isset($target_slot) && !empty($item->field_session_room['und'][0]['target_id'])) {
         if (!empty($item->cod_session_classes)) {
           $class = ' ' . implode(' ', array_keys($item->cod_session_classes));
         }
@@ -764,16 +788,16 @@ function template_preprocess_cod_session_schedule(&$vars) {
         }
 
         // Handle sessions in multiple rooms.
-        foreach ($item->field_session_room[LANGUAGE_NONE] as $room_instance) {
-          $item_grid[$item->field_session_slot[LANGUAGE_NONE][0]['nid']][$room_instance['nid']][$item->nid]['session'] = $item;
-          $item_grid[$item->field_session_slot[LANGUAGE_NONE][0]['nid']][$room_instance['nid']][$item->nid]['class'] = $class;
+        foreach ($item->field_session_room['und'] as $room_instance) {
+          $item_grid[$target_slot][$room_instance['target_id']][$item->nid]['session'] = $item;
+          $item_grid[$target_slot][$room_instance['target_id']][$item->nid]['class'] = $class;
           // Record rooms and used slots.
-          $used_rooms[$room_instance['nid']][] = $item->field_session_slot[LANGUAGE_NONE][0]['nid'];
+          $used_rooms[$room_instance['target_id']][] = $target_slot;
         }
 
       // Create array of populated slots.
-        if (!in_array($item->field_session_slot[LANGUAGE_NONE][0]['nid'], $used_slots)) {
-          $used_slots[] = $item->field_session_slot[LANGUAGE_NONE][0]['nid'];
+        if (!in_array($target_slot, $used_slots)) {
+          $used_slots[] = $target_slot;
         }
       }
       // Record sessions for this user, their call-to-action can use it.
@@ -854,6 +878,8 @@ function template_preprocess_cod_session_schedule(&$vars) {
     }
   }
 
+  $single_node_types = cod_session_single_schedulable_types();
+
   // @todo get rooms for each day?
   // Build schedule grid array. This is the final processing before handing over
   // to the tpl file.
@@ -933,6 +959,22 @@ function template_preprocess_cod_session_schedule(&$vars) {
             }
           }
 
+          // Check if there are any nodes with COD_SCHEDULE_SINGLE assigned to this room and time
+          // It is already by default that the room is not available if the session is COD_SCHEDULE_SINGLE
+          if ($view->cod_schedule_interactive && $available) {
+            $query = new EntityFieldQuery();
+            $entities = $query->entityCondition('entity_type', 'node')
+            ->propertyCondition('type', $single_node_types, 'IN')
+            ->fieldCondition('field_session_room', 'target_id', $room_nid)
+            ->fieldCondition('field_session_slot', 'target_id', $slot['nid'])
+            ->propertyCondition('status', 1)
+            ->range(0,1)
+            ->execute();
+            if (count($entities) > 0) {
+              $available = 0;
+            }
+          }
+
           // Include room availability and call-to-action if this is an interactive
           // schedule and user is allowed to create and schedule.
           if ($view->cod_schedule_interactive && cod_session_schedule_access($view->cod_interactive_type, $user)) {
@@ -983,6 +1025,7 @@ function template_preprocess_cod_session_schedule(&$vars) {
   $vars['rooms'] = $rooms;
   $vars['room_nids'] = $room_nids;
   $vars['show_rooms'] = $show_rooms;
+  $vars['schedule_display'] = $view->cod_schedule_display;
 }
 
 /**
@@ -1175,4 +1218,20 @@ function cod_session_time_slot_format($slot) {
 function _cod_session_scheduler_title($type) {
   $type_info = node_type_get_type($type);
   return t('Schedule a @name', array('@name' => $type_info->name));
+}
+
+/**
+ * Helper function to determine content types with single schedule types.
+ */
+function cod_session_single_schedulable_types() {
+  $single_types = array();
+  $types = node_type_get_types();
+  foreach ($types as $type => $content_type) {
+    $bundle = field_info_instances('node', $type);
+    if (isset($bundle['field_session_room']) && isset($bundle['field_session_slot']) && variable_get('cod_unique_' . $type, COD_SCHEDULE_SINGLE) == COD_SCHEDULE_SINGLE) {
+      $single_types[] = $type;
+    }
+  }
+
+  return $single_types;
 }

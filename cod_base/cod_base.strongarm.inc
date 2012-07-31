@@ -27,5 +27,12 @@ function cod_base_strongarm() {
   );
   $export['admin_toolbar'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date_format_date_no_time_';
+  $strongarm->value = 'D, j M Y';
+  $export['date_format_date_no_time_'] = $strongarm;
+
   return $export;
 }

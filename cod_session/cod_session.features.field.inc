@@ -10,7 +10,7 @@
 function cod_session_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-page-body'
+  // Exported field: 'node-page-body'.
   $fields['node-page-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function cod_session_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'field_permissions' => array(
@@ -60,6 +61,12 @@ function cod_session_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
+          'weight' => 0,
+        ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => 0,
         ),
         'teaser' => array(
@@ -93,7 +100,7 @@ function cod_session_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-room-body'
+  // Exported field: 'node-room-body'.
   $fields['node-room-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -119,6 +126,7 @@ function cod_session_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'field_permissions' => array(
@@ -144,6 +152,12 @@ function cod_session_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => '3',
+        ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -178,7 +192,7 @@ function cod_session_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-room-field_room_capacity'
+  // Exported field: 'node-room-field_room_capacity'.
   $fields['node-room-field_room_capacity'] = array(
     'field_config' => array(
       'active' => '1',
@@ -186,38 +200,40 @@ function cod_session_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_room_capacity',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
+      'field_permissions' => array(
+        'type' => '0',
       ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '60',
-      ),
-      'translatable' => '1',
-      'type' => 'text',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'number_integer',
     ),
     'field_instance' => array(
       'bundle' => 'room',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'How many people does this space hold?',
+      'description' => 'Total capacity of the room, in persons.',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
-          'module' => 'text',
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => '1',
+        ),
+        'listing' => array(
+          'label' => 'above',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -228,25 +244,26 @@ function cod_session_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_room_capacity',
-      'label' => 'Capacity',
+      'label' => 'Total room capacity',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '1',
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '2',
       ),
     ),
   );
 
-  // Exported field: 'node-room-field_room_photo'
+  // Exported field: 'node-room-field_room_photo'.
   $fields['node-room-field_room_photo'] = array(
     'field_config' => array(
       'active' => '1',
@@ -267,6 +284,7 @@ function cod_session_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -290,6 +308,12 @@ function cod_session_field_default_fields() {
           'type' => 'image',
           'weight' => '2',
         ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -303,6 +327,7 @@ function cod_session_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -324,7 +349,7 @@ function cod_session_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-room-field_room_session_capacity'
+  // Exported field: 'node-room-field_room_session_capacity'.
   $fields['node-room-field_room_session_capacity'] = array(
     'field_config' => array(
       'active' => '1',
@@ -337,6 +362,7 @@ function cod_session_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(),
       'translatable' => '0',
@@ -359,6 +385,12 @@ function cod_session_field_default_fields() {
           ),
           'type' => 'number_integer',
           'weight' => '1',
+        ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -388,7 +420,7 @@ function cod_session_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-schedule_item-body'
+  // Exported field: 'node-schedule_item-body'.
   $fields['node-schedule_item-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -414,6 +446,7 @@ function cod_session_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'field_permissions' => array(
@@ -439,6 +472,12 @@ function cod_session_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => '0',
+        ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -472,7 +511,7 @@ function cod_session_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-schedule_item-field_accepted'
+  // Exported field: 'node-schedule_item-field_accepted'.
   $fields['node-schedule_item-field_accepted'] = array(
     'field_config' => array(
       'active' => '1',
@@ -489,6 +528,7 @@ function cod_session_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -521,6 +561,12 @@ function cod_session_field_default_fields() {
           'type' => 'list_default',
           'weight' => '2',
         ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -545,11 +591,11 @@ function cod_session_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-schedule_item-field_session_room'
+  // Exported field: 'node-schedule_item-field_session_room'.
   $fields['node-schedule_item-field_session_room'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_session_room',
@@ -557,57 +603,64 @@ function cod_session_field_default_fields() {
         'type' => '2',
       ),
       'foreign keys' => array(
-        'nid' => array(
+        'node' => array(
           'columns' => array(
-            'nid' => 'nid',
+            'target_id' => 'nid',
           ),
           'table' => 'node',
         ),
       ),
       'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
-      'module' => 'node_reference',
+      'locked' => '0',
+      'module' => 'entityreference',
       'settings' => array(
-        'field_permissions' => array(
-          'create' => 0,
-          'edit' => 'edit',
-          'edit own' => 0,
-          'view' => 'view',
-          'view own' => 0,
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'title',
+            'type' => 'property',
+          ),
+          'target_bundles' => array(
+            'room' => 'room',
+          ),
         ),
-        'referenceable_types' => array(
-          'article' => 0,
-          'bof_session' => 0,
-          'page' => 0,
-          'room' => 'room',
-          'schedule_item' => 0,
-          'session' => 0,
-          'time_slot' => 0,
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'node',
       ),
-      'translatable' => '1',
-      'type' => 'node_reference',
+      'translatable' => '0',
+      'type' => 'entityreference',
     ),
     'field_instance' => array(
       'bundle' => 'schedule_item',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Select room(s) in which the session occurs.',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'node_reference',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 8,
+        ),
+        'listing' => array(
+          'label' => 'above',
           'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => '4',
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -628,12 +681,12 @@ function cod_session_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '5',
+        'weight' => '9',
       ),
     ),
   );
 
-  // Exported field: 'node-schedule_item-field_session_slot'
+  // Exported field: 'node-schedule_item-field_session_slot'.
   $fields['node-schedule_item-field_session_slot'] = array(
     'field_config' => array(
       'active' => '1',
@@ -645,44 +698,43 @@ function cod_session_field_default_fields() {
         'type' => '2',
       ),
       'foreign keys' => array(
-        'nid' => array(
+        'node' => array(
           'columns' => array(
-            'nid' => 'nid',
+            'target_id' => 'nid',
           ),
           'table' => 'node',
         ),
       ),
       'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
-      'module' => 'node_reference',
+      'locked' => '0',
+      'module' => 'entityreference',
       'settings' => array(
-        'field_permissions' => array(
-          'create' => 0,
-          'edit' => 'edit',
-          'edit own' => 0,
-          'view' => 'view',
-          'view own' => 0,
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'title',
+            'type' => 'property',
+          ),
+          'target_bundles' => array(
+            'time_slot' => 'time_slot',
+          ),
         ),
-        'referenceable_types' => array(
-          'article' => 0,
-          'bof_session' => 0,
-          'page' => 0,
-          'room' => 0,
-          'schedule_item' => 0,
-          'session' => 0,
-          'time_slot' => 'time_slot',
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'node',
       ),
-      'translatable' => '1',
-      'type' => 'node_reference',
+      'translatable' => '0',
+      'type' => 'entityreference',
     ),
     'field_instance' => array(
       'bundle' => 'schedule_item',
@@ -691,11 +743,19 @@ function cod_session_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
-          'module' => 'node_reference',
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 7,
+        ),
+        'listing' => array(
+          'label' => 'above',
           'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => '3',
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -706,7 +766,7 @@ function cod_session_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_session_slot',
-      'label' => 'Time slot',
+      'label' => 'Time Slot',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -716,12 +776,12 @@ function cod_session_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '4',
+        'weight' => '8',
       ),
     ),
   );
 
-  // Exported field: 'node-session-body'
+  // Exported field: 'node-session-body'.
   $fields['node-session-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -747,6 +807,7 @@ function cod_session_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'field_permissions' => array(
@@ -772,6 +833,12 @@ function cod_session_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => '0',
+        ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -806,7 +873,7 @@ function cod_session_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-session-field_accepted'
+  // Exported field: 'node-session-field_accepted'.
   $fields['node-session-field_accepted'] = array(
     'field_config' => array(
       'active' => '1',
@@ -823,6 +890,7 @@ function cod_session_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -859,6 +927,12 @@ function cod_session_field_default_fields() {
           'type' => 'list_default',
           'weight' => '8',
         ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -878,12 +952,12 @@ function cod_session_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '8',
+        'weight' => '11',
       ),
     ),
   );
 
-  // Exported field: 'node-session-field_experience'
+  // Exported field: 'node-session-field_experience'.
   $fields['node-session-field_experience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -900,6 +974,7 @@ function cod_session_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -932,6 +1007,12 @@ function cod_session_field_default_fields() {
           'type' => 'list_default',
           'weight' => '6',
         ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -956,11 +1037,11 @@ function cod_session_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-session-field_session_room'
+  // Exported field: 'node-session-field_session_room'.
   $fields['node-session-field_session_room'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_session_room',
@@ -968,44 +1049,43 @@ function cod_session_field_default_fields() {
         'type' => '2',
       ),
       'foreign keys' => array(
-        'nid' => array(
+        'node' => array(
           'columns' => array(
-            'nid' => 'nid',
+            'target_id' => 'nid',
           ),
           'table' => 'node',
         ),
       ),
       'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
-      'module' => 'node_reference',
+      'locked' => '0',
+      'module' => 'entityreference',
       'settings' => array(
-        'field_permissions' => array(
-          'create' => 0,
-          'edit' => 'edit',
-          'edit own' => 0,
-          'view' => 'view',
-          'view own' => 0,
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'title',
+            'type' => 'property',
+          ),
+          'target_bundles' => array(
+            'room' => 'room',
+          ),
         ),
-        'referenceable_types' => array(
-          'article' => 0,
-          'bof_session' => 0,
-          'page' => 0,
-          'room' => 'room',
-          'schedule_item' => 0,
-          'session' => 0,
-          'time_slot' => 0,
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'node',
       ),
-      'translatable' => '1',
-      'type' => 'node_reference',
+      'translatable' => '0',
+      'type' => 'entityreference',
     ),
     'field_instance' => array(
       'bundle' => 'session',
@@ -1014,11 +1094,19 @@ function cod_session_field_default_fields() {
       'description' => 'Select room(s) in which the session occurs.',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
-          'module' => 'node_reference',
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 11,
+        ),
+        'listing' => array(
+          'label' => 'above',
           'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => '7',
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1039,12 +1127,12 @@ function cod_session_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '7',
+        'weight' => '10',
       ),
     ),
   );
 
-  // Exported field: 'node-session-field_session_slot'
+  // Exported field: 'node-session-field_session_slot'.
   $fields['node-session-field_session_slot'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1056,44 +1144,43 @@ function cod_session_field_default_fields() {
         'type' => '2',
       ),
       'foreign keys' => array(
-        'nid' => array(
+        'node' => array(
           'columns' => array(
-            'nid' => 'nid',
+            'target_id' => 'nid',
           ),
           'table' => 'node',
         ),
       ),
       'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
-      'module' => 'node_reference',
+      'locked' => '0',
+      'module' => 'entityreference',
       'settings' => array(
-        'field_permissions' => array(
-          'create' => 0,
-          'edit' => 'edit',
-          'edit own' => 0,
-          'view' => 'view',
-          'view own' => 0,
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'title',
+            'type' => 'property',
+          ),
+          'target_bundles' => array(
+            'time_slot' => 'time_slot',
+          ),
         ),
-        'referenceable_types' => array(
-          'article' => 0,
-          'bof_session' => 0,
-          'page' => 0,
-          'room' => 0,
-          'schedule_item' => 0,
-          'session' => 0,
-          'time_slot' => 'time_slot',
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'node',
       ),
-      'translatable' => '1',
-      'type' => 'node_reference',
+      'translatable' => '0',
+      'type' => 'entityreference',
     ),
     'field_instance' => array(
       'bundle' => 'session',
@@ -1102,11 +1189,19 @@ function cod_session_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
-          'module' => 'node_reference',
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 10,
+        ),
+        'listing' => array(
+          'label' => 'above',
           'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => '6',
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1127,12 +1222,12 @@ function cod_session_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '6',
+        'weight' => '9',
       ),
     ),
   );
 
-  // Exported field: 'node-session-field_slides'
+  // Exported field: 'node-session-field_slides'.
   $fields['node-session-field_slides'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1153,6 +1248,7 @@ function cod_session_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'file',
       'settings' => array(
         'display_default' => 1,
@@ -1180,6 +1276,12 @@ function cod_session_field_default_fields() {
           'settings' => array(),
           'type' => 'file_default',
           'weight' => '2',
+        ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1211,7 +1313,7 @@ function cod_session_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-session-field_speakers'
+  // Exported field: 'node-session-field_speakers'.
   $fields['node-session-field_speakers'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1219,59 +1321,66 @@ function cod_session_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_speakers',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
-        'uid' => array(
+        'users' => array(
           'columns' => array(
-            'uid' => 'uid',
+            'target_id' => 'uid',
           ),
           'table' => 'users',
         ),
       ),
       'indexes' => array(
-        'uid' => array(
-          0 => 'uid',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
-      'module' => 'user_reference',
+      'locked' => '0',
+      'module' => 'entityreference',
       'settings' => array(
-        'field_permissions' => array(
-          'create' => 'create',
-          'edit' => 0,
-          'edit own' => 'edit own',
-          'view' => 'view',
-          'view own' => 0,
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'field_profile_first:value',
+            'property' => 'uid',
+            'type' => 'none',
+          ),
+          'target_bundles' => array(),
         ),
-        'referenceable_roles' => array(
-          2 => 0,
-          3 => 0,
-          4 => 0,
-          5 => 0,
-        ),
-        'referenceable_status' => array(
-          0 => 0,
-          1 => '1',
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'user',
       ),
-      'translatable' => '1',
-      'type' => 'user_reference',
+      'translatable' => '0',
+      'type' => 'entityreference',
     ),
     'field_instance' => array(
       'bundle' => 'session',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Add your username and optionally 1-5 additional speaker usernames.',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'user_reference',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 9,
+        ),
+        'listing' => array(
+          'label' => 'above',
           'settings' => array(),
-          'type' => 'user_reference_default',
-          'weight' => '1',
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1283,25 +1392,25 @@ function cod_session_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_speakers',
       'label' => 'Speaker(s)',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'user_reference',
+        'module' => 'entityreference',
         'settings' => array(
-          'autocomplete_match' => 'contains',
-          'autocomplete_path' => 'user_reference/autocomplete',
-          'size' => '40',
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => '60',
         ),
-        'type' => 'user_reference_autocomplete',
+        'type' => 'entityreference_autocomplete_tags',
         'weight' => '1',
       ),
     ),
   );
 
-  // Exported field: 'node-session-field_track'
+  // Exported field: 'node-session-field_track'.
   $fields['node-session-field_track'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1315,6 +1424,7 @@ function cod_session_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1347,6 +1457,12 @@ function cod_session_field_default_fields() {
           'type' => 'list_default',
           'weight' => '5',
         ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -1371,7 +1487,7 @@ function cod_session_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-time_slot-field_slot_datetime'
+  // Exported field: 'node-time_slot-field_slot_datetime'.
   $fields['node-time_slot-field_slot_datetime'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1381,6 +1497,7 @@ function cod_session_field_default_fields() {
       'field_name' => 'field_slot_datetime',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'field_permissions' => array(
@@ -1438,6 +1555,12 @@ function cod_session_field_default_fields() {
           'type' => 'date_default',
           'weight' => '0',
         ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'module' => 'date',
@@ -1486,13 +1609,10 @@ function cod_session_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Add your username and optionally 1-5 additional speaker usernames.');
   t('Body');
-  t('Capacity');
   t('Date and time');
   t('Description');
   t('Experience level');
-  t('How many people does this space hold?');
   t('Number of sessions or BoFs that this room can hold in a time slot. Used to allow multiple BoFs in the same room at the same time slot.');
   t('Photo');
   t('Room');
@@ -1501,7 +1621,10 @@ function cod_session_field_default_fields() {
   t('Slides');
   t('Speaker(s)');
   t('Status');
+  t('Time Slot');
   t('Time slot');
+  t('Total capacity of the room, in persons.');
+  t('Total room capacity');
   t('Track');
   t('Upload your slides here as a PDF, or link to them from the description. (This is typically done after your session.)');
 
