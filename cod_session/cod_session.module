@@ -432,7 +432,9 @@ function cod_session_node_view_alter(&$build) {
   global $user;
   $account = $user;
   $node = $build['#node'];
-
+  if ($node->type != 'session') {
+    return;
+  }
   // Display a message indicating when a session has been declined.
   if ($node->type == 'session' && $build['#view_mode'] == 'full'  && cod_session_is_declined($node)) {
     $msg = check_plain(variable_get('cod_declined_msg_' . $build['#bundle'], t('This session has been declined by the session moderation team.')));
