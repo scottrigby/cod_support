@@ -323,16 +323,6 @@ function cod_base_user_default_permissions() {
     'module' => 'pathauto',
   );
 
-  // Exported permission: use admin toolbar.
-  $permissions['use admin toolbar'] = array(
-    'name' => 'use admin toolbar',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'content editor',
-    ),
-    'module' => 'admin',
-  );
-
   // Exported permission: view advanced help index.
   $permissions['view advanced help index'] = array(
     'name' => 'view advanced help index',
