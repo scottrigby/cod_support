@@ -280,6 +280,202 @@ function cod_session_views_default_views() {
   $export['cod_schedule'] = $view;
 
   $view = new view();
+  $view->name = 'cod_session_schedule';
+  $view->description = 'Conference Organizing Scheduler Admin View';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'cod_session_schedule';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Sessions';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['style_plugin'] = 'quicktabs';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_slot_datetime',
+      'rendered' => 1,
+      'rendered_strip' => 1,
+    ),
+  );
+  $handler->display->display_options['style_options']['tab_style'] = 'Basic';
+  $handler->display->display_options['style_options']['tab_title_field'] = 'field_slot_datetime';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Date and time */
+  $handler->display->display_options['fields']['field_slot_datetime']['id'] = 'field_slot_datetime';
+  $handler->display->display_options['fields']['field_slot_datetime']['table'] = 'field_data_field_slot_datetime';
+  $handler->display->display_options['fields']['field_slot_datetime']['field'] = 'field_slot_datetime';
+  $handler->display->display_options['fields']['field_slot_datetime']['label'] = '';
+  $handler->display->display_options['fields']['field_slot_datetime']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_slot_datetime']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_slot_datetime']['settings'] = array(
+    'format_type' => 'date_no_time_',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  /* Field: Broken/missing handler */
+  $handler->display->display_options['fields']['view']['id'] = 'view';
+  $handler->display->display_options['fields']['view']['table'] = 'views';
+  $handler->display->display_options['fields']['view']['field'] = 'view';
+  $handler->display->display_options['fields']['view']['label'] = '';
+  $handler->display->display_options['fields']['view']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view']['hide_empty'] = TRUE;
+  /* Sort criterion: Content: Date and time (field_slot_datetime) */
+  $handler->display->display_options['sorts']['field_slot_datetime_value']['id'] = 'field_slot_datetime_value';
+  $handler->display->display_options['sorts']['field_slot_datetime_value']['table'] = 'field_data_field_slot_datetime';
+  $handler->display->display_options['sorts']['field_slot_datetime_value']['field'] = 'field_slot_datetime_value';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'time_slot' => 'time_slot',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['path'] = 'program/schedule/sessions';
+  $export['cod_session_schedule'] = $view;
+
+  $view = new view();
+  $view->name = 'cod_session_schedule_entity';
+  $view->description = 'The scheduling entity that renders Timeslot Combos';
+  $view->tag = 'default';
+  $view->base_table = 'field_collection_item';
+  $view->human_name = 'cod_session_schedule_entity';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'cod_session_schedule_entity';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Field collection item: Entity with the Allowed Slot Types (field_room_slots_types_allowed) */
+  $handler->display->display_options['relationships']['field_room_slots_types_allowed_node']['id'] = 'field_room_slots_types_allowed_node';
+  $handler->display->display_options['relationships']['field_room_slots_types_allowed_node']['table'] = 'field_collection_item';
+  $handler->display->display_options['relationships']['field_room_slots_types_allowed_node']['field'] = 'field_room_slots_types_allowed_node';
+  $handler->display->display_options['relationships']['field_room_slots_types_allowed_node']['required'] = TRUE;
+  /* Field: Field collection item: Field collection item ID */
+  $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
+  $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
+  $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
+  $handler->display->display_options['fields']['item_id']['label'] = '';
+  $handler->display->display_options['fields']['item_id']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['item_id']['element_label_colon'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['relationship'] = 'field_room_slots_types_allowed_node';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  /* Field: Field collection item: Time Slot */
+  $handler->display->display_options['fields']['field_slot_types_time_slot']['id'] = 'field_slot_types_time_slot';
+  $handler->display->display_options['fields']['field_slot_types_time_slot']['table'] = 'field_data_field_slot_types_time_slot';
+  $handler->display->display_options['fields']['field_slot_types_time_slot']['field'] = 'field_slot_types_time_slot';
+  $handler->display->display_options['fields']['field_slot_types_time_slot']['label'] = '';
+  $handler->display->display_options['fields']['field_slot_types_time_slot']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_slot_types_time_slot']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_slot_types_time_slot']['type'] = 'entityreference_entity_id';
+  $handler->display->display_options['fields']['field_slot_types_time_slot']['settings'] = array(
+    'link' => 0,
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_room_slots_types_allowed_node';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Broken/missing handler */
+  $handler->display->display_options['fields']['view']['id'] = 'view';
+  $handler->display->display_options['fields']['view']['table'] = 'views';
+  $handler->display->display_options['fields']['view']['field'] = 'view';
+  $handler->display->display_options['fields']['view']['label'] = '';
+  $handler->display->display_options['fields']['view']['element_label_colon'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['sorts']['title']['relationship'] = 'field_room_slots_types_allowed_node';
+  /* Contextual filter: Field collection item: Time Slot (field_slot_types_time_slot) */
+  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['id'] = 'field_slot_types_time_slot_target_id';
+  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['table'] = 'field_data_field_slot_types_time_slot';
+  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['field'] = 'field_slot_types_time_slot_target_id';
+  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['summary_options']['items_per_page'] = '25';
+  /* Contextual filter: Field collection item: Allowed Schedule Types (field_slot_types_allowed) */
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['id'] = 'field_slot_types_allowed_value';
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['table'] = 'field_data_field_slot_types_allowed';
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['field'] = 'field_slot_types_allowed_value';
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['limit'] = '0';
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['break_phrase'] = TRUE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['relationship'] = 'field_room_slots_types_allowed_node';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $export['cod_session_schedule_entity'] = $view;
+
+  $view = new view();
   $view->name = 'cod_session_timeslot';
   $view->description = 'View representing the select field for timeslot entity references in sessions, bofs, etc';
   $view->tag = 'default';
@@ -333,14 +529,14 @@ function cod_session_views_default_views() {
   $handler->display->display_options['arguments']['field_slot_types_allowed_value']['table'] = 'field_data_field_slot_types_allowed';
   $handler->display->display_options['arguments']['field_slot_types_allowed_value']['field'] = 'field_slot_types_allowed_value';
   $handler->display->display_options['arguments']['field_slot_types_allowed_value']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['default_argument_type'] = 'raw';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['default_argument_options']['index'] = '2';
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['default_argument_type'] = 'node';
   $handler->display->display_options['arguments']['field_slot_types_allowed_value']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_slot_types_allowed_value']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_slot_types_allowed_value']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_slot_types_allowed_value']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['field_slot_types_allowed_value']['validate']['type'] = 'php';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['validate_options']['code'] = '$handler->argument = str_replace(\'-\',\'_\',$handler->argument);
+  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['validate_options']['code'] = '$node = node_load($handler->argument);
+$handler->argument = $node->type;
 return TRUE;';
   $handler->display->display_options['arguments']['field_slot_types_allowed_value']['limit'] = '0';
 
@@ -371,7 +567,7 @@ return TRUE;';
   $view->human_name = '';
   $view->core = 7;
   $view->api_version = '3.0';
-  $view->disabled = TRUE; /* Edit this to true to make a default view disabled initially */
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
@@ -430,7 +626,7 @@ return TRUE;';
   $view->human_name = '';
   $view->core = 0;
   $view->api_version = '3.0';
-  $view->disabled = TRUE; /* Edit this to true to make a default view disabled initially */
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
@@ -2400,210 +2596,6 @@ return TRUE;';
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $export['sessions_speaker_confirmation'] = $view;
-
-  $view = new view();
-  $view->name = 'cod_session_schedule';
-  $view->description = 'Conference Organizing Scheduler Admin View';
-  $view->tag = 'default';
-  $view->base_table = 'node';
-  $view->human_name = 'cod_session_schedule';
-  $view->core = 7;
-  $view->api_version = '3.0';
-  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-  /* Display: Master */
-  $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Sessions';
-  $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['cache']['type'] = 'none';
-  $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['style_plugin'] = 'quicktabs';
-  $handler->display->display_options['style_options']['grouping'] = array(
-    0 => array(
-      'field' => 'field_slot_datetime',
-      'rendered' => 1,
-      'rendered_strip' => 1,
-    ),
-  );
-  $handler->display->display_options['style_options']['tab_style'] = 'Basic';
-  $handler->display->display_options['style_options']['tab_title_field'] = 'field_slot_datetime';
-  $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Content: Date and time */
-  $handler->display->display_options['fields']['field_slot_datetime']['id'] = 'field_slot_datetime';
-  $handler->display->display_options['fields']['field_slot_datetime']['table'] = 'field_data_field_slot_datetime';
-  $handler->display->display_options['fields']['field_slot_datetime']['field'] = 'field_slot_datetime';
-  $handler->display->display_options['fields']['field_slot_datetime']['label'] = '';
-  $handler->display->display_options['fields']['field_slot_datetime']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_slot_datetime']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_slot_datetime']['settings'] = array(
-    'format_type' => 'date_no_time_',
-    'fromto' => 'value',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-  );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Content: Nid */
-  $handler->display->display_options['fields']['nid']['id'] = 'nid';
-  $handler->display->display_options['fields']['nid']['table'] = 'node';
-  $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['label'] = '';
-  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Global: View */
-  $handler->display->display_options['fields']['view']['id'] = 'view';
-  $handler->display->display_options['fields']['view']['table'] = 'views';
-  $handler->display->display_options['fields']['view']['field'] = 'view';
-  $handler->display->display_options['fields']['view']['label'] = '';
-  $handler->display->display_options['fields']['view']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['view']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['view']['view'] = 'cod_session_schedule_entity';
-  $handler->display->display_options['fields']['view']['display'] = 'block';
-  $handler->display->display_options['fields']['view']['arguments'] = '[!nid]/session+schedule_item';
-  /* Sort criterion: Content: Date and time (field_slot_datetime) */
-  $handler->display->display_options['sorts']['field_slot_datetime_value']['id'] = 'field_slot_datetime_value';
-  $handler->display->display_options['sorts']['field_slot_datetime_value']['table'] = 'field_data_field_slot_datetime';
-  $handler->display->display_options['sorts']['field_slot_datetime_value']['field'] = 'field_slot_datetime_value';
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'time_slot' => 'time_slot',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
-
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-  $handler->display->display_options['path'] = 'program/schedule/sessions';
-
-  $export['cod_session_schedule'] = $view;
-
-  $view = new view();
-  $view->name = 'cod_session_schedule_entity';
-  $view->description = 'The scheduling entity that renders Timeslot Combos';
-  $view->tag = 'default';
-  $view->base_table = 'field_collection_item';
-  $view->human_name = 'cod_session_schedule_entity';
-  $view->core = 7;
-  $view->api_version = '3.0';
-  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-  /* Display: Master */
-  $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'cod_session_schedule_entity';
-  $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'none';
-  $handler->display->display_options['cache']['type'] = 'none';
-  $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Field collection item: Entity with the Allowed Slot Types (field_room_slots_types_allowed) */
-  $handler->display->display_options['relationships']['field_room_slots_types_allowed_node']['id'] = 'field_room_slots_types_allowed_node';
-  $handler->display->display_options['relationships']['field_room_slots_types_allowed_node']['table'] = 'field_collection_item';
-  $handler->display->display_options['relationships']['field_room_slots_types_allowed_node']['field'] = 'field_room_slots_types_allowed_node';
-  $handler->display->display_options['relationships']['field_room_slots_types_allowed_node']['required'] = TRUE;
-  /* Field: Field collection item: Field collection item ID */
-  $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
-  $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
-  $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
-  $handler->display->display_options['fields']['item_id']['label'] = '';
-  $handler->display->display_options['fields']['item_id']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['item_id']['element_label_colon'] = FALSE;
-  /* Field: Content: Nid */
-  $handler->display->display_options['fields']['nid']['id'] = 'nid';
-  $handler->display->display_options['fields']['nid']['table'] = 'node';
-  $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['relationship'] = 'field_room_slots_types_allowed_node';
-  $handler->display->display_options['fields']['nid']['label'] = '';
-  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Field collection item: Time Slot */
-  $handler->display->display_options['fields']['field_slot_types_time_slot']['id'] = 'field_slot_types_time_slot';
-  $handler->display->display_options['fields']['field_slot_types_time_slot']['table'] = 'field_data_field_slot_types_time_slot';
-  $handler->display->display_options['fields']['field_slot_types_time_slot']['field'] = 'field_slot_types_time_slot';
-  $handler->display->display_options['fields']['field_slot_types_time_slot']['label'] = '';
-  $handler->display->display_options['fields']['field_slot_types_time_slot']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_slot_types_time_slot']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_slot_types_time_slot']['type'] = 'entityreference_entity_id';
-  $handler->display->display_options['fields']['field_slot_types_time_slot']['settings'] = array(
-    'link' => 0,
-  );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['relationship'] = 'field_room_slots_types_allowed_node';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Global: View */
-  $handler->display->display_options['fields']['view']['id'] = 'view';
-  $handler->display->display_options['fields']['view']['table'] = 'views';
-  $handler->display->display_options['fields']['view']['field'] = 'view';
-  $handler->display->display_options['fields']['view']['label'] = '';
-  $handler->display->display_options['fields']['view']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['view']['view'] = 'sessions';
-  $handler->display->display_options['fields']['view']['display'] = 'block_3';
-  $handler->display->display_options['fields']['view']['arguments'] = '[!item_id]/!2';
-  /* Sort criterion: Content: Title */
-  $handler->display->display_options['sorts']['title']['id'] = 'title';
-  $handler->display->display_options['sorts']['title']['table'] = 'node';
-  $handler->display->display_options['sorts']['title']['field'] = 'title';
-  $handler->display->display_options['sorts']['title']['relationship'] = 'field_room_slots_types_allowed_node';
-  /* Contextual filter: Field collection item: Time Slot (field_slot_types_time_slot) */
-  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['id'] = 'field_slot_types_time_slot_target_id';
-  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['table'] = 'field_data_field_slot_types_time_slot';
-  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['field'] = 'field_slot_types_time_slot_target_id';
-  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['default_action'] = 'not found';
-  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_slot_types_time_slot_target_id']['summary_options']['items_per_page'] = '25';
-  /* Contextual filter: Field collection item: Allowed Schedule Types (field_slot_types_allowed) */
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['id'] = 'field_slot_types_allowed_value';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['table'] = 'field_data_field_slot_types_allowed';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['field'] = 'field_slot_types_allowed_value';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['default_action'] = 'not found';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['limit'] = '0';
-  $handler->display->display_options['arguments']['field_slot_types_allowed_value']['break_phrase'] = TRUE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['relationship'] = 'field_room_slots_types_allowed_node';
-  $handler->display->display_options['filters']['status']['value'] = '1';
-
-  /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block');
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-
-  $export['cod_session_schedule_entity'] = $view;
 
   return $export;
 }
