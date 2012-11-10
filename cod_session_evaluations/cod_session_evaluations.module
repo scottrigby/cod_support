@@ -38,15 +38,21 @@ function cod_session_evaluations_node_view($node, $view_mode, $langcode) {
   $bundle = 'session';
 
   //lets check first that the session was accepted AND its the event has started
-  $time_slot = $node->field_session_slot['und'][0]['entity'];
   //how could you evaluate a presentation if it wasn't ever scheduled?
-  if(empty($time_slot)) {
+  if(empty($node->field_session_timeslot)) {
     return;
   }
 
+  $time_slot = $node->field_session_timeslot[LANGUAGE_NONE][0]['entity'];
+  $time_entity = node_load($time_slot->field_slot_types_time_slot[LANGUAGE_NONE][0]['target_id']);
+  //maybe we change this, but I feel like we should show the link as soon as the presentation starts. What if it doesn't go the whole alloted time?
+  $time_start = new DateTime($time_entity->field_slot_datetime[LANGUAGE_NONE][0]['value']);
+
   //how could you evaluate a presenatation if it never was accepted OR it hasn't occured yet?
   //note -- TZ handling could cause issues here, but as long as you don't have multiple timezones on one conference, it should be good
-  if(!($node->field_accepted['und'][0]['value']) || strtotime($time_slot->field_slot_datetime['und'][0]['value']) > mktime()) {
+  $now = new DateTime();
+
+  if(!($node->field_accepted['und'][0]['value']) || strtotime($time_start->getTimestamp()) > $now->getTimestamp()) {
     return;
   }
   // Hide the "Provide feedback on this session" links if the user has already
