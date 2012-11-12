@@ -191,7 +191,7 @@ function cod_paid_events_field_default_fields() {
             'open' => '',
           ),
           'settings' => array(
-            'from_address' => 'matthew@mrconnerton.com',
+            'from_address' => '',
             'multiple_registrations' => 0,
             'registration_entity_access_roles' => array(
               2 => 0,
