@@ -65,93 +65,6 @@ function cod_session_field_access($op, $field, $entity_type, $entity, $account) 
 }
 
 /**
- * Helper function determines if user can create and schedule content.
- */
-function cod_session_schedule_access($node_type = 'session', $account = NULL) {
-  if (!$account) {
-    global $user;
-    $account = $user;
-  }
-  // @todo remove when ready to turn bof-scheduler into scheduler-form
-  // or when ready to make Prepopulate arguments work for sessions as well as
-  // bofs.
-  if ($node_type == 'session') {
-    return FALSE;
-  }
-  // Also check cod_session's field access override.
-  $node_obj = new stdClass();
-  $node_obj->type = $node_type;
-  $field_room = array(
-    'field_name' => 'field_session_room',
-  );
-
-  $field_slot = array(
-    'field_name' => 'field_session_slot',
-  );
-  return user_access('create ' . $node_type . ' content', $account)
-    && user_access('edit own field_session_room', $account)
-    && user_access('edit own field_session_slot', $account)
-    && cod_session_field_access('edit', $field_room, $node_type, $node_obj, $account)
-    && cod_session_field_access('edit', $field_slot, $node_type, $node_obj, $account);
-}
-
-/**
- * Implements hook_menu().
- */
-function cod_session_menu() {
-  /*
-  $items['scheduler-form/%'] = array(
-    'title callback' => '_cod_session_scheduler_title',
-    'title arguments' => array(1),
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('cod_session_schedule_form', 1),
-    'access callback' => 'cod_session_schedule_access',
-    'access arguments' => array(1),
-    'type' => MENU_CALLBACK,
-  );
-  */
-  //TODO: make a schedule listing page or an ability to add days here...
-  $items['admin/conference/config/schedule'] = array(
-    'title' => 'Schedule Room Settings',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('cod_session_scheduler_form', 3),
-    'access callback' => 'cod_session_schedule_access',
-    'access arguments' => array(1),
-    'file' => 'cod_session_scheduler.inc',
-    'type' => MENU_NORMAL_ITEM,
-  );
-
-  $days = cod_session_days();
-  $weight = -1;
-  foreach($days AS $day_format => $day) {
-    $date = new DateObject($day_format, NULL, 'l F, d Y');
-    $items['admin/conference/config/schedule/'.date_format_date($date, 'custom', 'Y-m-d')] = array(
-      'title' => $day,
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('cod_session_scheduler_form', 4),
-      'access callback' => 'cod_session_schedule_access',
-      'access arguments' => array(1),
-      'file' => 'cod_session_scheduler.inc',
-      'type' => MENU_LOCAL_TASK,
-      'weight' => $weight,
-    );
-    $weight++;
-  }
-
-  return $items;
-}
-
-
-/**
- * Helper function for matching day to URL arguments
- */
-function cod_session_day_url($day) {
-  $day = str_replace(' ','-',$day);
-  $day = str_replace(',','',$day);
-  return strtolower($day);
-}
-
-/**
  * Implements hook_form_FORM_ID_alter().
  */
 function cod_session_form_node_type_form_alter(&$form, &$form_state, $form_id) {
@@ -361,17 +274,6 @@ function cod_session_users_content($account, $type, $unscheduled = FALSE) {
   return $bofs;
 }
 
-function cod_session_get_collection_entity($room_nid, $time_nid) {
-    //first, do we have an entity?
-  $sql = "SELECT s.field_room_slots_types_allowed_value
-    FROM {field_data_field_room_slots_types_allowed} s
-    INNER JOIN {field_data_field_slot_types_time_slot} st ON s.field_room_slots_types_allowed_value = st.entity_id
-    WHERE s.entity_id = :nid AND st.field_slot_types_time_slot_target_id = :time_nid";
-  $entity_id = db_query($sql, array(':nid' => $room_nid, ':time_nid' => $time_nid))->fetchField();
-
-  return $entity_id;
-}
-
 /**
  * Submit handler for scheduling form.
  */
@@ -558,28 +460,6 @@ function cod_session_theme($existing, $type, $theme, $path) {
 function theme_cod_session_declined_msg($variables) {
   $message = $variables['msg'];
   return '<div class="messages session-declined">' . $message . '</div>';
-}
-
-/**
- * Helper function determines days there are time slots for.
- */
-function cod_session_days() {
-  static $days;
-  if (empty($days)) {
-    $days = array();
-    $sql = "SELECT DATE_FORMAT(s.field_slot_datetime_value, :day) AS day
-      FROM {field_data_field_slot_datetime} s
-      INNER JOIN {node} n ON s.entity_id = n.nid AND s.revision_id = n.vid
-      WHERE n.type = 'time_slot'
-      GROUP BY DATE_FORMAT(s.field_slot_datetime_value, :day)
-      ORDER BY s.field_slot_datetime_value ASC";
-    $result = db_query($sql, array(':day' => '%W %M, %d %Y'));
-    foreach ($result as $record) {
-      $date = new DateObject($record->day, NULL, 'l F, d Y');
-      $days[$record->day] = date_format_date($date, 'custom', 'l F, d Y');
-    }
-  }
-  return $days;
 }
 
 /**
