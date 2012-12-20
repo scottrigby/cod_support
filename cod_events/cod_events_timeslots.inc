@@ -18,8 +18,8 @@ function cod_events_timeslots_page($event) {
         return drupal_get_form('cod_events_timeslots_form', $event, date_format_date($date, 'custom', 'Y-m-d'));
       }
       $tabs[date_format_date($date, 'custom', 'Y-m-d')] = array(
-        'title' => $day,
-        'contents' => drupal_get_form('cod_events_timeslots_form', $event, date_format_date($date, 'custom', 'Y-m-d')),
+        'title' => date_format_date($date, 'custom', 'l F, d Y'),
+        'contents' => drupal_get_form('cod_events_timeslots_'.$day.'_form', $event, date_format_date($date, 'custom', 'Y-m-d')),
         'weight' => $weight,
       );
       if(!isset($default_tab))
@@ -57,6 +57,17 @@ function theme_cod_events_timeslots_form($variables) {
 
 }
 
+function cod_events_forms() {
+  $forms = array();
+  $days = cod_events_days();
+  if ($days = cod_events_days()) {
+    foreach ($days as $day_nid) {
+      $forms['cod_events_timeslots_'. $day_nid . '_form']['callback'] = 'cod_events_timeslots_form';
+    }
+  }
+  return $forms;
+}
+
 /*
  * The main form shown to users wishing to make the master schedule grid. This loops through rooms and timeslots, showing the user
  * rendered form elements from the field_collection field info.
@@ -64,17 +75,6 @@ function theme_cod_events_timeslots_form($variables) {
 function cod_events_timeslots_form($form, &$form_state, $event, $day) {
   $days = cod_events_days($event->nid);
   // TODO: Workaround for the default schedule page, lets just redirect to the first day. Someday make this a listing page instead. See cod_session.module for details
-  if($day == 'timeslots') {
-    if(!$days) {
-      $form['markup'] = array(
-        '#markup' => t('No days or timeslots have been created yet.'),
-      );
-      return $form;
-    } else {
-    $date = new DateObject(array_shift($days), NULL, 'l F, d Y');
-    drupal_goto('node/'.$event->nid.'/timeslots/'.date_format_date($date, 'custom', 'Y-m-d'));
-    }
-  }
   $form['instructions']['#markup'] = t('This form allows you to specify which
     kinds of schedulable items may be scheduled in each room during a particular timeslot.');
   
@@ -153,12 +153,12 @@ function cod_events_timeslots_form($form, &$form_state, $event, $day) {
  */
 function cod_events_timeslots_form_submit($form, $form_state) {
   module_load_include('inc', 'node', 'node.pages');
-
   //grab our key again
   //parse the form to see if its an entity already or if we need to create it
   foreach($form_state['complete form'] AS $time_nid => $element) {
     if(is_array($element) && is_numeric($time_nid)) { //we have a nid array
      foreach($element AS $room_nid => $fields) {
+       if(is_array($fields) && is_numeric($room_nid)) { //we have a nid array
        $entity = FALSE;
        $key = '';
        //error_log(print_r($form_state['values'],true));
@@ -217,6 +217,7 @@ function cod_events_timeslots_form_submit($form, $form_state) {
             $field_collection_item->save();
           }
        }
+     }
      }
     }
   }

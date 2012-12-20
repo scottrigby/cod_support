@@ -61,7 +61,7 @@ function cod_events_days($event_id = 2) {
   if (empty($days)) {
     $days = array();
     if (db_table_exists('field_data_field_slot_datetime')) {
-      $sql = "SELECT DATE_FORMAT(s.field_slot_datetime_value, :day) AS day
+      $sql = "SELECT n.nid AS nid, DATE_FORMAT(s.field_slot_datetime_value, :day) AS day
         FROM {field_data_field_slot_datetime} s
         INNER JOIN {node} n ON s.entity_id = n.nid AND s.revision_id = n.vid
         INNER JOIN og_membership om ON n.nid = om.etid
@@ -70,8 +70,7 @@ function cod_events_days($event_id = 2) {
         ORDER BY s.field_slot_datetime_value ASC";
       $result = db_query($sql, array(':day' => '%W %M, %d %Y', ':event_id' => $event_id));
       foreach ($result as $record) {
-        $date = new DateObject($record->day, NULL, 'l F, d Y');
-        $days[$record->day] = date_format_date($date, 'custom', 'l F, d Y');
+        $days[$record->day] = $record->nid;
       }
     } else {
       return FALSE;
