@@ -274,86 +274,6 @@ function cod_sponsors_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sponsor-field_sponsor_sponsorship_level'.
-  $fields['node-sponsor-field_sponsor_sponsorship_level'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_sponsor_sponsorship_level',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'tid' => array(
-          'columns' => array(
-            'tid' => 'tid',
-          ),
-          'table' => 'taxonomy_term_data',
-        ),
-      ),
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'taxonomy',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'vocabulary' => 'sponsorship_level',
-            'parent' => '0',
-          ),
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'taxonomy_term_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'sponsor',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'taxonomy',
-          'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => 5,
-        ),
-        'listing' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_sponsor_sponsorship_level',
-      'label' => 'Sponsorship Level',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '7',
-      ),
-    ),
-  );
-
   // Exported field: 'node-sponsor-field_sponsor_url'.
   $fields['node-sponsor-field_sponsor_url'] = array(
     'field_config' => array(
@@ -447,13 +367,190 @@ function cod_sponsors_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-sponsor-field_sponsorship_level'.
+  $fields['node-sponsor-field_sponsorship_level'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_sponsorship_level',
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'sponsorship_level',
+            'parent' => '0',
+          ),
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'sponsor',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 5,
+        ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_sponsorship_level',
+      'label' => 'Sponsorship level',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '7',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-sponsorship_level-og_group_ref'.
+  $fields['taxonomy_term-sponsorship_level-og_group_ref'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'og_group_ref',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'og',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'og_behavior' => array(
+              'status' => TRUE,
+            ),
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'membership_type' => 'og_membership_type_default',
+          'sort' => array(
+            'type' => 'none',
+          ),
+          'target_bundles' => array(
+            'event' => 'event',
+          ),
+        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'node',
+      ),
+      'target_type' => 'node',
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'sponsorship_level',
+      'default_value' => NULL,
+      'default_value_function' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'og_group_ref',
+      'label' => 'Event',
+      'required' => 1,
+      'settings' => array(
+        'behaviors' => array(
+          'og_widget' => array(
+            'admin' => array(
+              'widget_type' => 'entityreference_autocomplete',
+            ),
+            'default' => array(
+              'widget_type' => 'options_select',
+            ),
+            'status' => TRUE,
+          ),
+          'prepopulate' => array(
+            'status' => 0,
+          ),
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'og',
+        'settings' => array(),
+        'type' => 'og_complex',
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Description');
+  t('Event');
   t('Logo');
   t('Related Attendees');
   t('Sponsor URL');
-  t('Sponsorship Level');
+  t('Sponsorship level');
 
   return $fields;
 }
