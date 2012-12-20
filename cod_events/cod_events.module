@@ -2,7 +2,6 @@
 
 include_once('cod_events.features.inc');
 
-
 /**
  * Implements hook_menu().
  */
