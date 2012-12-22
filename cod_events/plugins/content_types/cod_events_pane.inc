@@ -1,4 +1,62 @@
 <?php
+/**
+* This plugin array is more or less self documenting
+*/
+$plugin = array(
+  // the title in the admin
+  'title' => t('Event Allowed Types Pane'),
+  // no one knows if "single" defaults to FALSE...
+  'single' => TRUE,
+  // oh joy, I get my own section of panel panes
+  'category' => array(t('Conference Organizing'), -9),
+  //'edit form' => 'cod_events_pane_content_type_edit_form',
+  'render callback' => 'cod_events_pane_content_type_render'
+);
+
+
+/**
+* Run-time rendering of the body of the block (content type)
+* See ctools_plugin_examples for more advanced info
+*/
+function cod_events_pane_content_type_render($subtype, $conf, $context = NULL) {
+  // our output is generate by js. Any markup or theme functions
+  // could go here.
+  // that private js function is so bad that fixing it will be the
+  // basis of the next tutorial
+  dsm($context);
+  if($node = node_load(array_shift($context))) {
+    $block->content = cod_events_timeslots_page($node);
+  } else {
+    $block->content = t('Invalid Event Type');
+  }
+  return $block;
+}
+
+
+/**
+* 'Edit form' callback for the content type.
+
+function cod_events_pane_content_type_edit_form(&$form, &$form_state) {
+  $conf = $form_state['conf'];
+  $form['twitter_username'] = array(
+    '#type' => 'textfield',
+    '#title' => t('twitter username'),
+    '#size' => 50,
+    '#description' => t('A valid twitter username.'),
+    '#default_value' => !empty($conf['twitter_username']) ? $conf['twitter_username'] : 'nicklewisatx',
+  );
+  // no submit
+  return $form;
+}
+*/
+
+/**
+* Submit function, note anything in the formstate[conf] automatically gets saved
+
+function cod_events_pane_content_type_edit_form_submit(&$form, &$form_state) {
+  $form_state['conf']['twitter_username'] = $form_state['values']['twitter_username'];
+}
+*/
 
 /* this file works on the global scheduling system, which populates the field collection within the room CT.
  * its needed for allocating what timeslots/room combos are allowed to host what
@@ -77,7 +135,7 @@ function cod_events_timeslots_form($form, &$form_state, $event, $day) {
   // TODO: Workaround for the default schedule page, lets just redirect to the first day. Someday make this a listing page instead. See cod_session.module for details
   $form['instructions']['#markup'] = t('This form allows you to specify which
     kinds of schedulable items may be scheduled in each room during a particular timeslot.');
-  
+
   // For single day events:
   if ($day == 'timeslots') {
     foreach($days AS $day_format => $day) {
@@ -143,6 +201,7 @@ function cod_events_timeslots_form($form, &$form_state, $event, $day) {
   //custom submit functions for some sanity checking. Probably could use some more sanity
   //nothing we really need to validate at this point
   $form['#submit'][] = 'cod_events_timeslots_form_submit';
+  //todo: add a redirect so the ajax tab ends up in the same place
 
   return $form;
 
@@ -272,7 +331,7 @@ function _cod_session_get_room_slots_types_allowed($room_nid, $time_nid, $event_
       $return[$record->field_slot_types_allowed_value] = $record->field_slot_types_allowed_value;
     }
     return $return;
-  } 
+  }
   else {
     //get the default for the field
     $info = field_info_instances('field_collection_item','field_room_slots_types_allowed');

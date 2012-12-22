@@ -4,7 +4,7 @@ include_once('cod_events.features.inc');
 
 /**
  * Implements hook_menu().
- */
+
 function cod_events_menu() {
   /*
   $items['timeslots-form/%'] = array(
@@ -16,7 +16,7 @@ function cod_events_menu() {
     'access arguments' => array(1),
     'type' => MENU_CALLBACK,
   );
-  */
+
 
   //TODO: Eventually make it so event CT can be configurable. We currently are hard-mapping to the 'events' CT provided by this feature
   $items['node/%node/timeslots'] = array(
@@ -29,7 +29,7 @@ function cod_events_menu() {
     'type' => MENU_LOCAL_TASK,
   );
 
-  /*
+
   if($days = cod_events_days()) {
     $weight = -1;
     foreach($days AS $day_format => $day) {
@@ -47,9 +47,22 @@ function cod_events_menu() {
       $weight++;
     }
   }
-  */
+
 
   return $items;
+}
+*/
+
+/*
+* Implements hook_ctools_plugin_directory -
+* This lets ctools know to scan my module for a content_type plugin file
+* Detailed docks in ctools/ctools.api.php
+*/
+function cod_events_ctools_plugin_directory($owner, $plugin_type) {
+  // we'll be nice and limit scandir() calls
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/content_types';
+  }
 }
 
 /**

@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * cod_events_dashboard.pages_default.inc
+ * cod_events.pages_default.inc
  */
 
 /**
@@ -179,6 +179,24 @@ function cod_events_default_page_manager_pages() {
     $display->panels['dashboard_tabs'][1] = 'new-3';
     $pane = new stdClass();
     $pane->pid = 'new-4';
+    $pane->panel = 'dashboard_tabs';
+    $pane->type = 'cod_events_pane';
+    $pane->subtype = 'cod_events_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-4'] = $pane;
+    $display->panels['dashboard_tabs'][2] = 'new-4';
+    $pane = new stdClass();
+    $pane->pid = 'new-5';
     $pane->panel = 'summary_left';
     $pane->type = 'views';
     $pane->subtype = 'cod_schedule';
@@ -208,10 +226,10 @@ function cod_events_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-4'] = $pane;
-    $display->panels['summary_left'][0] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['summary_left'][0] = 'new-5';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-4';
+  $display->title_pane = 'new-5';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['events_dashboard'] = $page;
