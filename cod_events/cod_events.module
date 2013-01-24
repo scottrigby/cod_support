@@ -2,57 +2,6 @@
 
 include_once('cod_events.features.inc');
 
-/**
- * Implements hook_menu().
-
-function cod_events_menu() {
-  /*
-  $items['timeslots-form/%'] = array(
-    'title callback' => '_cod_session_timeslots_title',
-    'title arguments' => array(1),
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('cod_session_schedule_form', 1),
-    'access callback' => 'cod_session_schedule_access',
-    'access arguments' => array(1),
-    'type' => MENU_CALLBACK,
-  );
-
-
-  //TODO: Eventually make it so event CT can be configurable. We currently are hard-mapping to the 'events' CT provided by this feature
-  $items['node/%node/timeslots'] = array(
-    'title' => 'Schedule Room Settings',
-    'page callback' => 'cod_events_timeslots_page',
-    'page arguments' => array(1),
-    'access callback' => 'cod_events_schedule_access',
-    'access arguments' => array(1),
-    'file' => 'cod_events_timeslots.inc',
-    'type' => MENU_LOCAL_TASK,
-  );
-
-
-  if($days = cod_events_days()) {
-    $weight = -1;
-    foreach($days AS $day_format => $day) {
-      $date = new DateObject($day_format, NULL, 'l F, d Y');
-      $items['node/%node/timeslots/'.date_format_date($date, 'custom', 'Y-m-d')] = array(
-        'title' => $day,
-        'page callback' => 'drupal_get_form',
-        'page arguments' => array('cod_events_timeslots_form', 1, 3),
-        'access callback' => 'cod_events_schedule_access',
-        'access arguments' => array(1),
-        'file' => 'cod_events_timeslots.inc',
-        'type' => MENU_LOCAL_TASK,
-        'weight' => $weight,
-      );
-      $weight++;
-    }
-  }
-
-
-  return $items;
-}
-*/
-
 /*
 * Implements hook_ctools_plugin_directory -
 * This lets ctools know to scan my module for a content_type plugin file
@@ -68,16 +17,20 @@ function cod_events_ctools_plugin_directory($owner, $plugin_type) {
 /**
  * Helper function determines days there are time slots for.
  */
-function cod_events_days($event_id = 2) {
+function cod_events_days($event_id = NULL) {
+  //if event id is null, we need to get all days in the system to build the forms
   static $days;
   if (empty($days)) {
     $days = array();
     if (db_table_exists('field_data_field_slot_datetime')) {
+      $event_join = 'INNER JOIN og_membership om ON n.nid = om.etid';
+      $event = 'om.gid = :event_id AND';
+
       $sql = "SELECT n.nid AS nid, DATE_FORMAT(s.field_slot_datetime_value, :day) AS day
         FROM {field_data_field_slot_datetime} s
         INNER JOIN {node} n ON s.entity_id = n.nid AND s.revision_id = n.vid
-        INNER JOIN og_membership om ON n.nid = om.etid
-        WHERE n.type = 'time_slot' AND om.gid = :event_id
+        $event_join
+        WHERE $event n.type = 'time_slot'
         GROUP BY DATE_FORMAT(s.field_slot_datetime_value, :day)
         ORDER BY s.field_slot_datetime_value ASC";
       $result = db_query($sql, array(':day' => '%W %M, %d %Y', ':event_id' => $event_id));
@@ -91,41 +44,6 @@ function cod_events_days($event_id = 2) {
   return $days;
 }
 
-
-/**
- * Helper function determines if user can create and schedule content.
- */
-function cod_events_schedule_access($node_type = 'session', $account = NULL) {
-
-  return TRUE;
-
-  if (!$account) {
-    global $user;
-    $account = $user;
-  }
-  // @todo remove when ready to turn bof-timeslots into timeslots-form
-  // or when ready to make Prepopulate arguments work for sessions as well as
-  // bofs.
-  if ($node_type == 'session') {
-    return FALSE;
-  }
-  // Also check cod_session's field access override.
-  $node_obj = new stdClass();
-  $node_obj->type = $node_type;
-  $field_room = array(
-    'field_name' => 'field_session_room',
-  );
-
-  $field_slot = array(
-    'field_name' => 'field_session_slot',
-  );
-  return user_access('create ' . $node_type . ' content', $account)
-    && user_access('edit own field_session_room', $account)
-    && user_access('edit own field_session_slot', $account)
-    && cod_session_field_access('edit', $field_room, $node_type, $node_obj, $account)
-    && cod_session_field_access('edit', $field_slot, $node_type, $node_obj, $account);
-}
-
 /**
  * Helper function for matching day to URL arguments
  */
@@ -133,4 +51,15 @@ function cod_events_day_url($day) {
   $day = str_replace(' ','-',$day);
   $day = str_replace(',','',$day);
   return strtolower($day);
+}
+
+/*
+ * Make the event dashboard be an admin path
+ */
+
+function cod_events_admin_paths() {
+  $paths = array(
+    'node/*/dashboard' => TRUE,
+  );
+  return $paths;
 }

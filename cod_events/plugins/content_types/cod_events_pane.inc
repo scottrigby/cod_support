@@ -23,7 +23,8 @@ function cod_events_pane_content_type_render($subtype, $conf, $context = NULL) {
   // could go here.
   // that private js function is so bad that fixing it will be the
   // basis of the next tutorial
-  dsm($context);
+  $block->title = t('Room/Timeslot Scheduler');
+
   if($node = node_load(array_shift($context))) {
     $block->content = cod_events_timeslots_page($node);
   } else {
@@ -66,7 +67,7 @@ function cod_events_pane_content_type_edit_form_submit(&$form, &$form_state) {
 
 function cod_events_timeslots_page($event) {
   //put quicktabs here
-  $days = cod_events_days();
+  $days = cod_events_days($event->nid);
   if (!empty($days)) {
     $tabs = array();
     $weight = 0;
@@ -221,8 +222,8 @@ function cod_events_timeslots_form_submit($form, $form_state) {
        $entity = FALSE;
        $key = '';
        //error_log(print_r($form_state['values'],true));
-       if(cod_events_get_collection_entity($room_nid, $time_nid, 2)) {
-         $key = cod_events_get_collection_entity($room_nid, $time_nid, 2);
+       if(cod_events_get_collection_entity($room_nid, $time_nid, $form_state['values']['event_id'])) {
+         $key = cod_events_get_collection_entity($room_nid, $time_nid, $form_state['values']['event_id']);
          $entity = TRUE;
        }
        else {
