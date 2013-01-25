@@ -14,7 +14,8 @@ function cod_session_user_default_permissions() {
   $permissions['create field_accepted'] = array(
     'name' => 'create field_accepted',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'field_permissions',
   );
@@ -23,7 +24,8 @@ function cod_session_user_default_permissions() {
   $permissions['create room content'] = array(
     'name' => 'create room content',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'node',
   );
@@ -32,7 +34,8 @@ function cod_session_user_default_permissions() {
   $permissions['create schedule_item content'] = array(
     'name' => 'create schedule_item content',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'node',
   );
@@ -41,7 +44,8 @@ function cod_session_user_default_permissions() {
   $permissions['create session content'] = array(
     'name' => 'create session content',
     'roles' => array(
-      0 => 'authenticated user',
+      0 => 'administrator',
+      1 => 'authenticated user',
     ),
     'module' => 'node',
   );
@@ -50,7 +54,8 @@ function cod_session_user_default_permissions() {
   $permissions['create time_slot content'] = array(
     'name' => 'create time_slot content',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'node',
   );
@@ -59,7 +64,8 @@ function cod_session_user_default_permissions() {
   $permissions['delete any room content'] = array(
     'name' => 'delete any room content',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'node',
   );
@@ -68,7 +74,8 @@ function cod_session_user_default_permissions() {
   $permissions['delete any schedule_item content'] = array(
     'name' => 'delete any schedule_item content',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'node',
   );
@@ -77,7 +84,8 @@ function cod_session_user_default_permissions() {
   $permissions['delete any session content'] = array(
     'name' => 'delete any session content',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'node',
   );
@@ -86,7 +94,8 @@ function cod_session_user_default_permissions() {
   $permissions['delete any time_slot content'] = array(
     'name' => 'delete any time_slot content',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'node',
   );
@@ -95,7 +104,8 @@ function cod_session_user_default_permissions() {
   $permissions['delete own session content'] = array(
     'name' => 'delete own session content',
     'roles' => array(
-      0 => 'authenticated user',
+      0 => 'administrator',
+      1 => 'authenticated user',
     ),
     'module' => 'node',
   );
@@ -104,7 +114,8 @@ function cod_session_user_default_permissions() {
   $permissions['edit any room content'] = array(
     'name' => 'edit any room content',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'node',
   );
@@ -113,7 +124,8 @@ function cod_session_user_default_permissions() {
   $permissions['edit any schedule_item content'] = array(
     'name' => 'edit any schedule_item content',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'node',
   );
@@ -122,7 +134,8 @@ function cod_session_user_default_permissions() {
   $permissions['edit any session content'] = array(
     'name' => 'edit any session content',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'node',
   );
@@ -131,7 +144,8 @@ function cod_session_user_default_permissions() {
   $permissions['edit any time_slot content'] = array(
     'name' => 'edit any time_slot content',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'node',
   );
@@ -140,7 +154,8 @@ function cod_session_user_default_permissions() {
   $permissions['edit field_accepted'] = array(
     'name' => 'edit field_accepted',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'field_permissions',
   );
@@ -149,7 +164,8 @@ function cod_session_user_default_permissions() {
   $permissions['edit own field_accepted'] = array(
     'name' => 'edit own field_accepted',
     'roles' => array(
-      0 => 'session organizer',
+      0 => 'administrator',
+      1 => 'session organizer',
     ),
     'module' => 'field_permissions',
   );
@@ -158,7 +174,8 @@ function cod_session_user_default_permissions() {
   $permissions['edit own session content'] = array(
     'name' => 'edit own session content',
     'roles' => array(
-      0 => 'authenticated user',
+      0 => 'administrator',
+      1 => 'authenticated user',
     ),
     'module' => 'node',
   );
@@ -167,8 +184,9 @@ function cod_session_user_default_permissions() {
   $permissions['view field_accepted'] = array(
     'name' => 'view field_accepted',
     'roles' => array(
-      0 => 'anonymous user',
-      1 => 'authenticated user',
+      0 => 'administrator',
+      1 => 'anonymous user',
+      2 => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );

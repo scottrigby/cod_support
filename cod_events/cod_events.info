@@ -21,6 +21,7 @@ dependencies[] = panels_tabs
 dependencies[] = registration
 dependencies[] = strongarm
 dependencies[] = views
+dependencies[] = views_field_view
 features[ctools][] = page_manager:pages_default:1
 features[ctools][] = panels:layouts:1
 features[ctools][] = strongarm:strongarm:1

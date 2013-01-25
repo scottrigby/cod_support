@@ -25,6 +25,7 @@ dependencies[] = quicktabs_tabstyles
 dependencies[] = search
 dependencies[] = strongarm
 dependencies[] = views
+dependencies[] = views_field_view
 dependencies[] = views_bulk_operations
 dependencies[] = views_content
 dependencies[] = views_ui
