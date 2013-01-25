@@ -467,12 +467,8 @@ function cod_events_field_default_fields() {
   t('Dates');
   t('Determine if this is an OG group.');
   t('Group');
-  t('If this event costs money, choose the event product here. The event product will contain the registration type field. You can create this product inline.');
   t('If this is a free event, then you can choose which registration type to use for this event.');
-  t('If this is a paid event, check this box to enable the product selection section');
   t('Image');
-  t('Paid Event');
-  t('Product');
   t('Registration');
 
   return $fields;

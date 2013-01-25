@@ -34,8 +34,9 @@ function cod_base_user_default_permissions() {
   $permissions['access content'] = array(
     'name' => 'access content',
     'roles' => array(
-      0 => 'anonymous user',
-      1 => 'authenticated user',
+      0 => 'administrator',
+      1 => 'anonymous user',
+      2 => 'authenticated user',
     ),
     'module' => 'node',
   );
@@ -92,8 +93,9 @@ function cod_base_user_default_permissions() {
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',
     'roles' => array(
-      0 => 'anonymous user',
-      1 => 'authenticated user',
+      0 => 'administrator',
+      1 => 'anonymous user',
+      2 => 'authenticated user',
     ),
     'module' => 'user',
   );

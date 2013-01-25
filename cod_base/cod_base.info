@@ -53,7 +53,6 @@ features[user_permission][] = view advanced help index
 features[user_permission][] = view advanced help popup
 features[user_permission][] = view advanced help topic
 features[user_permission][] = view the administration theme
-features[user_role][] = administrator
 features[user_role][] = content editor
 features[variable][] = admin_toolbar
 features[variable][] = date_format_date_no_time_
