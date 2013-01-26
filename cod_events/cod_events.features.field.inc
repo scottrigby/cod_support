@@ -189,14 +189,14 @@ function cod_events_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-event-field_image_cache'.
-  $fields['node-event-field_image_cache'] = array(
+  // Exported field: 'node-event-field_event_image'.
+  $fields['node-event-field_event_image'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_image_cache',
+      'field_name' => 'field_event_image',
       'foreign keys' => array(
         'fid' => array(
           'columns' => array(
@@ -248,7 +248,7 @@ function cod_events_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_image_cache',
+      'field_name' => 'field_event_image',
       'label' => 'Image',
       'required' => 0,
       'settings' => array(
