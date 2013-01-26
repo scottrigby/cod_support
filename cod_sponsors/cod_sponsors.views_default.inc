@@ -88,7 +88,7 @@ function cod_sponsors_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Broken/missing handler */
+  /* Relationship: Content: Sponsorship Level (field_sponsor_sponsorship_level) */
   $handler->display->display_options['relationships']['field_sponsor_sponsorship_level_tid']['id'] = 'field_sponsor_sponsorship_level_tid';
   $handler->display->display_options['relationships']['field_sponsor_sponsorship_level_tid']['table'] = 'field_data_field_sponsor_sponsorship_level';
   $handler->display->display_options['relationships']['field_sponsor_sponsorship_level_tid']['field'] = 'field_sponsor_sponsorship_level_tid';
@@ -113,7 +113,7 @@ function cod_sponsors_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Broken/missing handler */
+  /* Field: Content: Sponsorship Level */
   $handler->display->display_options['fields']['field_sponsor_sponsorship_level']['id'] = 'field_sponsor_sponsorship_level';
   $handler->display->display_options['fields']['field_sponsor_sponsorship_level']['table'] = 'field_data_field_sponsor_sponsorship_level';
   $handler->display->display_options['fields']['field_sponsor_sponsorship_level']['field'] = 'field_sponsor_sponsorship_level';
@@ -162,7 +162,7 @@ function cod_sponsors_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Broken/missing handler */
+  /* Contextual filter: Content: Sponsorship Level (field_sponsor_sponsorship_level) */
   $handler->display->display_options['arguments']['field_sponsor_sponsorship_level_tid']['id'] = 'field_sponsor_sponsorship_level_tid';
   $handler->display->display_options['arguments']['field_sponsor_sponsorship_level_tid']['table'] = 'field_data_field_sponsor_sponsorship_level';
   $handler->display->display_options['arguments']['field_sponsor_sponsorship_level_tid']['field'] = 'field_sponsor_sponsorship_level_tid';
@@ -215,7 +215,7 @@ function cod_sponsors_views_default_views() {
     'title' => 'title',
     'name' => 'name',
     'mail' => 'name',
-    'group_group' => 'group_group',
+    'og_group_ref' => 'og_group_ref',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
@@ -237,7 +237,7 @@ function cod_sponsors_views_default_views() {
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
-      'separator' => '< br/>',
+      'separator' => ' - ',
       'empty_column' => 0,
     ),
     'mail' => array(
@@ -247,8 +247,8 @@ function cod_sponsors_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'group_group' => array(
-      'sortable' => 1,
+    'og_group_ref' => array(
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -266,6 +266,10 @@ function cod_sponsors_views_default_views() {
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  /* Relationship: Content: Sponsorship Level (field_sponsor_sponsorship_level) */
+  $handler->display->display_options['relationships']['field_sponsor_sponsorship_level_tid']['id'] = 'field_sponsor_sponsorship_level_tid';
+  $handler->display->display_options['relationships']['field_sponsor_sponsorship_level_tid']['table'] = 'field_data_field_sponsor_sponsorship_level';
+  $handler->display->display_options['relationships']['field_sponsor_sponsorship_level_tid']['field'] = 'field_sponsor_sponsorship_level_tid';
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_sponsor_logo']['id'] = 'field_sponsor_logo';
   $handler->display->display_options['fields']['field_sponsor_logo']['table'] = 'field_data_field_sponsor_logo';
@@ -293,11 +297,16 @@ function cod_sponsors_views_default_views() {
   $handler->display->display_options['fields']['mail']['table'] = 'users';
   $handler->display->display_options['fields']['mail']['field'] = 'mail';
   $handler->display->display_options['fields']['mail']['relationship'] = 'uid';
-  /* Field: Content: Group */
-  $handler->display->display_options['fields']['group_group']['id'] = 'group_group';
-  $handler->display->display_options['fields']['group_group']['table'] = 'field_data_group_group';
-  $handler->display->display_options['fields']['group_group']['field'] = 'group_group';
-  $handler->display->display_options['fields']['group_group']['label'] = 'Event';
+  /* Field: Field: Groups audience */
+  $handler->display->display_options['fields']['og_group_ref']['id'] = 'og_group_ref';
+  $handler->display->display_options['fields']['og_group_ref']['table'] = 'field_data_og_group_ref';
+  $handler->display->display_options['fields']['og_group_ref']['field'] = 'og_group_ref';
+  $handler->display->display_options['fields']['og_group_ref']['relationship'] = 'field_sponsor_sponsorship_level_tid';
+  $handler->display->display_options['fields']['og_group_ref']['label'] = 'Event(s)';
+  $handler->display->display_options['fields']['og_group_ref']['alter']['nl2br'] = TRUE;
+  $handler->display->display_options['fields']['og_group_ref']['settings'] = array(
+    'link' => 0,
+  );
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
