@@ -28,6 +28,7 @@ dependencies[] = taxonomy
 dependencies[] = views
 dependencies[] = views_bulk_operations
 dependencies[] = views_content
+dependencies[] = views_autorefresh
 dependencies[] = views_ui
 datestamp = 1345248603
 features[ctools][] = field_group:field_group:1
