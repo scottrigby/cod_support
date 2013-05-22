@@ -47,11 +47,10 @@ function cod_session_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'list',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 0,
+          'type' => 'hidden',
+          'weight' => '0',
         ),
       ),
       'entity_type' => 'field_collection_item',
@@ -101,16 +100,10 @@ function cod_session_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => 2,
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
         ),
       ),
       'entity_type' => 'field_collection_item',
@@ -192,13 +185,13 @@ function cod_session_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'entityreference',
           'settings' => array(
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => 1,
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'field_collection_item',
@@ -316,6 +309,92 @@ function cod_session_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-page-upload'.
+  $fields['node-page-upload'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'upload',
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'file',
+      'settings' => array(
+        'default_file' => 0,
+        'display_default' => '1',
+        'display_field' => 1,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'file',
+    ),
+    'field_instance' => array(
+      'bundle' => 'page',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_table',
+          'weight' => 0,
+        ),
+        'full' => array(
+          'label' => 'hidden',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_table',
+          'weight' => 0,
+        ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'rss' => array(
+          'label' => 'hidden',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_table',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => NULL,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'upload',
+      'label' => 'File attachments',
+      'required' => 0,
+      'settings' => array(
+        'description_field' => 1,
+        'file_directory' => '',
+        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp',
+        'max_filesize' => '1 MB',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'file',
+        'settings' => array(
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'file_generic',
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported field: 'node-room-body'.
   $fields['node-room-body'] = array(
     'field_config' => array(
@@ -423,7 +502,9 @@ function cod_session_field_default_fields() {
       'indexes' => array(),
       'locked' => '0',
       'module' => 'number',
-      'settings' => array(),
+      'settings' => array(
+        'max_length' => '60',
+      ),
       'translatable' => '0',
       'type' => 'number_integer',
     ),
@@ -848,6 +929,7 @@ function cod_session_field_default_fields() {
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
+      'cod_declined_msg' => 'This session has been declined by the session moderation team.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_accepted',
@@ -869,6 +951,7 @@ function cod_session_field_default_fields() {
           2 => 'Declined',
         ),
         'allowed_values_function' => '',
+        'allowed_values_php' => '',
         'field_permissions' => array(
           'create' => 0,
           'edit' => 'edit',
@@ -979,10 +1062,11 @@ function cod_session_field_default_fields() {
           'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
-            'link' => FALSE,
+            'links' => 0,
+            'view_mode' => 'full',
           ),
-          'type' => 'entityreference_label',
-          'weight' => 9,
+          'type' => 'entityreference_entity_view',
+          'weight' => '9',
         ),
         'listing' => array(
           'label' => 'above',
@@ -1074,16 +1158,14 @@ function cod_session_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'schedule_item',
       'default_value' => NULL,
-      'default_value_function' => 'entityreference_prepopulate_field_default_value',
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'og_ui',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'og_list_default',
-          'weight' => 10,
+          'type' => 'hidden',
+          'weight' => '10',
         ),
         'listing' => array(
           'label' => 'above',
@@ -1101,7 +1183,7 @@ function cod_session_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'og_group_ref',
       'label' => 'Groups audience',
-      'required' => 0,
+      'required' => FALSE,
       'settings' => array(
         'behaviors' => array(
           'og_widget' => array(
@@ -1112,12 +1194,6 @@ function cod_session_field_default_fields() {
               'widget_type' => 'options_select',
             ),
             'status' => TRUE,
-          ),
-          'prepopulate' => array(
-            'action' => 'hide',
-            'fallback' => 'redirect',
-            'skip_perm' => '0',
-            'status' => 1,
           ),
         ),
         'user_register_form' => FALSE,
@@ -1135,7 +1211,6 @@ function cod_session_field_default_fields() {
         ),
       ),
       'widget' => array(
-        'active' => 0,
         'module' => 'og',
         'settings' => array(),
         'type' => 'og_complex',
@@ -1230,7 +1305,7 @@ function cod_session_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '2',
+        'weight' => '3',
       ),
       'widget_type' => 'text_textarea_with_summary',
     ),
@@ -1241,6 +1316,7 @@ function cod_session_field_default_fields() {
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
+      'cod_declined_msg' => 'This session has been declined by the session moderation team.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_accepted',
@@ -1262,6 +1338,7 @@ function cod_session_field_default_fields() {
           2 => 'Declined',
         ),
         'allowed_values_function' => '',
+        'allowed_values_php' => '',
         'field_permissions' => array(
           'create' => 0,
           'edit' => 'edit',
@@ -1280,6 +1357,8 @@ function cod_session_field_default_fields() {
           'value' => '0',
         ),
       ),
+      'default_value_function' => '',
+      'default_value_php' => '',
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -1395,7 +1474,7 @@ function cod_session_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '5',
+        'weight' => '7',
       ),
     ),
   );
@@ -1456,10 +1535,11 @@ function cod_session_field_default_fields() {
           'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
-            'link' => FALSE,
+            'links' => TRUE,
+            'view_mode' => '',
           ),
-          'type' => 'entityreference_label',
-          'weight' => 12,
+          'type' => 'entityreference_entity_view',
+          'weight' => '12',
         ),
         'listing' => array(
           'label' => 'above',
@@ -1492,6 +1572,86 @@ function cod_session_field_default_fields() {
         'settings' => array(),
         'type' => 'options_select',
         'weight' => '33',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-session-field_session_track'.
+  $fields['node-session-field_session_track'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_session_track',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'session_tracks',
+            'parent' => '0',
+          ),
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'session',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Select a suggested track that this session should go into',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => '14',
+        ),
+        'listing' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_session_track',
+      'label' => 'Track',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '2',
       ),
     ),
   );
@@ -1577,7 +1737,7 @@ function cod_session_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -1609,20 +1769,18 @@ function cod_session_field_default_fields() {
       'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
-        'handler' => 'base',
+        'handler' => 'views',
         'handler_settings' => array(
           'behaviors' => array(
             'views-select-list' => array(
               'status' => 0,
             ),
           ),
-          'sort' => array(
-            'direction' => 'ASC',
-            'field' => 'field_profile_first:value',
-            'property' => 'uid',
-            'type' => 'none',
+          'view' => array(
+            'args' => array(),
+            'display_name' => 'entityreference_1',
+            'view_name' => 'cod_session_speakers',
           ),
-          'target_bundles' => array(),
         ),
         'handler_submit' => 'Change handler',
         'target_type' => 'user',
@@ -1634,7 +1792,7 @@ function cod_session_field_default_fields() {
       'bundle' => 'session',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Type the speakers for the session, using a comma (,) to separate multiple speakers. <strong>Important:</strong> Make sure the name \'auto completes\' as you type, or else the entry will be invalid',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1643,7 +1801,7 @@ function cod_session_field_default_fields() {
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => 9,
+          'weight' => '9',
         ),
         'listing' => array(
           'label' => 'above',
@@ -1675,83 +1833,6 @@ function cod_session_field_default_fields() {
         ),
         'type' => 'entityreference_autocomplete_tags',
         'weight' => '1',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-session-field_track'.
-  $fields['node-session-field_track'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_track',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          'Track 1' => 'Track 1',
-          'Track 2' => 'Track 2',
-          'Track 3' => 'Track 3',
-        ),
-        'allowed_values_function' => '',
-        'field_permissions' => array(
-          'create' => 'create',
-          'edit' => 'edit',
-          'edit own' => 'edit own',
-          'view' => 'view',
-          'view own' => 0,
-        ),
-      ),
-      'translatable' => '1',
-      'type' => 'list_text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'session',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '5',
-        ),
-        'listing' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_track',
-      'label' => 'Track',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_buttons',
-        'weight' => '4',
       ),
     ),
   );
@@ -1815,11 +1896,10 @@ function cod_session_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'og_ui',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'og_list_default',
-          'weight' => 13,
+          'type' => 'hidden',
+          'weight' => '13',
         ),
         'listing' => array(
           'label' => 'above',
@@ -1868,7 +1948,7 @@ function cod_session_field_default_fields() {
         'module' => 'og',
         'settings' => array(),
         'type' => 'og_complex',
-        'weight' => 34,
+        'weight' => '11',
       ),
     ),
   );
@@ -1881,11 +1961,16 @@ function cod_session_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_slot_datetime',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'locked' => '0',
       'module' => 'date',
       'settings' => array(
+        'cache_count' => '4',
+        'cache_enabled' => 0,
         'field_permissions' => array(
           'create' => 0,
           'edit' => 'edit',
@@ -1898,6 +1983,7 @@ function cod_session_field_default_fields() {
           'hour' => 'hour',
           'minute' => 'minute',
           'month' => 'month',
+          'second' => 0,
           'year' => 'year',
         ),
         'repeat' => 0,
@@ -1922,7 +2008,6 @@ function cod_session_field_default_fields() {
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
-            'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
           'weight' => '0',
@@ -1961,13 +2046,25 @@ function cod_session_field_default_fields() {
           'type' => 'date_default',
           'weight' => '0',
         ),
+        'token' => array(
+          'label' => 'above',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => '0',
+        ),
       ),
       'entity_type' => 'node',
       'field_name' => 'field_slot_datetime',
       'label' => 'Date and time',
       'required' => 1,
       'settings' => array(
-        'default_format' => 'medium',
         'default_value' => 'now',
         'default_value2' => 'blank',
         'default_value_code' => '',
@@ -1983,7 +2080,6 @@ function cod_session_field_default_fields() {
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
-          'repeat_collapsed' => 0,
           'text_parts' => array(),
           'year_range' => '-3:+3',
         ),
@@ -2070,6 +2166,12 @@ function cod_session_field_default_fields() {
           'type' => 'hidden',
           'weight' => 0,
         ),
+        'token' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
       ),
       'entity_type' => 'node',
       'field_name' => 'og_group_ref',
@@ -2105,7 +2207,7 @@ function cod_session_field_default_fields() {
         'module' => 'og',
         'settings' => array(),
         'type' => 'og_complex',
-        'weight' => 3,
+        'weight' => 31,
       ),
     ),
   );
@@ -2118,8 +2220,10 @@ function cod_session_field_default_fields() {
   t('Date and time');
   t('Description');
   t('Experience level');
+  t('File attachments');
   t('Groups audience');
   t('Photo');
+  t('Select a suggested track that this session should go into');
   t('Select the relevant time slots this session should appear at.');
   t('Session Time Slot(s)');
   t('Slides');
@@ -2129,6 +2233,7 @@ function cod_session_field_default_fields() {
   t('Total capacity of the room, in persons.');
   t('Total room capacity');
   t('Track');
+  t('Type the speakers for the session, using a comma (,) to separate multiple speakers. <strong>Important:</strong> Make sure the name \'auto completes\' as you type, or else the entry will be invalid');
   t('Types Capacity');
   t('Upload your slides here as a PDF, or link to them from the description. (This is typically done after your session.)');
 

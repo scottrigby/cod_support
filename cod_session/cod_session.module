@@ -125,7 +125,6 @@ function cod_session_save_declined_message(&$form, &$form_state) {
 function cod_session_form_alter(&$form, &$form_state, $form_id) {
   // Prepopulate the current user into the Speakers field
   // on new session creation.
-
   if ($form_id == 'session_node_form') {
     if (isset($form['field_speakers'])) {
       // Form tweaks for the Speakers field:
@@ -137,7 +136,15 @@ function cod_session_form_alter(&$form, &$form_state, $form_id) {
         $form['field_speakers'][LANGUAGE_NONE][0]['uid']['#default_value'] = $user->uid;
       }
     }
+
+    if (isset($form['field_session_timeslot']) && !user_access('edit any session content')) {
+      unset($form['field_session_timeslot']);
+      unset($form['#fieldgroups']['group_schedule']);
+      $form['#validate'][] = 'cod_session_session_node_form_validate';
+    }
+
   }
+
   // @todo consider altering user_admin_perm form to disable editing
   // of edit slot and room permissions?
   if (strpos($form_id, '_node_form') !== FALSE) {
@@ -218,6 +225,11 @@ function cod_session_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+function cod_session_session_node_form_validate($form, &$form_state) {
+  if(empty($form_state['values']['field_session_timeslot'])) {
+    $form_state['values']['field_session_timeslot'] = $form['#node']->field_session_timeslot;
+  }
+}
 /**
  * Form submit handler for bof node form.
  */
@@ -548,4 +560,12 @@ function cod_session_single_schedulable_types() {
   }
 
   return $single_types;
+}
+
+function cod_session_custom_theme() {
+  if (arg(4) == 'sessions' && arg(5) == 'sign') {
+    $path = drupal_get_path('module', 'cod_session');
+    drupal_add_css($path . '/css/sign-style.css');
+    return 'seven';
+  }
 }
