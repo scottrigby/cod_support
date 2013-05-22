@@ -10,7 +10,7 @@
 function cod_community_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: administer contact forms.
+  // Exported permission: administer contact forms
   $permissions['administer contact forms'] = array(
     'name' => 'administer contact forms',
     'roles' => array(
