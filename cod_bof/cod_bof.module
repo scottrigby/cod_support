@@ -35,8 +35,6 @@ function cod_bof_form_bof_session_node_form_alter(&$form, &$form_state, $form_id
 }
 
 function cod_bof_node_presave($node) {
- // error_log(print_r(check_plain($_GET['edit']['field_session_timeslot']['target_id']),true));
-
   $time_slot_id = check_plain($_GET['edit']['field_session_timeslot']['target_id']);
   if($time_slot_id && $node->is_new) {
     $gid = _cod_bof_get_gid($time_slot_id);
