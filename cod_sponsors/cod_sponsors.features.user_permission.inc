@@ -14,8 +14,7 @@ function cod_sponsors_user_default_permissions() {
   $permissions['create sponsor content'] = array(
     'name' => 'create sponsor content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'sponsor organizer',
+      0 => 'sponsor organizer',
     ),
     'module' => 'node',
   );
@@ -24,8 +23,7 @@ function cod_sponsors_user_default_permissions() {
   $permissions['delete any sponsor content'] = array(
     'name' => 'delete any sponsor content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'sponsor organizer',
+      0 => 'sponsor organizer',
     ),
     'module' => 'node',
   );
@@ -34,8 +32,7 @@ function cod_sponsors_user_default_permissions() {
   $permissions['edit any sponsor content'] = array(
     'name' => 'edit any sponsor content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'sponsor organizer',
+      0 => 'sponsor organizer',
     ),
     'module' => 'node',
   );
