@@ -23,7 +23,7 @@ function cod_events_days($event_id = NULL) {
   if (empty($days)) {
     $days = array();
     if (db_table_exists('field_data_field_slot_datetime')) {
-      $event_join = 'INNER JOIN og_membership om ON n.nid = om.etid';
+      $event_join = 'INNER JOIN {og_membership} om ON n.nid = om.etid';
       $event = 'om.gid = :event_id AND';
 
       $sql = "SELECT n.nid AS nid, DATE_FORMAT(s.field_slot_datetime_value, :day) AS day
@@ -56,7 +56,6 @@ function cod_events_day_url($day) {
 /*
  * Make the event dashboard be an admin path
  */
-
 function cod_events_admin_paths() {
   $paths = array(
     'node/*/dashboard' => TRUE,
