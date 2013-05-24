@@ -88,7 +88,7 @@ function cod_bof_views_default_views() {
   $handler->display->display_options['fields']['view']['view'] = 'cod_bof_schedule_entity';
   $handler->display->display_options['fields']['view']['display'] = 'block';
   $handler->display->display_options['fields']['view']['arguments'] = '[!nid]/bof_session';
-  /* Sort criterion: Content: Date and time -  start date (field_slot_datetime) */
+  /* Sort criterion: Content: Date and time (field_slot_datetime) */
   $handler->display->display_options['sorts']['field_slot_datetime_value']['id'] = 'field_slot_datetime_value';
   $handler->display->display_options['sorts']['field_slot_datetime_value']['table'] = 'field_data_field_slot_datetime';
   $handler->display->display_options['sorts']['field_slot_datetime_value']['field'] = 'field_slot_datetime_value';
@@ -265,117 +265,6 @@ function cod_bof_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'bof_session' => 'bof_session',
   );
-
-  /* Display: Bof Sign */
-  $handler = $view->new_display('page', 'Bof Sign', 'page_1');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Linuxfest 2013 Birds of a Feather Sessions (Bofs)';
-  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
-  $handler->display->display_options['use_ajax'] = TRUE;
-  $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '6';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['defaults']['header'] = FALSE;
-  /* Header: Global: Text area */
-  $handler->display->display_options['header']['area']['id'] = 'area';
-  $handler->display->display_options['header']['area']['table'] = 'views';
-  $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['label'] = 'Creating Bofs Text';
-  $handler->display->display_options['header']['area']['empty'] = TRUE;
-  $handler->display->display_options['header']['area']['content'] = 'Click the QR Code below to login and create a BoF! <br />
-  <img src="/sites/default/files/lfnw_bof_qrcode.png" />';
-  $handler->display->display_options['header']['area']['format'] = 'full_html';
-  /* Header: Global: Autorefresh config */
-  $handler->display->display_options['header']['autorefresh']['interval'] = '60000';
-  $handler->display->display_options['header']['autorefresh']['display'] = 'page';
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Date and time */
-  $handler->display->display_options['fields']['field_slot_datetime']['id'] = 'field_slot_datetime';
-  $handler->display->display_options['fields']['field_slot_datetime']['table'] = 'field_data_field_slot_datetime';
-  $handler->display->display_options['fields']['field_slot_datetime']['field'] = 'field_slot_datetime';
-  $handler->display->display_options['fields']['field_slot_datetime']['label'] = '';
-  $handler->display->display_options['fields']['field_slot_datetime']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_slot_datetime']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_slot_datetime']['settings'] = array(
-    'format_type' => 'date_no_time_',
-    'fromto' => 'value',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-  );
-  /* Field: Content: Nid */
-  $handler->display->display_options['fields']['nid']['id'] = 'nid';
-  $handler->display->display_options['fields']['nid']['table'] = 'node';
-  $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['label'] = '';
-  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Content: Date and time */
-  $handler->display->display_options['fields']['field_slot_datetime_1']['id'] = 'field_slot_datetime_1';
-  $handler->display->display_options['fields']['field_slot_datetime_1']['table'] = 'field_data_field_slot_datetime';
-  $handler->display->display_options['fields']['field_slot_datetime_1']['field'] = 'field_slot_datetime';
-  $handler->display->display_options['fields']['field_slot_datetime_1']['label'] = '';
-  $handler->display->display_options['fields']['field_slot_datetime_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_slot_datetime_1']['settings'] = array(
-    'format_type' => 'time_slot',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-  );
-  /* Field: Global: View */
-  $handler->display->display_options['fields']['view']['id'] = 'view';
-  $handler->display->display_options['fields']['view']['table'] = 'views';
-  $handler->display->display_options['fields']['view']['field'] = 'view';
-  $handler->display->display_options['fields']['view']['label'] = '';
-  $handler->display->display_options['fields']['view']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['view']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['view']['view'] = 'cod_bof_schedule_entity';
-  $handler->display->display_options['fields']['view']['display'] = 'block_1';
-  $handler->display->display_options['fields']['view']['arguments'] = '[!nid]/bof_session';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'time_slot' => 'time_slot',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Date and time -  start date (field_slot_datetime) */
-  $handler->display->display_options['filters']['field_slot_datetime_value']['id'] = 'field_slot_datetime_value';
-  $handler->display->display_options['filters']['field_slot_datetime_value']['table'] = 'field_data_field_slot_datetime';
-  $handler->display->display_options['filters']['field_slot_datetime_value']['field'] = 'field_slot_datetime_value';
-  $handler->display->display_options['filters']['field_slot_datetime_value']['operator'] = 'between';
-  $handler->display->display_options['filters']['field_slot_datetime_value']['value']['min'] = '2013-04-27 09';
-  $handler->display->display_options['filters']['field_slot_datetime_value']['value']['max'] = '2013-04-27 16';
-  $handler->display->display_options['filters']['field_slot_datetime_value']['granularity'] = 'hour';
-  $handler->display->display_options['filters']['field_slot_datetime_value']['form_type'] = 'date_text';
-  $handler->display->display_options['filters']['field_slot_datetime_value']['year_range'] = '-1:+1';
-  /* Filter criterion: Content: Date and time - end date (field_slot_datetime:value2) */
-  $handler->display->display_options['filters']['field_slot_datetime_value2']['id'] = 'field_slot_datetime_value2';
-  $handler->display->display_options['filters']['field_slot_datetime_value2']['table'] = 'field_data_field_slot_datetime';
-  $handler->display->display_options['filters']['field_slot_datetime_value2']['field'] = 'field_slot_datetime_value2';
-  $handler->display->display_options['filters']['field_slot_datetime_value2']['operator'] = '>=';
-  $handler->display->display_options['filters']['field_slot_datetime_value2']['granularity'] = 'minute';
-  $handler->display->display_options['filters']['field_slot_datetime_value2']['default_date'] = '-10 minutes';
-  $handler->display->display_options['filters']['field_slot_datetime_value2']['year_range'] = '-1:+1';
-  $handler->display->display_options['path'] = 'node/%/program/schedule/bofs/sign';
   $export['cod_bof_schedule'] = $view;
 
   $view = new view();
