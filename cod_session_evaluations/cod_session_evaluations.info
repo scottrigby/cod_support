@@ -35,5 +35,5 @@ features[variable][] = menu_parent_session_evaluation
 features[variable][] = node_options_session_evaluation
 features[variable][] = node_preview_session_evaluation
 features[variable][] = node_submitted_session_evaluation
-features[views_view][] = sessions_eval_report
-features[views_view][] = sessions_speaker_review
+features[views_view][] = cod_session_evaluations_report
+features[views_view][] = cod_session_evaluations_speaker_review

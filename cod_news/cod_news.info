@@ -22,4 +22,4 @@ features[variable][] = comment_news
 features[variable][] = comment_preview_news
 features[variable][] = comment_subject_field_news
 features[variable][] = node_options_news
-features[views_view][] = news
+features[views_view][] = cod_news

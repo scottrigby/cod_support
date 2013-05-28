@@ -11,9 +11,9 @@ function cod_community_views_default_views() {
   $export = array();
 
   $view = new view;
-  $view->name = 'attendees';
+  $view->name = 'cod_community_attendees';
   $view->description = '';
-  $view->tag = 'default';
+  $view->tag = 'cod community';
   $view->base_table = 'users';
   $view->human_name = 'Attendees';
   $view->core = 7;
@@ -638,7 +638,7 @@ function cod_community_views_default_views() {
   $handler->display->display_options['fields']['field_profile_org']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_profile_org']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  $export['attendees'] = $view;
+  $export['cod_community_attendees'] = $view;
 
   return $export;
 }

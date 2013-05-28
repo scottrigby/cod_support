@@ -13,9 +13,9 @@ function cod_events_views_default_views() {
   $view = new view();
   $view->name = 'cod_events_admin';
   $view->description = '';
-  $view->tag = 'default';
+  $view->tag = 'cod events';
   $view->base_table = 'node';
-  $view->human_name = 'cod_events_admin';
+  $view->human_name = 'Event Administration Listing';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */

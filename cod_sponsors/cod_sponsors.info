@@ -52,5 +52,5 @@ features[variable][] = node_options_sponsorship_level
 features[variable][] = node_preview_sponsor
 features[variable][] = node_submitted_sponsor
 features[variable][] = node_submitted_sponsorship_level
-features[views_view][] = sponsors
-features[views_view][] = sponsors_admin
+features[views_view][] = cod_sponsors
+features[views_view][] = cod_sponsors_admin
