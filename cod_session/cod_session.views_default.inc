@@ -391,8 +391,7 @@ function cod_session_views_default_views() {
   $handler->display->display_options['header']['area']['id'] = 'area';
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['content'] = 'LFNW attracts a wide audience from Linux beginners to experienced experts. We accept presentations geared to any level of experience. You will be asked to specify your audience--beginner, intermediate or advanced--when you submit your proposal.
-<h3>Help us organize our rooms by indicating session interest!</h3>';
+  $handler->display->display_options['header']['area']['content'] = '';
   $handler->display->display_options['header']['area']['format'] = 'filtered_html';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
