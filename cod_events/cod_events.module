@@ -1,5 +1,6 @@
 <?php
 
+define('DEFAULT_EVENT','default_event');
 include_once('cod_events.features.inc');
 
 /*
@@ -12,6 +13,20 @@ function cod_events_ctools_plugin_directory($owner, $plugin_type) {
   if ($owner == 'ctools' && $plugin_type == 'content_types') {
     return 'plugins/content_types';
   }
+}
+
+/**
+ * Implements hook_forms().
+ */
+function cod_events_forms() {
+  $forms = array();
+  $days = cod_events_days();
+  if ($days = cod_events_days()) {
+    foreach ($days as $day_nid) {
+      $forms['cod_events_timeslots_'. $day_nid . '_form']['callback'] = 'cod_events_timeslots_form';
+    }
+  }
+  return $forms;
 }
 
 /**
@@ -61,4 +76,62 @@ function cod_events_admin_paths() {
     'node/*/dashboard' => TRUE,
   );
   return $paths;
+}
+
+/*
+ * Add the default event select box for choosing a default event.
+ */
+function cod_events_form_cod_base_admin_settings_alter(&$form, &$form_state, $form_id) {
+  $form['cod_events'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('COD Events'),
+    '#weight' => 5,
+    '#collapsible' => FALSE,
+    '#collapsed' => FALSE,
+  );
+
+  $options = array(t('No Default Event'));
+  $eventQuery = new EntityFieldQuery();
+  $event_list =  $eventQuery->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'event')
+    ->propertyCondition('status', 1)
+    ->propertyOrderBy('title')
+    ->execute();
+  if (count($event_list['node']) == 1) {
+    $default_event = array_pop(array_keys($event_list['node']));
+    variable_set('cod_events_default_event', $default_event);
+    $form['cod_events']['#description'] = "Node $default_event is the only event, and set to default";
+  }
+  else if (!empty($event_list['node'])) {
+    $events = entity_load('node', array_keys($event_list['node']));
+    foreach($events AS $event) {
+      $options[$event->nid] = $event->title;
+    }
+
+    $form['cod_events']['cod_events_default_event'] = array(
+      '#type' => 'select',
+      '#title' => t('Default Event'),
+      '#options' => $options,
+      '#default_value' => variable_get('cod_events_default_event', 0),
+    );
+  }
+  else {
+    $form['cod_events']['#markup'] = "You currently have no events";
+    variable_set('cod_events_default_event', 0);
+  }
+
+}
+/**
+* Implements hook_form_alter().
+* - Add default event to all new node types, using the default event setting.
+*/
+function cod_events_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['og_group_ref'])) {
+    if ($default_event = variable_get('cod_events_default_event', 0)) {
+      if (empty($form['og_group_ref'][LANGUAGE_NONE][0]['default']['#default_value'])) {
+        $form['og_group_ref'][LANGUAGE_NONE][0]['default']['#default_value'] = $default_event;
+        $form['og_group_ref']['#access'] = FALSE;
+      }
+    }
+  }
 }
