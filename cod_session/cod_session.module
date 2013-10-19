@@ -133,7 +133,7 @@ function cod_session_form_alter(&$form, &$form_state, $form_id) {
       // on new session creation.
       if (empty($form['#node']->nid)) {
         global $user;
-        $form['field_speakers'][LANGUAGE_NONE][0]['uid']['#default_value'] = $user->uid;
+        $form['field_speakers'][LANGUAGE_NONE][0]['target_id']['#default_value'] = "$user->name ($user->uid)";
       }
     }
 

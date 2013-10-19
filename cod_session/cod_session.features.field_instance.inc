@@ -1007,7 +1007,7 @@ function cod_session_field_default_field_instances() {
     'bundle' => 'session',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Type the speakers for the session, using a comma (,) to separate multiple speakers. <strong>Important:</strong> Make sure the name \'auto completes\' as you type, or else the entry will be invalid',
+    'description' => 'Type the username of the speaker, and to add more speakers click "Add another speaker"',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1046,7 +1046,7 @@ function cod_session_field_default_field_instances() {
         'path' => '',
         'size' => 60,
       ),
-      'type' => 'entityreference_autocomplete_tags',
+      'type' => 'entityreference_autocomplete',
       'weight' => 1,
     ),
   );
@@ -1302,7 +1302,7 @@ function cod_session_field_default_field_instances() {
   t('Total capacity of the room, in persons.');
   t('Total room capacity');
   t('Track');
-  t('Type the speakers for the session, using a comma (,) to separate multiple speakers. <strong>Important:</strong> Make sure the name \'auto completes\' as you type, or else the entry will be invalid');
+  t('Type the username of the speaker, and to add more speakers click "Add another speaker"');
   t('Types Capacity');
   t('Upload your slides here as a PDF, or link to them from the description. (This is typically done after your session.)');
 
