@@ -27,6 +27,51 @@ function cod_events_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+* Implements hook_flag_default_flags().
+*/
+function cod_events_flag_default_flags() {
+  $flags = array();
+  // Exported flag: "Default Event".
+  $flags['default_event'] = array(
+    'content_type' => 'node',
+    'title' => 'Default Event',
+    'global' => '1',
+    'types' => array(
+      0 => 'event',
+    ),
+    'flag_short' => 'Set as default event',
+    'flag_long' => '',
+    'flag_message' => '',
+    'unflag_short' => 'Remove default event',
+    'unflag_long' => '',
+    'unflag_message' => '',
+    'unflag_denied_text' => '',
+    'link_type' => 'normal',
+    'roles' => array(
+      'flag' => array(
+        0 => '2',
+      ),
+      'unflag' => array(
+        0 => '2',
+      ),
+    ),
+    'weight' => 0,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'show_on_page' => 1,
+    'show_on_teaser' => 1,
+    'show_contextual_link' => 0,
+    'i18n' => 0,
+    'api_version' => 2,
+    'module' => 'cod_events',
+    'locked' => array(
+      0 => 'name',
+    ),
+  );
+  return $flags;
+}
+
+/**
  * Implements hook_node_info().
  */
 function cod_events_node_info() {
