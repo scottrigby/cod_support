@@ -169,7 +169,14 @@ function cod_session_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'field_collection_item' => array(
+        'columns' => array(
+          'target_id' => 'item_id',
+        ),
+        'table' => 'field_collection_item',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
