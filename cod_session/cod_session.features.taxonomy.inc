@@ -13,9 +13,9 @@ function cod_session_taxonomy_default_vocabularies() {
       'name' => 'Session Tracks',
       'machine_name' => 'session_tracks',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
   );
 }

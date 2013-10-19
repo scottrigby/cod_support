@@ -168,7 +168,7 @@ function cod_session_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_page';
-  $strongarm->value = 'COMMENT_NODE_DISABLED';
+  $strongarm->value = COMMENT_NODE_HIDDEN;
   $export['comment_page'] = $strongarm;
 
   $strongarm = new stdClass();
