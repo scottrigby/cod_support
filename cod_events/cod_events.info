@@ -36,6 +36,7 @@ features[field_instance][] = node-event-field_dates
 features[field_instance][] = node-event-field_event_image
 features[field_instance][] = node-event-field_registration
 features[field_instance][] = node-event-group_group
+features[flag][] = default_event
 features[node][] = event
 features[page_manager_pages][] = events_dashboard
 features[panels_layout][] = cod_events_dashboard_tabs
