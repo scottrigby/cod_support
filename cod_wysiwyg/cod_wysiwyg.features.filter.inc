@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * commons_wysiwyg.features.filter.inc
+ * cod_wysiwyg.features.filter.inc
  */
 
 /**
  * Implements hook_filter_default_formats().
  */
-function commons_wysiwyg_filter_default_formats() {
+function cod_wysiwyg_filter_default_formats() {
   $formats = array();
 
   // Exported format: Filtered HTML.

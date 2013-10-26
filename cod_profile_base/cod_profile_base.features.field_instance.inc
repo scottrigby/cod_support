@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * commons_profile_base.features.field_instance.inc
+ * cod_profile_base.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function commons_profile_base_field_default_field_instances() {
+function cod_profile_base_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'user-user-field_bio'

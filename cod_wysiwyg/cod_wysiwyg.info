@@ -1,8 +1,8 @@
-name = Commons WYSIWYG
+name = COD WYSIWYG
 description = Provides a rich text editor for content creation.
 core = 7.x
-package = Commons - Building blocks
-project = commons_wysiwyg
+package = COD
+project = cod_wysiwyg
 dependencies[] = ckeditor
 dependencies[] = features
 dependencies[] = filter

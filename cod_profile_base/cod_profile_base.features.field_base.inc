@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * commons_profile_base.features.field_base.inc
+ * cod_profile_base.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function commons_profile_base_field_default_field_bases() {
+function cod_profile_base_field_default_field_bases() {
   $field_bases = array();
 
   // Exported field_base: 'field_bio'

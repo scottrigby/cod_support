@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * commons_wysiwyg.features.user_permission.inc
+ * cod_wysiwyg.features.user_permission.inc
  */
 
 /**
  * Implements hook_user_default_permissions().
  */
-function commons_wysiwyg_user_default_permissions() {
+function cod_wysiwyg_user_default_permissions() {
   $permissions = array();
 
   // Exported permission: 'use text format filtered_html'.

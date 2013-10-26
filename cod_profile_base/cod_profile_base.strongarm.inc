@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * commons_profile_base.strongarm.inc
+ * cod_profile_base.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function commons_profile_base_strongarm() {
+function cod_profile_base_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();

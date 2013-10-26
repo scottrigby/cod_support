@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * commons_wysiwyg.features.ckeditor_profile.inc
+ * cod_wysiwyg.features.ckeditor_profile.inc
  */
 
 /**
  * Implements hook_ckeditor_profile_defaults().
  */
-function commons_wysiwyg_ckeditor_profile_defaults() {
+function cod_wysiwyg_ckeditor_profile_defaults() {
   $data = array(
     'Advanced' => array(
       'name' => 'Advanced',

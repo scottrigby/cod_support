@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * commons_profile_social.features.field_instance.inc
+ * cod_profile_social.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function commons_profile_social_field_default_field_instances() {
+function cod_profile_social_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'user-user-field_facebook_url'
