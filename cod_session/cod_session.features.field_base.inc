@@ -169,14 +169,7 @@ function cod_session_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(
-      'field_collection_item' => array(
-        'columns' => array(
-          'target_id' => 'item_id',
-        ),
-        'table' => 'field_collection_item',
-      ),
-    ),
+    'foreign keys' => array(),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -422,7 +415,14 @@ function cod_session_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'users' => array(
+        'columns' => array(
+          'target_id' => 'uid',
+        ),
+        'table' => 'users',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -439,9 +439,11 @@ function cod_session_field_default_field_bases() {
           ),
         ),
         'view' => array(
-          'args' => array(),
+          'args' => array(
+            0 => '[node:og-group-ref:nid]',
+          ),
           'display_name' => 'entityreference_1',
-          'view_name' => 'cod_session_speakers',
+          'view_name' => 'cod_community_attendees',
         ),
       ),
       'handler_submit' => 'Change handler',
@@ -461,14 +463,7 @@ function cod_session_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
+    'foreign keys' => array(),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',

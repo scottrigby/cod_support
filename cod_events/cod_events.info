@@ -66,3 +66,4 @@ features[variable][] = node_options_event
 features[variable][] = node_preview_event
 features[variable][] = node_submitted_event
 features[views_view][] = cod_events_admin
+features[variable][] = pathauto_node_event_pattern
