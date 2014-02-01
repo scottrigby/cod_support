@@ -14,7 +14,7 @@ function cod_profile_base_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'realname_pattern';
-  $strongarm->value = '[user:field_name_first] [user:field_name_last]';
+  $strongarm->value = '[user:field_profile_first] [user:field_profile_last]';
   $export['realname_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
