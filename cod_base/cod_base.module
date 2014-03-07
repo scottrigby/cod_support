@@ -1,11 +1,8 @@
 <?php
 /**
  * @file
- * Code for the COD Base feature.
+ * Code for the COD Base module.
  */
-
-include_once('cod_base.features.inc');
-
 
 /**
  * Implements hook_menu().

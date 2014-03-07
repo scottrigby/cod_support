@@ -1,0 +1,149 @@
+<?php
+
+/**
+ * @file
+ * Install functions for cod_base module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function cod_base_install() {
+  foreach (cod_base_variables() as $name => $value) {
+    variable_set($name, $value);
+  }
+  foreach (cod_base_roles() as $role) {
+    user_role_save($role);
+  }
+  foreach (cod_base_permissions() as $role_name => $permissions) {
+    if ($role = user_role_load_by_name($role_name)) {
+      user_role_grant_permissions($role->rid, $permissions);
+    }
+  }
+}
+
+/**
+ * Defines default variables.
+ *
+ * Variable info from deprecated cod_base_strongarm().
+ *
+ * @return array
+ *   An associative array of variable values, keyed by name.
+ */
+function cod_base_variables() {
+  $variables = array();
+
+  $variables['admin_toolbar'] = array(
+    'layout' => 'vertical',
+    'position' => 'nw',
+    'behavior' => 'df',
+    'blocks' => array(
+      'admin-create' => -1,
+      'admin-theme' => 1,
+      'admin-account' => -1,
+      'system-management' => -1,
+    ),
+  );
+
+  $variables['date_format_date_no_time_'] = 'D, j M Y';
+
+  return $variables;
+}
+
+/**
+ * Defines default roles.
+ *
+ * Role info from deprecated cod_base_user_default_roles().
+ *
+ * @return array
+ *   An array of role objects.
+ */
+function cod_base_roles() {
+  $roles = array();
+
+  $role = new stdClass();
+  $role->name = 'content editor';
+  $role->weight = 3;
+  $roles[] = $role;
+
+  return $roles;
+}
+
+/**
+ * Defines default permissions.
+ *
+ * Permission info from deprecated cod_base_user_default_permissions().
+ *
+ * @return array
+ *   An associative array of permission names, keyed by role name.
+ */
+function cod_base_permissions() {
+  $permissions = array();
+
+  $permissions['administrator'] = array(
+    'access administration menu',
+    'access administration pages',
+    'access content',
+    'access content overview',
+    'access dashboard',
+    'access private fields',
+    'access site in maintenance mode',
+    'access site reports',
+    'access user profiles',
+    'administer comments',
+    'administer content types',
+    'administer field permissions',
+    'administer menu',
+    'administer nodes',
+    'administer pathauto',
+    'administer permissions',
+    'administer site configuration',
+    'administer taxonomy',
+    'administer url aliases',
+    'administer users',
+    'administer views',
+    'bypass node access',
+    'create url aliases',
+    'flush caches',
+    'notify of path changes',
+    'view advanced help index',
+    'view advanced help popup',
+    'view advanced help topic',
+    'view the administration theme',
+  );
+
+  $permissions['content editor'] = array(
+    'access administration menu',
+    'access administration pages',
+    'access content overview',
+    'access private fields',
+    'access site in maintenance mode',
+    'administer comments',
+    'administer field permissions',
+    'administer menu',
+    'administer nodes',
+    'administer pathauto',
+    'administer taxonomy',
+    'administer url aliases',
+    'bypass node access',
+    'create url aliases',
+    'flush caches',
+    'notify of path changes',
+    'view advanced help index',
+    'view advanced help popup',
+    'view advanced help topic',
+    'view the administration theme',
+  );
+
+  $permissions['anonymous user'] = array(
+    'access content',
+    'access user profiles',
+  );
+
+  $permissions['authenticated user'] = array(
+    'access content',
+    'access user profiles',
+  );
+
+  return $permissions;
+}
